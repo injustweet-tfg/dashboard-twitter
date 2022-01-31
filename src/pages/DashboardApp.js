@@ -14,7 +14,10 @@ import {
   AppWebsiteVisits,
   AppTrafficBySite,
   AppCurrentSubject,
-  AppConversionRates
+  AppConversionRates,
+  AppHeader,
+  AppFilters,
+  AppWordcloud
 } from '../components/_dashboard/app';
 
 // ----------------------------------------------------------------------
@@ -23,10 +26,14 @@ export default function DashboardApp() {
   return (
     <Page title="Dashboard | Minimal-UI">
       <Container maxWidth="xl">
-        <Box sx={{ pb: 5 }}>
-          <Typography variant="h4">Hi, Welcome back</Typography>
-        </Box>
         <Grid container spacing={3}>
+          <Grid item xs={12} md={12} lg={12}>
+            <AppHeader />
+          </Grid>
+          <Grid item xs={12} md={12} lg={12}>
+            <AppFilters />
+          </Grid>
+
           <Grid item xs={12} sm={6} md={3}>
             <AppWeeklySales />
           </Grid>
@@ -40,36 +47,28 @@ export default function DashboardApp() {
             <AppBugReports />
           </Grid>
 
-          <Grid item xs={12} md={6} lg={8}>
-            <AppWebsiteVisits />
+          <Grid item xs={12} md={6} lg={6}>
+            <AppWordcloud />
+            <Grid container spacing={3}>
+              <Grid item xs={12} md={6} lg={6}>
+                <AppWordcloud />
+              </Grid>
+              <Grid item xs={12} md={6} lg={6}>
+                <AppWordcloud />
+              </Grid>
+            </Grid>
           </Grid>
 
-          <Grid item xs={12} md={6} lg={4}>
-            <AppCurrentVisits />
-          </Grid>
-
-          <Grid item xs={12} md={6} lg={8}>
+          <Grid item xs={12} md={6} lg={6}>
             <AppConversionRates />
           </Grid>
 
-          <Grid item xs={12} md={6} lg={4}>
+          <Grid item xs={12} md={6} lg={6}>
             <AppCurrentSubject />
           </Grid>
 
-          <Grid item xs={12} md={6} lg={8}>
+          <Grid item xs={12} md={6} lg={6}>
             <AppNewsUpdate />
-          </Grid>
-
-          <Grid item xs={12} md={6} lg={4}>
-            <AppOrderTimeline />
-          </Grid>
-
-          <Grid item xs={12} md={6} lg={4}>
-            <AppTrafficBySite />
-          </Grid>
-
-          <Grid item xs={12} md={6} lg={8}>
-            <AppTasks />
           </Grid>
         </Grid>
       </Container>
