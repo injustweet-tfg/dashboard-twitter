@@ -4,11 +4,13 @@ import { Box, Grid, Container, Typography } from '@mui/material';
 import Page from '../components/Page';
 import {
   AppTasks,
-  AppNewUsers,
-  AppBugReports,
-  AppItemOrders,
-  AppNewsUpdate,
-  AppWeeklySales,
+  AppTotalUsers,
+  AppTotalFAV,
+  AppTotalRT,
+  AppTweets,
+  AppTotalTweets,
+  AppTopHashtags,
+  AppTopUsers,
   AppOrderTimeline,
   AppCurrentVisits,
   AppWebsiteVisits,
@@ -33,34 +35,34 @@ export default function DashboardApp() {
           <Grid item xs={12} md={12} lg={12}>
             <AppFilters />
           </Grid>
+          <Grid item xs={12} sm={6} md={3}>
+            <AppTotalTweets />
+          </Grid>
+          <Grid item xs={12} sm={6} md={3}>
+            <AppTotalUsers />
+          </Grid>
+          <Grid item xs={12} sm={6} md={3}>
+            <AppTotalRT />
+          </Grid>
+          <Grid item xs={12} sm={6} md={3}>
+            <AppTotalFAV />
+          </Grid>
 
-          <Grid item xs={12} sm={6} md={3}>
-            <AppWeeklySales />
-          </Grid>
-          <Grid item xs={12} sm={6} md={3}>
-            <AppNewUsers />
-          </Grid>
-          <Grid item xs={12} sm={6} md={3}>
-            <AppItemOrders />
-          </Grid>
-          <Grid item xs={12} sm={6} md={3}>
-            <AppBugReports />
-          </Grid>
-
-          <Grid item xs={12} md={6} lg={6}>
-            <AppWordcloud />
-            <Grid container spacing={3}>
-              <Grid item xs={12} md={6} lg={6}>
-                <AppWordcloud />
-              </Grid>
-              <Grid item xs={12} md={6} lg={6}>
-                <AppWordcloud />
-              </Grid>
+          <Grid item xs={12} md={6} lg={6} container spacing={3}>
+            <Grid item xs={12} md={12} lg={12}>
+              <AppWordcloud />
+            </Grid>
+            <Grid item xs={12} md={6} lg={6}>
+              <AppTopHashtags />
+            </Grid>
+            <Grid item xs={12} md={6} lg={6}>
+              <AppTopUsers />
             </Grid>
           </Grid>
 
+
           <Grid item xs={12} md={6} lg={6}>
-            <AppConversionRates />
+            <AppTweets />
           </Grid>
 
           <Grid item xs={12} md={6} lg={6}>
@@ -68,10 +70,11 @@ export default function DashboardApp() {
           </Grid>
 
           <Grid item xs={12} md={6} lg={6}>
-            <AppNewsUpdate />
+            {/* <AppNewsUpdate /> */}
+            < AppWebsiteVisits />
           </Grid>
         </Grid>
       </Container>
-    </Page>
+    </Page >
   );
 }
