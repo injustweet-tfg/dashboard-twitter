@@ -4,9 +4,14 @@ import { Icon } from '@iconify/react';
 import { formatDistance } from 'date-fns';
 import { Link as RouterLink } from 'react-router-dom';
 import arrowIosForwardFill from '@iconify/icons-eva/arrow-ios-forward-fill';
+import commentOutlined from '@iconify/icons-ant-design/comment-outlined';
+import retweetOutlined from '@iconify/icons-ant-design/retweet-outlined';
+import starOutlined from '@iconify/icons-ant-design/star-outlined';
+import filterFilled from '@iconify/icons-ant-design/filter-filled';
 // material
-import { Box, Stack, Link, Card, Button, Divider, Typography, CardHeader, Grid } from '@mui/material';
+import { Box, Stack, Link, Card, Button, Divider, Typography, CardHeader, Grid, Menu, MenuItem } from '@mui/material';
 // utils
+import { useState } from 'react';
 import { mockImgCover } from '../../../utils/mockImages';
 //
 import Scrollbar from '../../Scrollbar';
@@ -16,7 +21,8 @@ import Scrollbar from '../../Scrollbar';
 const NEWS = [...Array(7)].map((_, index) => {
   const setIndex = index + 1;
   return {
-    title: faker.name.title(),
+    name: faker.name.title(),
+    username: "@".concat(faker.internet.userName()),
     description: faker.lorem.paragraph(2),
     image: mockImgCover(setIndex),
     postedAt: faker.date.soon(),
@@ -33,14 +39,14 @@ NewsItem.propTypes = {
 };
 
 function NewsItem({ news }) {
-  const { image, title, description, postedAt, rt, fav, replays } = news;
+  const { image, name, username, description, postedAt, rt, fav, replays } = news;
 
   return (
-    <Grid container>
+    <Grid container pr={4}>
       <Grid item xs={2} sm={2} md={2} lg={2}>
         <Box
           component="img"
-          alt={title}
+          alt={name}
           src={image}
           sx={{ width: 80, height: 80, borderRadius: '50%' }}
         />
@@ -49,15 +55,21 @@ function NewsItem({ news }) {
         <Box sx={{ minWidth: 240 }}>
           <Link to="#" color="inherit" underline="hover" component={RouterLink}>
             <Typography variant="subtitle2" noWrap>
-              {title}
+              {name} <span>&nbsp;</span>
+              <Typography variant="caption" sx={{ pr: 10, flexShrink: 0, color: 'text.secondary' }}>
+                {username} · {formatDistance(postedAt, new Date())}
+              </Typography>
             </Typography>
+
           </Link>
           <Typography variant="body2" sx={{ color: 'text.secondary' }} >
             {description}
           </Typography>
-          <Box sx={{ minWidth: 240 }}>
-            <Typography variant="caption" sx={{ pr: 10, flexShrink: 0, color: 'text.secondary' }}>
-              {formatDistance(postedAt, new Date(), { addSuffix: true })} | {rt} RT | {fav} FAV | {replays} Replays
+          <Box mt={0.5} sx={{ minWidth: 240 }} alignItems="center">
+            <Typography variant="caption" sx={{ pr: 10, flexShrink: 0, color: 'text.secondary' }}  >
+              <Icon icon={commentOutlined} width={20} height={20} /> {replays} <span>&nbsp;</span>
+              <Icon icon={retweetOutlined} width={20} height={20} /> {rt} <span>&nbsp;</span>
+              <Icon icon={starOutlined} width={20} height={20} /> {fav}
             </Typography>
           </Box>
         </Box>
@@ -68,15 +80,75 @@ function NewsItem({ news }) {
   );
 }
 
+// ----------------------------------------------------------------------
+
+
+const SORT_BY_OPTIONS = [
+  'Más recientes',
+  'Más antiguos',
+  'Más RTs',
+  'Más FAVs'
+];
+
+// ----------------------------------------------------------------------
+
 export default function AppTweets() {
+
+  const [open, setOpen] = useState(null);
+  const [selected, setSelected] = useState(0);
+
+  const handleOpen = (event) => {
+    setOpen(event.currentTarget);
+  };
+
+  const handleClose = () => {
+    setOpen(null);
+  };
+
+  const handleChange = (event, index) => {
+    setSelected(index);
+    handleClose();
+  };
+
+
   return (
     <Card>
-      <CardHeader title="Tweets" />
+      <CardHeader
+        title="Tweets"
+        action={<>
+          <Button onClick={handleOpen} aria-label="filter" endIcon={<Icon icon={filterFilled} />}>
+            Ordenar por:&nbsp;
+            <Typography component="span" variant="subtitle2" sx={{ color: 'text.secondary' }}>
+              {SORT_BY_OPTIONS[selected]}
+            </Typography>
+          </Button>
+          <Menu
+            keepMounted
+            anchorEl={open}
+            open={Boolean(open)}
+            onClose={handleClose}
+            anchorOrigin={{ vertical: 'bottom', horizontal: 'right' }}
+            transformOrigin={{ vertical: 'top', horizontal: 'right' }}
+          >
+            {SORT_BY_OPTIONS.map((option, index) => (
+              <MenuItem
+                key={index}
+                selected={option === SORT_BY_OPTIONS[selected]}
+                onClick={(event) => handleChange(event, index)}
+                sx={{ typography: 'body2' }}
+              >
+                {option}
+              </MenuItem>
+
+            ))}
+          </Menu>
+        </>
+        } />
 
       <Scrollbar>
         <Stack spacing={3} sx={{ p: 3, pr: 0 }}>
-          {NEWS.map((news) => (
-            <NewsItem key={news.title} news={news} />
+          {NEWS.map((news, index) => (
+            <NewsItem key={index} news={news} />
           ))}
         </Stack>
       </Scrollbar>
