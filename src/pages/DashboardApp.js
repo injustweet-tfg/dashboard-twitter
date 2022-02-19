@@ -3,7 +3,6 @@ import { Box, Grid, Container, Typography } from '@mui/material';
 // components
 import Page from '../components/Page';
 import {
-  AppTasks,
   AppTotalUsers,
   AppTotalFAV,
   AppTotalRT,
@@ -11,12 +10,8 @@ import {
   AppTotalTweets,
   AppTopHashtags,
   AppTopUsers,
-  AppOrderTimeline,
-  AppCurrentVisits,
   AppWebsiteVisits,
-  AppTrafficBySite,
   AppCurrentSubject,
-  AppConversionRates,
   AppHeader,
   AppFilters,
   AppWordcloud
