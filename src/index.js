@@ -7,7 +7,6 @@ import { HelmetProvider } from 'react-helmet-async';
 
 //
 import App from './App';
-import * as serviceWorker from './serviceWorker';
 // ----------------------------------------------------------------------
 
 ReactDOM.render(
@@ -19,5 +18,3 @@ ReactDOM.render(
   document.getElementById('root')
 );
 
-// If you want to enable client cache, register instead.
-serviceWorker.unregister();

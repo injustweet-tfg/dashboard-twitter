@@ -1,11 +1,13 @@
+import { useState } from 'react';
 import { Icon } from '@iconify/react';
-import bugFilled from '@iconify/icons-ant-design/bug-filled';
+// import bugFilled from '@iconify/icons-ant-design/bug-filled';
 import heartOutlined from '@iconify/icons-ant-design/heart-outlined';
 // material
 import { alpha, styled } from '@mui/material/styles';
 import { Card, Typography } from '@mui/material';
 // utils
 import { fShortenNumber } from '../../../utils/formatNumber';
+
 
 // ----------------------------------------------------------------------
 
@@ -35,15 +37,15 @@ const IconWrapperStyle = styled('div')(({ theme }) => ({
 
 // ----------------------------------------------------------------------
 
-const TOTAL = 234;
+export default function AppTotalFAV({totalFAV}) {
+  const [total, setTotal] = useState(totalFAV);
 
-export default function AppTotalFAV() {
   return (
     <RootStyle>
       <IconWrapperStyle>
         <Icon icon={heartOutlined} width={24} height={24} />
       </IconWrapperStyle>
-      <Typography variant="h3">{fShortenNumber(TOTAL)}</Typography>
+      <Typography variant="h3">{fShortenNumber(total)}</Typography>
       <Typography variant="subtitle2" sx={{ opacity: 0.72 }}>
         Total de favoritos
       </Typography>

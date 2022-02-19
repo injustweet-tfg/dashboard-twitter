@@ -1,3 +1,5 @@
+import { useState } from 'react';
+
 import { Icon } from '@iconify/react';
 import androidFilled from '@iconify/icons-ant-design/android-filled';
 import twitterOutlined from '@iconify/icons-ant-design/twitter-outlined';
@@ -6,6 +8,7 @@ import { alpha, styled } from '@mui/material/styles';
 import { Card, Typography } from '@mui/material';
 // utils
 import { fShortenNumber } from '../../../utils/formatNumber';
+
 
 // ----------------------------------------------------------------------
 
@@ -35,15 +38,16 @@ const IconWrapperStyle = styled('div')(({ theme }) => ({
 
 // ----------------------------------------------------------------------
 
-const TOTAL = 714000;
+// const TOTAL = 714000;
 
-export default function AppTotalTweets() {
+export default function AppTotalTweets({totalTweets}) {
+  const [total, setTotal] = useState(totalTweets);
   return (
     <RootStyle>
       <IconWrapperStyle>
         <Icon icon={twitterOutlined} width={24} height={24} />
       </IconWrapperStyle>
-      <Typography variant="h3">{fShortenNumber(TOTAL)}</Typography>
+      <Typography variant="h3">{fShortenNumber(total)}</Typography>
       <Typography variant="subtitle2" sx={{ opacity: 0.72 }}>
         Total de tweets
       </Typography>

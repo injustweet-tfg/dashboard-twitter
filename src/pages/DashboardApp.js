@@ -1,5 +1,8 @@
+import React, { useContext } from "react";
+
 // material
 import { Box, Grid, Container, Typography } from '@mui/material';
+import { TweetsProvider, context } from '../context';
 // components
 import Page from '../components/Page';
 import {
@@ -20,8 +23,12 @@ import {
 // ----------------------------------------------------------------------
 
 export default function DashboardApp() {
+  const [getTotals] = useContext(context);
+  const [totalTweets, totalUsers, totalRT, totalFAV] = getTotals();
+
+
   return (
-    <Page title="Dashboard | Minimal-UI">
+    <Page title="Precariedapp">
       <Container maxWidth="xl">
         <Grid container spacing={3}>
           <Grid item xs={12} md={12} lg={12}>
@@ -31,16 +38,16 @@ export default function DashboardApp() {
             <AppFilters />
           </Grid>
           <Grid item xs={12} sm={6} md={3}>
-            <AppTotalTweets />
+            <AppTotalTweets totalTweets={totalTweets} />
           </Grid>
           <Grid item xs={12} sm={6} md={3}>
-            <AppTotalUsers />
+            <AppTotalUsers totalUsers={totalUsers} />
           </Grid>
           <Grid item xs={12} sm={6} md={3}>
-            <AppTotalRT />
+            <AppTotalRT totalRT={totalRT} />
           </Grid>
           <Grid item xs={12} sm={6} md={3}>
-            <AppTotalFAV />
+            <AppTotalFAV totalFAV={totalFAV}/>
           </Grid>
 
           <Grid item xs={12} md={6} lg={6} container spacing={3}>
@@ -54,7 +61,6 @@ export default function DashboardApp() {
               <AppTopUsers />
             </Grid>
           </Grid>
-
 
           <Grid item xs={12} md={6} lg={6}>
             <AppTweets />

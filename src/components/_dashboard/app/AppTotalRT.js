@@ -1,3 +1,4 @@
+import { useState } from 'react';
 import { Icon } from '@iconify/react';
 import windowsFilled from '@iconify/icons-ant-design/windows-filled';
 import retweetOutlined from '@iconify/icons-ant-design/retweet-outlined';
@@ -6,6 +7,7 @@ import { alpha, styled } from '@mui/material/styles';
 import { Card, Typography } from '@mui/material';
 // utils
 import { fShortenNumber } from '../../../utils/formatNumber';
+
 
 // ----------------------------------------------------------------------
 
@@ -35,15 +37,15 @@ const IconWrapperStyle = styled('div')(({ theme }) => ({
 
 // ----------------------------------------------------------------------
 
-const TOTAL = 1723315;
 
-export default function AppTotalRT() {
+export default function AppTotalRT({totalRT}) {
+  const [total, setTotal] = useState(totalRT);
   return (
     <RootStyle>
       <IconWrapperStyle>
         <Icon icon={retweetOutlined} width={24} height={24} />
       </IconWrapperStyle>
-      <Typography variant="h3">{fShortenNumber(TOTAL)}</Typography>
+      <Typography variant="h3">{fShortenNumber(total)}</Typography>
       <Typography variant="subtitle2" sx={{ opacity: 0.72 }}>
         Total de retweets
       </Typography>

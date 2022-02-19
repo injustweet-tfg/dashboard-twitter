@@ -1,17 +1,10 @@
 import PropTypes from 'prop-types';
-import { Icon } from '@iconify/react';
-import menu2Fill from '@iconify/icons-eva/menu-2-fill';
+// import { Icon } from '@iconify/react';
+// import menu2Fill from '@iconify/icons-eva/menu-2-fill';
 // material
 import { alpha, styled } from '@mui/material/styles';
-import { Box, Stack, AppBar, Toolbar, IconButton } from '@mui/material';
+import {  AppBar, Toolbar} from '@mui/material'; // Box, Stack, IconButton 
 // components
-import { MHidden } from '../../components/@material-extend';
-//
-import Searchbar from './Searchbar';
-import AccountPopover from './AccountPopover';
-import LanguagePopover from './LanguagePopover';
-import NotificationsPopover from './NotificationsPopover';
-
 // ----------------------------------------------------------------------
 
 const DRAWER_WIDTH = 280;
@@ -43,14 +36,7 @@ export default function DashboardNavbar({ onOpenSidebar }) {
   return (
     <RootStyle>
       <ToolbarStyle>
-        <Searchbar />
-        <Box sx={{ flexGrow: 1 }} />
-
-        <Stack direction="row" alignItems="center" spacing={{ xs: 0.5, sm: 1.5 }}>
-          <LanguagePopover />
-          <NotificationsPopover />
-          <AccountPopover />
-        </Stack>
+      {/* navbar meterlo */ } 
       </ToolbarStyle>
     </RootStyle>
   );

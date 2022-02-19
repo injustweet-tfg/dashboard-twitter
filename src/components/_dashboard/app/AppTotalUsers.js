@@ -1,3 +1,5 @@
+import { useState } from 'react';
+
 import { Icon } from '@iconify/react';
 import appleFilled from '@iconify/icons-ant-design/apple-filled';
 import userOutlined from '@iconify/icons-ant-design/user-outlined';
@@ -35,15 +37,16 @@ const IconWrapperStyle = styled('div')(({ theme }) => ({
 
 // ----------------------------------------------------------------------
 
-const TOTAL = 1352831;
+// const TOTAL = 1352831;
 
-export default function AppTotalUsers() {
+export default function AppTotalUsers({totalUsers}) {
+  const [total, setTotal] = useState(totalUsers);
   return (
     <RootStyle>
       <IconWrapperStyle>
         <Icon icon={userOutlined} width={24} height={24} />
       </IconWrapperStyle>
-      <Typography variant="h3">{fShortenNumber(TOTAL)}</Typography>
+      <Typography variant="h3">{fShortenNumber(total)}</Typography>
       <Typography variant="subtitle2" sx={{ opacity: 0.72 }}>
         Total de usuarios
       </Typography>
