@@ -1,3 +1,4 @@
+import { alertClasses } from "@mui/material";
 import React, { useState, createContext } from "react";
 
 export const context = createContext();
@@ -8,7 +9,37 @@ export const TweetsProvider = (props) => {
       "link": "https://twitter.com/JobsMierda/status/1491430495455952901",
       "id": 1491430495455952901,
       "text": "Están buscando a una persona que curre de lunes a domingo para cuidar a tres niños por 2,90 euros la hora... Por debajo del SMI y sin descanso semanal.",
+      "user": "javi",
+      "date": "09/02/22 - 15:15",
+      "likes": 427,
+      "retweets": 142,
+      "replies": 13
+    },
+    {
+      "link": "https://twitter.com/JobsMierda/status/1491430495455952901",
+      "id": 1491430495455952901,
+      "text": "Están buscando a una persona que curre de lunes a domingo para cuidar a tres niños por 2,90 euros la hora... Por debajo del SMI y sin descanso semanal.",
+      "user": "angela",
+      "date": "09/02/22 - 15:15",
+      "likes": 427,
+      "retweets": 142,
+      "replies": 13
+    },
+    {
+      "link": "https://twitter.com/JobsMierda/status/1491430495455952901",
+      "id": 1491430495455952901,
+      "text": "Están buscando a una persona que curre de lunes a domingo para cuidar a tres niños por 2,90 euros la hora... Por debajo del SMI y sin descanso semanal.",
       "user": "JobsMierda",
+      "date": "06/02/22 - 15:15",
+      "likes": 427,
+      "retweets": 142,
+      "replies": 13
+    },
+    {
+      "link": "https://twitter.com/JobsMierda/status/1491430495455952901",
+      "id": 1491430495455952901,
+      "text": "Están buscando a una persona que curre de lunes a domingo para cuidar a tres niños por 2,90 euros la hora... Por debajo del SMI y sin descanso semanal.",
+      "user": "angela",
       "date": "09/02/22 - 15:15",
       "likes": 427,
       "retweets": 142,
@@ -44,8 +75,54 @@ export const TweetsProvider = (props) => {
     return [totalTweets, totalUsers, totalRT, totalFAV];
   }
 
+  const getTimeline = () => {
+    const dict = {}
+    tweets.forEach(tweet => {
+      const d = (tweet.date).substring(0, (tweet.date).indexOf('-')); 
+
+      if (!(d in dict)) {
+        const elem = {
+          date: d,
+          tweet: 1,
+          fav: tweet.likes,
+          rt: tweet.retweets
+         }
+        dict[d] = elem;
+      }
+      else{
+        dict[d].tweet += 1;
+        dict[d].fav += tweet.likes;
+        dict[d].rt += tweet.retweets;
+      }
+    });
+    const timeline = Object.values(dict);
+    timeline.sort((a,b)=>new Date(a.date) - new Date(b.date));
+    return timeline
+  }
+
+  const getTopUsers= () => {
+    const dict = {}
+    tweets.forEach(tweet => {
+      if (!(tweet.user in dict)) {
+        const elem = {
+          user: tweet.user,
+          tweets: 1
+         }
+        dict[tweet.user] = elem;
+      }
+      else{
+        dict[tweet.user].tweets += 1;
+      }
+    });
+    const array = Object.values(dict);
+    array.sort((a,b)=>b.tweets - a.tweets);
+    const arraytop = array.slice(0, Math.min(array.length,10));
+    return arraytop
+  }
+  
+
   return (
-    <context.Provider value={[getTotals]}>
+    <context.Provider value={[getTotals,getTimeline, getTopUsers]}>
       {props.children}
     </context.Provider>
   );
@@ -53,3 +130,10 @@ export const TweetsProvider = (props) => {
 
 
 
+/*
+
+Observaciones
+- progreso: el tema del date 
+- wordcloud: datos/font
+- users: personalizar/poner un poco más bonito
+*/
