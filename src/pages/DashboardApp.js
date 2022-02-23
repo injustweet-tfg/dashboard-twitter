@@ -13,7 +13,7 @@ import {
   AppTotalTweets,
   AppTopHashtags,
   AppTopUsers,
-  AppWebsiteVisits,
+  AppTimeline,
   AppCurrentSubject,
   AppHeader,
   AppFilters,
@@ -23,8 +23,10 @@ import {
 // ----------------------------------------------------------------------
 
 export default function DashboardApp() {
-  const [getTotals] = useContext(context);
+  const [getTotals, getTimeline, getTopUsers] = useContext(context);
   const [totalTweets, totalUsers, totalRT, totalFAV] = getTotals();
+  const dataTimeline = getTimeline();
+  const topusers = getTopUsers();
 
 
   return (
@@ -58,7 +60,7 @@ export default function DashboardApp() {
               <AppTopHashtags />
             </Grid>
             <Grid item xs={12} md={6} lg={6}>
-              <AppTopUsers />
+              <AppTopUsers topusers = {topusers} />
             </Grid>
           </Grid>
 
@@ -72,7 +74,7 @@ export default function DashboardApp() {
 
           <Grid item xs={12} md={6} lg={6}>
             {/* <AppNewsUpdate /> */}
-            < AppWebsiteVisits />
+            < AppTimeline dataTimeline = {dataTimeline} />
           </Grid>
         </Grid>
       </Container>

@@ -3,7 +3,7 @@ export { default as AppCurrentSubject } from './AppCurrentSubject';
 export { default as AppTotalRT } from './AppTotalRT';
 export { default as AppTweets } from './AppTweets';
 export { default as AppTotalUsers } from './AppTotalUsers';
-export { default as AppWebsiteVisits } from './AppWebsiteVisits';
+export { default as AppTimeline } from './AppTimeline';
 export { default as AppTotalTweets } from './AppTotalTweets';
 export { default as AppHeader } from './AppHeader';
 export { default as AppFilters } from './AppFilters';
