@@ -1,8 +1,8 @@
 import React, { useEffect, useState } from 'react';
 import { Card, Button } from '@mui/material';
 import ReactWordcloud from 'react-wordcloud';
-import randomize from 'randomize';
-import randomColor from 'randomcolor';
+// import randomize from 'randomize';
+// import randomColor from 'randomcolor';
 import { v4 as uuidv4 } from 'uuid';
 
 const words = [

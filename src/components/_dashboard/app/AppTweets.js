@@ -170,14 +170,19 @@
 //   );
 // }
 
+import { useState } from 'react';
 import faker from 'faker';
 import PropTypes from 'prop-types';
 import { Icon } from '@iconify/react';
 import { formatDistance } from 'date-fns';
 import { Link as RouterLink } from 'react-router-dom';
 import arrowIosForwardFill from '@iconify/icons-eva/arrow-ios-forward-fill';
+import commentOutlined from '@iconify/icons-ant-design/comment-outlined';
+import retweetOutlined from '@iconify/icons-ant-design/retweet-outlined';
+import starOutlined from '@iconify/icons-ant-design/star-outlined';
+import filterFilled from '@iconify/icons-ant-design/filter-filled';
 // material
-import { Box, Stack, Link, Card, Button, Divider, Typography, CardHeader } from '@mui/material';
+import { Box, Stack, Link, Card, Button, Divider, Typography, CardHeader, Grid, Menu, MenuItem } from '@mui/material';
 // utils
 import { mockImgCover } from '../../../utils/mockImages';
 //
@@ -185,13 +190,17 @@ import Scrollbar from '../../Scrollbar';
 
 // ----------------------------------------------------------------------
 
-const NEWS = [...Array(5)].map((_, index) => {
+const NEWS = [...Array(7)].map((_, index) => {
   const setIndex = index + 1;
   return {
-    title: faker.name.title(),
-    description: faker.lorem.paragraphs(),
+    name: faker.name.title(),
+    username: "@".concat(faker.internet.userName()),
+    description: faker.lorem.paragraph(2),
     image: mockImgCover(setIndex),
-    postedAt: faker.date.soon()
+    postedAt: faker.date.soon(),
+    rt: index,
+    fav: index,
+    replays: index,
   };
 });
 
@@ -201,43 +210,123 @@ NewsItem.propTypes = {
   news: PropTypes.object.isRequired
 };
 
+const SORT_BY_OPTIONS = [
+  'Más recientes',
+  'Más antiguos',
+  'Más RTs',
+  'Más FAVs'
+];
+
 function NewsItem({ news }) {
-  const { image, title, description, postedAt } = news;
+  const { image, name, username, description, postedAt, rt, fav, replays } = news;
 
   return (
-    <Stack direction="row" alignItems="center" spacing={2}>
+    <Stack direction="row" alignItems="top" spacing={2}>
       <Box
         component="img"
-        alt={title}
+        alt={name}
         src={image}
-        sx={{ width: 48, height: 48, borderRadius: 1.5 }}
+        sx={{ width: 55, height: 55, borderRadius: '50%' }}
       />
-      <Box sx={{ minWidth: 240 }}>
+      <Stack direction="column" alignItems="left" sx={{ pr: 3 }}>
         <Link to="#" color="inherit" underline="hover" component={RouterLink}>
           <Typography variant="subtitle2" noWrap>
-            {title}
+            {name} <span>&nbsp;</span>
+            <Typography variant="caption" sx={{ pr: 0, flexShrink: 0, color: 'text.secondary' }} noWrap>
+              {username} · {formatDistance(postedAt, new Date())}
+            </Typography>
           </Typography>
         </Link>
-        <Typography variant="body2" sx={{ color: 'text.secondary' }} noWrap>
+        <Typography variant="body2" sx={{ color: 'text.secondary' }} paragraph >
           {description}
         </Typography>
-      </Box>
-      <Typography variant="caption" sx={{ pr: 3, flexShrink: 0, color: 'text.secondary' }}>
+        <Box mt={-1} sx={{ minWidth: 240 }} alignItems="center" spacing={3}>
+          <Typography variant="caption" sx={{ pr: 2, flexShrink: 0, color: 'text.secondary' }}  >
+            <Icon icon={commentOutlined} width={20} height={20} /> {replays} <span>&nbsp;</span>
+          </Typography>
+          <Typography variant="caption" sx={{ pr: 2, flexShrink: 0, color: 'text.secondary' }}  >
+            <Icon icon={retweetOutlined} width={20} height={20} /> {rt} <span>&nbsp;</span> </Typography>
+          <Typography variant="caption" sx={{ pr: 2, flexShrink: 0, color: 'text.secondary' }}  >
+            <Icon icon={starOutlined} width={20} height={20} /> {fav}
+          </Typography>
+        </Box>
+      </Stack>
+      {/* <Typography variant="caption" sx={{ pr: 3, flexShrink: 0, color: 'text.secondary' }}>
         {formatDistance(postedAt, new Date())}
-      </Typography>
+      </Typography> */}
     </Stack>
   );
 }
-
 export default function AppNewsUpdate() {
+
+  const [open, setOpen] = useState(null);
+  const [selected, setSelected] = useState(0);
+
+  const handleOpen = (event) => {
+    setOpen(event.currentTarget);
+  };
+
+  const handleClose = () => {
+    setOpen(null);
+  };
+
+  const handleChange = (event, index) => {
+    setSelected(index);
+    NEWS.sort((a, b) => {
+      switch (index) {
+        case 0:
+          return a.postedAt - b.postedAt;
+        case 1:
+          return b.postedAt - a.postedAt;
+        case 2:
+          return b.rt - a.rt;
+        case 3:
+          return b.fav - a.fav;
+        default:
+          return 0;
+      }
+    });
+    handleClose();
+  };
+
   return (
     <Card>
-      <CardHeader title="News Update" />
+      <CardHeader
+        title="News Update"
+        action={<>
+          <Button onClick={handleOpen} aria-label="filter" endIcon={<Icon icon={filterFilled} />}>
+            Ordenar por:&nbsp;
+            <Typography component="span" variant="subtitle2" sx={{ color: 'text.secondary' }}>
+              {SORT_BY_OPTIONS[selected]}
+            </Typography>
+          </Button>
+          <Menu
+            keepMounted
+            anchorEl={open}
+            open={Boolean(open)}
+            onClose={handleClose}
+            anchorOrigin={{ vertical: 'bottom', horizontal: 'right' }}
+            transformOrigin={{ vertical: 'top', horizontal: 'right' }}
+          >
+            {SORT_BY_OPTIONS.map((option, index) => (
+              <MenuItem
+                key={index}
+                selected={option === SORT_BY_OPTIONS[selected]}
+                onClick={(event) => handleChange(event, index)}
+                sx={{ typography: 'body2' }}
+              >
+                {option}
+              </MenuItem>
+
+            ))}
+          </Menu>
+        </>
+        } />
 
       <Scrollbar>
         <Stack spacing={3} sx={{ p: 3, pr: 0 }}>
-          {NEWS.map((news) => (
-            <NewsItem key={news.title} news={news} />
+          {NEWS.map((news, index) => (
+            <NewsItem key={index} news={news} />
           ))}
         </Stack>
       </Scrollbar>
