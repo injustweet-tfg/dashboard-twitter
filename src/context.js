@@ -78,7 +78,7 @@ export const TweetsProvider = (props) => {
   const getTimeline = () => {
     const dict = {}
     tweets.forEach(tweet => {
-      const d = (tweet.date).substring(0, (tweet.date).indexOf('-')); 
+      const d = (tweet.date).substring(0, (tweet.date).indexOf('-'));
 
       if (!(d in dict)) {
         const elem = {
@@ -86,43 +86,45 @@ export const TweetsProvider = (props) => {
           tweet: 1,
           fav: tweet.likes,
           rt: tweet.retweets
-         }
+        }
         dict[d] = elem;
       }
-      else{
+      else {
         dict[d].tweet += 1;
         dict[d].fav += tweet.likes;
         dict[d].rt += tweet.retweets;
       }
     });
     const timeline = Object.values(dict);
-    timeline.sort((a,b)=>new Date(a.date) - new Date(b.date));
-    return timeline
+    timeline.sort((a, b) => new Date(a.date) - new Date(b.date));
+    return timeline;
   }
 
-  const getTopUsers= () => {
+  const getTopUsers = () => {
     const dict = {}
     tweets.forEach(tweet => {
       if (!(tweet.user in dict)) {
         const elem = {
           user: tweet.user,
           tweets: 1
-         }
+        }
         dict[tweet.user] = elem;
       }
-      else{
+      else {
         dict[tweet.user].tweets += 1;
       }
     });
     const array = Object.values(dict);
-    array.sort((a,b)=>b.tweets - a.tweets);
-    const arraytop = array.slice(0, Math.min(array.length,10));
-    return arraytop
+    array.sort((a, b) => b.tweets - a.tweets);
+    const arraytop = array.slice(0, Math.min(array.length, 10));
+    return arraytop;
   }
-  
+
+  const getTweets = () => tweets;
+
 
   return (
-    <context.Provider value={[getTotals,getTimeline, getTopUsers]}>
+    <context.Provider value={[getTotals, getTimeline, getTopUsers, getTweets]}>
       {props.children}
     </context.Provider>
   );

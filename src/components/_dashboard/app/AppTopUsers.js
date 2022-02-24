@@ -11,8 +11,8 @@ import { BaseOptionChart } from '../../charts';
 // ----------------------------------------------------------------------
 
 
-export default function AppTopUsers({topusers}) {
-    const [top, settop] = useState(topusers);
+export default function AppTopUsers({ topUsers }) {
+    const [top, settop] = useState(topUsers);
     const users = top.map(value => value.user);
     const num = [{ data: top.map(value => value.tweets) }];
 

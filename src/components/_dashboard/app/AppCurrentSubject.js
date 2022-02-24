@@ -24,7 +24,7 @@ const ChartWrapperStyle = styled('div')(({ theme }) => ({
     height: LEGEND_HEIGHT,
     alignContent: 'center',
     position: 'relative !important',
-    borderTop: `solid 1px ${theme.palette.divider}`,
+    // borderTop: `solid 1px ${theme.palette.divider}`,
     top: `calc(${CHART_HEIGHT - LEGEND_HEIGHT}px) !important`
   }
 }));
@@ -32,20 +32,50 @@ const ChartWrapperStyle = styled('div')(({ theme }) => ({
 // ----------------------------------------------------------------------
 
 const CHART_DATA = [
-  { name: 'Series 1', data: [80, 50, 30, 40, 100, 20] },
-  { name: 'Series 2', data: [20, 30, 40, 80, 20, 80] },
-  { name: 'Series 3', data: [44, 76, 78, 13, 43, 10] }
+  {
+    name: "Lunes",
+    data: [{
+      x: 'W1',
+      y: 22
+    }, {
+      x: 'W2',
+      y: 29
+    }, {
+      x: 'W3',
+      y: 13
+    }, {
+      x: 'W4',
+      y: 32
+    }]
+  },
+  {
+    name: "Jueves",
+    data: [{
+      x: 'W1',
+      y: 43
+    }, {
+      x: 'W2',
+      y: 43
+    }, {
+      x: 'W3',
+      y: 43
+    }, {
+      x: 'W4',
+      y: 43
+    }]
+  }
 ];
 
 export default function AppCurrentSubject() {
   const theme = useTheme();
 
   const chartOptions = merge(BaseOptionChart(), {
+    colors: Array(10).fill("#008FFB"),
     stroke: { width: 2 },
     fill: { opacity: 0.48 },
     legend: { floating: true, horizontalAlign: 'center' },
     xaxis: {
-      categories: ['English', 'History', 'Physics', 'Geography', 'Chinese', 'Math'],
+      categories: ['Mayo', 'Junio', 'Julio', 'Agosto'],
       labels: {
         style: {
           colors: [
@@ -53,8 +83,6 @@ export default function AppCurrentSubject() {
             theme.palette.text.secondary,
             theme.palette.text.secondary,
             theme.palette.text.secondary,
-            theme.palette.text.secondary,
-            theme.palette.text.secondary
           ]
         }
       }
@@ -63,9 +91,9 @@ export default function AppCurrentSubject() {
 
   return (
     <Card>
-      <CardHeader title="Current Subject" />
+      <CardHeader title="Tweets por día" />
       <ChartWrapperStyle dir="ltr">
-        <ReactApexChart type="radar" series={CHART_DATA} options={chartOptions} height={340} />
+        <ReactApexChart type="heatmap" series={CHART_DATA} options={chartOptions} height={340} />
       </ChartWrapperStyle>
     </Card>
   );

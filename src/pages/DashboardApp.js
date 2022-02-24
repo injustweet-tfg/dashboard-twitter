@@ -23,10 +23,11 @@ import {
 // ----------------------------------------------------------------------
 
 export default function DashboardApp() {
-  const [getTotals, getTimeline, getTopUsers] = useContext(context);
+  const [getTotals, getTimeline, getTopUsers, getTweets] = useContext(context);
   const [totalTweets, totalUsers, totalRT, totalFAV] = getTotals();
   const dataTimeline = getTimeline();
-  const topusers = getTopUsers();
+  const topUsers = getTopUsers();
+  const tweets = getTweets();
 
 
   return (
@@ -49,7 +50,7 @@ export default function DashboardApp() {
             <AppTotalRT totalRT={totalRT} />
           </Grid>
           <Grid item xs={12} sm={6} md={3}>
-            <AppTotalFAV totalFAV={totalFAV}/>
+            <AppTotalFAV totalFAV={totalFAV} />
           </Grid>
 
           <Grid item xs={12} md={6} lg={6} container spacing={3}>
@@ -60,12 +61,12 @@ export default function DashboardApp() {
               <AppTopHashtags />
             </Grid>
             <Grid item xs={12} md={6} lg={6}>
-              <AppTopUsers topusers = {topusers} />
+              <AppTopUsers topUsers={topUsers} />
             </Grid>
           </Grid>
 
           <Grid item xs={12} md={6} lg={6}>
-            <AppTweets />
+            <AppTweets tweets={tweets} />
           </Grid>
 
           <Grid item xs={12} md={6} lg={6}>
@@ -74,7 +75,7 @@ export default function DashboardApp() {
 
           <Grid item xs={12} md={6} lg={6}>
             {/* <AppNewsUpdate /> */}
-            < AppTimeline dataTimeline = {dataTimeline} />
+            < AppTimeline dataTimeline={dataTimeline} />
           </Grid>
         </Grid>
       </Container>

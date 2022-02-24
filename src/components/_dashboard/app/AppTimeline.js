@@ -1,15 +1,15 @@
 
-import React, {useState} from 'react';
+import React, { useState } from 'react';
 import { merge } from 'lodash';
 import ReactApexChart from 'react-apexcharts';
 // material
 import { Card, CardHeader, Box } from '@mui/material';
-import { AreaChart, Area, XAxis, YAxis, CartesianGrid, Tooltip, ResponsiveContainer } from 'recharts';
+// import { AreaChart, Area, XAxis, YAxis, CartesianGrid, Tooltip, ResponsiveContainer } from 'recharts';
 import { BaseOptionChart } from '../../charts';
 
 // ----------------------------------------------------------------------
 
-export default function AppTimeline({dataTimeline}) {
+export default function AppTimeline({ dataTimeline }) {
   const [data, setTotal] = useState(dataTimeline);
   const dates = data.map(value => value.date);
   const tweets = data.map(value => value.tweet);
@@ -22,30 +22,30 @@ export default function AppTimeline({dataTimeline}) {
   }, {
     name: 'favs',
     data: favs
-  },{
+  }, {
     name: 'rts',
     data: rts
   }]
 
   const chartOptions = merge(BaseOptionChart(), {
     tooltip: {
-        enabled: false,
+      enabled: false,
     },
     xaxis: {
-        categories: dates
+      categories: dates
     },
     stroke: {
       curve: 'smooth'
     },
-});
+  });
 
   return (
 
     <Card>
       <CardHeader title="Progreso" />
       <Box sx={{ mx: 3 }} dir="ltr">
-                <ReactApexChart type="area" series={series} options={chartOptions} height={364} />
-            </Box>
+        <ReactApexChart type="area" series={series} options={chartOptions} height={364} />
+      </Box>
 
     </Card>
 

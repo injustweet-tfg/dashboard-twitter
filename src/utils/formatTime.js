@@ -19,3 +19,13 @@ export function fToNow(date) {
     addSuffix: true
   });
 }
+
+export function newFormat(date) {
+  const [calendar, time] = date.split(' - ');
+  const [day, month, year] = calendar.split('/');
+  const [hour, minute] = time.split(':');
+  return new Date(20 + year, month - 1, day, hour, minute);
+}
+
+
+
