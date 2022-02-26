@@ -44,7 +44,7 @@ export default function AppTimeline({ dataTimeline }) {
     <Card>
       <CardHeader title="Progreso" />
       <Box sx={{ mx: 3 }} dir="ltr">
-        <ReactApexChart type="area" series={series} options={chartOptions} height={364} />
+        <ReactApexChart type="area" series={series} options={chartOptions} height={380} />
       </Box>
 
     </Card>

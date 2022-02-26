@@ -14,7 +14,7 @@ import {
   AppTopHashtags,
   AppTopUsers,
   AppTimeline,
-  AppCurrentSubject,
+  AppHeatmap,
   AppHeader,
   AppFilters,
   AppWordcloud
@@ -23,11 +23,13 @@ import {
 // ----------------------------------------------------------------------
 
 export default function DashboardApp() {
-  const [getTotals, getTimeline, getTopUsers, getTweets] = useContext(context);
+  const [getTotals, getTimeline, getTopUsers, , getTweetsByDay, getHashtags] = useContext(context);
   const [totalTweets, totalUsers, totalRT, totalFAV] = getTotals();
   const dataTimeline = getTimeline();
   const topUsers = getTopUsers();
-  const tweets = getTweets();
+  const dataHeatmap = getTweetsByDay();
+  const topHashtags = getHashtags();
+
 
 
   return (
@@ -58,7 +60,7 @@ export default function DashboardApp() {
               <AppWordcloud />
             </Grid>
             <Grid item xs={12} md={6} lg={6}>
-              <AppTopHashtags />
+              <AppTopHashtags topHashtags={topHashtags} />
             </Grid>
             <Grid item xs={12} md={6} lg={6}>
               <AppTopUsers topUsers={topUsers} />
@@ -66,11 +68,11 @@ export default function DashboardApp() {
           </Grid>
 
           <Grid item xs={12} md={6} lg={6}>
-            <AppTweets tweets={tweets} />
+            <AppTweets />
           </Grid>
 
           <Grid item xs={12} md={6} lg={6}>
-            <AppCurrentSubject />
+            <AppHeatmap dataHeatmap={dataHeatmap} />
           </Grid>
 
           <Grid item xs={12} md={6} lg={6}>

@@ -1,4 +1,4 @@
-import { useState } from 'react';
+import { useState, useContext } from 'react';
 import faker from 'faker';
 import PropTypes from 'prop-types';
 import { Icon } from '@iconify/react';
@@ -13,17 +13,16 @@ import filterFilled from '@iconify/icons-ant-design/filter-filled';
 import { Box, Stack, Link, Card, Button, Divider, Typography, CardHeader, Grid, Menu, MenuItem } from '@mui/material';
 // utils
 import { mockImgAvatar } from '../../../utils/mockImages';
-import { newFormat } from '../../../utils/formatTime';
+import { newFormat, fToNow } from '../../../utils/formatTime';
 //
 import Scrollbar from '../../Scrollbar';
+import { context } from '../../../context';
 
 // ----------------------------------------------------------------------
 
 TweetItem.propTypes = {
   tweet: PropTypes.object.isRequired
 };
-
-const fecha = "2022-02-23 18:33:51+00:00";
 
 const NUMBER_OF_TWEETS = 10;
 
@@ -45,7 +44,7 @@ function TweetItem({ tweet }) {
       <Box
         component="img"
         alt={id}
-        src={mockImgAvatar(id % 25)}
+        src={mockImgAvatar((id % 20) + 1)}
         sx={{ width: 55, height: 55, borderRadius: '50%' }}
       />
       <Stack direction="column" alignItems="left" sx={{ pr: 3 }}>
@@ -54,7 +53,7 @@ function TweetItem({ tweet }) {
             {`@${user}`} <span>&nbsp;</span>
             <Typography variant="caption" sx={{ pr: 0, flexShrink: 0, color: 'text.secondary' }} noWrap>
               {/* {formatDistance(newFormat(date), new Date())} */}
-              {date}
+              {fToNow(new Date(date))}
               {/* {console.log(newFormat(date))} */}
             </Typography>
           </Typography>
@@ -76,11 +75,11 @@ function TweetItem({ tweet }) {
     </Stack>
   );
 }
-export default function AppNewsUpdate({ tweets }) {
-
+export default function AppNewsUpdate() {
+  const [getTotals, getTimeline, getTopUsers, getTweets] = useContext(context);
   const [open, setOpen] = useState(null);
   const [selected, setSelected] = useState(0);
-
+  const [tweets, setTweets] = useState(getTweets(selected));
 
   const handleOpen = (event) => {
     setOpen(event.currentTarget);
@@ -92,21 +91,7 @@ export default function AppNewsUpdate({ tweets }) {
 
   const handleChange = (event, index) => {
     setSelected(index);
-    tweets.sort((a, b) => {
-      switch (index) {
-        case 0:
-          return new Date(newFormat(a.date)) - new Date(newFormat(b.date));
-        case 1:
-          return new Date(newFormat(b.date)) - new Date(newFormat(a.date));
-        case 2:
-          return b.retweets - a.retweets;
-        case 3:
-          return b.likes - a.likes;
-        default:
-          return 0;
-      }
-    });
-    console.log("terminé");
+    setTweets(getTweets(index));
     handleClose();
   };
 

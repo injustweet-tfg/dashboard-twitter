@@ -1,3 +1,4 @@
+import { useState } from 'react';
 import { merge } from 'lodash';
 import ReactApexChart from 'react-apexcharts';
 // material
@@ -31,43 +32,12 @@ const ChartWrapperStyle = styled('div')(({ theme }) => ({
 
 // ----------------------------------------------------------------------
 
-const CHART_DATA = [
-  {
-    name: "Lunes",
-    data: [{
-      x: 'W1',
-      y: 22
-    }, {
-      x: 'W2',
-      y: 29
-    }, {
-      x: 'W3',
-      y: 13
-    }, {
-      x: 'W4',
-      y: 32
-    }]
-  },
-  {
-    name: "Jueves",
-    data: [{
-      x: 'W1',
-      y: 43
-    }, {
-      x: 'W2',
-      y: 43
-    }, {
-      x: 'W3',
-      y: 43
-    }, {
-      x: 'W4',
-      y: 43
-    }]
-  }
-];
-
-export default function AppCurrentSubject() {
+export default function AppHeatmap({ dataHeatmap }) {
   const theme = useTheme();
+  const [data, setData] = useState(dataHeatmap);
+
+
+
 
   const chartOptions = merge(BaseOptionChart(), {
     colors: Array(10).fill("#008FFB"),
@@ -75,7 +45,7 @@ export default function AppCurrentSubject() {
     fill: { opacity: 0.48 },
     legend: { floating: true, horizontalAlign: 'center' },
     xaxis: {
-      categories: ['Mayo', 'Junio', 'Julio', 'Agosto'],
+      categories: ['Enero', 'Febrero', 'Marzo', 'Abril', 'Mayo', 'Junio', 'Julio', 'Agosto', 'Septiembre', 'Octubre', 'Noviembre', 'Diciembre'],
       labels: {
         style: {
           colors: [
@@ -93,8 +63,8 @@ export default function AppCurrentSubject() {
     <Card>
       <CardHeader title="Tweets por día" />
       <ChartWrapperStyle dir="ltr">
-        <ReactApexChart type="heatmap" series={CHART_DATA} options={chartOptions} height={340} />
+        <ReactApexChart type="heatmap" series={data} options={chartOptions} height={380} />
       </ChartWrapperStyle>
-    </Card>
+    </Card >
   );
 }

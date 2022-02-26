@@ -1,5 +1,5 @@
 export { default as AppTotalFAV } from './AppTotalFAV';
-export { default as AppCurrentSubject } from './AppCurrentSubject';
+export { default as AppHeatmap } from './AppHeatmap';
 export { default as AppTotalRT } from './AppTotalRT';
 export { default as AppTweets } from './AppTweets';
 export { default as AppTotalUsers } from './AppTotalUsers';

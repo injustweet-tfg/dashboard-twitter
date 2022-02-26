@@ -33,8 +33,10 @@ const ChartWrapperStyle = styled('div')(({ theme }) => ({
 
 const CHART_DATA = [4344, 5435, 1443, 4443];
 
-function AppTopHashtags() {
+function AppTopHashtags({ topHashtags }) {
     const theme = useTheme();
+    const labels = topHashtags.map(pair => `#${pair[0]}`);
+    const data = topHashtags.map(pair => pair[1]);
 
     const chartOptions = merge(BaseOptionChart(), {
         colors: [
@@ -43,7 +45,7 @@ function AppTopHashtags() {
             theme.palette.warning.main,
             theme.palette.error.main
         ],
-        labels: ['#blockchain', '#trabajo', '#precario', '#españa'],
+        labels,
         stroke: { colors: [theme.palette.background.paper] },
         legend: { floating: true, horizontalAlign: 'center' },
         dataLabels: { enabled: true, dropShadow: { enabled: false } },
@@ -65,7 +67,7 @@ function AppTopHashtags() {
         <Card>
             <CardHeader title="Top #hashtags" />
             <ChartWrapperStyle dir="ltr">
-                <ReactApexChart type="pie" series={CHART_DATA} options={chartOptions} height={280} />
+                <ReactApexChart type="pie" series={data} options={chartOptions} height={280} />
             </ChartWrapperStyle>
         </Card>
     );
