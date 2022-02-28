@@ -5,60 +5,7 @@ export const context = createContext();
 
 export const TweetsProvider = (props) => {
   const [tweets, setTweets] = useState(examples.examples);
-  // console.log(tweets);
 
-  // const [tweets, setTweets] = useState([
-  //   {
-  //     "link": "https://twitter.com/JobsMierda/status/1491430495455952901",
-  //     "id": 1491430495455952901,
-  //     "text": "Están buscando a una persona que curre de lunes a domingo para cuidar a tres niños por 2,90 euros la hora... Por debajo del SMI y sin descanso semanal.",
-  //     "user": "javi",
-  //     "date": "09/02/22 - 15:15",
-  //     "likes": 427,
-  //     "retweets": 142,
-  //     "replies": 13
-  //   },
-  //   {
-  //     "link": "https://twitter.com/JobsMierda/status/1491430495455952901",
-  //     "id": 1491430495455952901,
-  //     "text": "Están buscando a una persona que curre de lunes a domingo para cuidar a tres niños por 2,90 euros la hora... Por debajo del SMI y sin descanso semanal.",
-  //     "user": "angela",
-  //     "date": "09/02/22 - 15:15",
-  //     "likes": 427,
-  //     "retweets": 142,
-  //     "replies": 13
-  //   },
-  //   {
-  //     "link": "https://twitter.com/JobsMierda/status/1491430495455952901",
-  //     "id": 1491430495455952901,
-  //     "text": "Están buscando a una persona que curre de lunes a domingo para cuidar a tres niños por 2,90 euros la hora... Por debajo del SMI y sin descanso semanal.",
-  //     "user": "JobsMierda",
-  //     "date": "06/02/22 - 15:15",
-  //     "likes": 427,
-  //     "retweets": 142,
-  //     "replies": 13
-  //   },
-  //   {
-  //     "link": "https://twitter.com/JobsMierda/status/1491430495455952901",
-  //     "id": 1491430495455952901,
-  //     "text": "Están buscando a una persona que curre de lunes a domingo para cuidar a tres niños por 2,90 euros la hora... Por debajo del SMI y sin descanso semanal.",
-  //     "user": "angela",
-  //     "date": "09/02/22 - 15:15",
-  //     "likes": 427,
-  //     "retweets": 142,
-  //     "replies": 13
-  //   },
-  //   {
-  //     "link": "https://twitter.com/JobsMierda/status/1489925658801328130",
-  //     "id": 1489925658801328130,
-  //     "text": "Actitud, motivación y creatividad cobrando 1.000 euros....",
-  //     "user": "JobsMierda",
-  //     "date": "05/02/22 - 11:35",
-  //     "likes": 457,
-  //     "retweets": 110,
-  //     "replies": 0
-  //   }
-  // ]);
 
   const getTotals = () => {
     const totalTweets = tweets.length;
@@ -126,7 +73,7 @@ export const TweetsProvider = (props) => {
   };
 
   const getTweets = (option) => {
-    const NUMBER_OF_TWEETS = 7;
+    const NUMBER_OF_TWEETS = 5;
     switch (option) {
       // Newest
       case 0:
@@ -195,7 +142,7 @@ export const TweetsProvider = (props) => {
     });
     const items = Object.keys(dict).map(key => ([key, dict[key]]));
     items.sort((first, second) => second[1] - first[1]);
-    return items.slice(0, NUMBER_OF_HASHTAGS);
+    return items.slice(0,  Math.min(items.length, NUMBER_OF_HASHTAGS));
   };
 
 
@@ -210,8 +157,11 @@ export const TweetsProvider = (props) => {
 
 /*
 
-Observaciones
-- progreso: el tema del date 
-- wordcloud: datos/font
+- wordcloud: limpiar tweets, palabras más frecuentes
 - users: personalizar/poner un poco más bonito
+- progreso: fechas
+- apptweets: link to tweet
+
+- estilos
+- filtro general
 */

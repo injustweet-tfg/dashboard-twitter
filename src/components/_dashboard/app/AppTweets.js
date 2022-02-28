@@ -75,8 +75,8 @@ function TweetItem({ tweet }) {
     </Stack>
   );
 }
-export default function AppNewsUpdate() {
-  const [getTotals, getTimeline, getTopUsers, getTweets] = useContext(context);
+export default function AppTweets() {
+  const [, , , getTweets] = useContext(context);
   const [open, setOpen] = useState(null);
   const [selected, setSelected] = useState(0);
   const [tweets, setTweets] = useState(getTweets(selected));
@@ -137,19 +137,6 @@ export default function AppNewsUpdate() {
         </Stack>
       </Scrollbar>
 
-      <Divider />
-
-      <Box sx={{ p: 2, textAlign: 'right' }}>
-        <Button
-          to="#"
-          size="small"
-          color="inherit"
-          component={RouterLink}
-          endIcon={<Icon icon={arrowIosForwardFill} />}
-        >
-          View all
-        </Button>
-      </Box>
     </Card>
   );
 }

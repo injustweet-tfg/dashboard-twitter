@@ -3,6 +3,7 @@ import { Navigate, useRoutes } from 'react-router-dom';
 import DashboardLayout from './layouts/dashboard';
 //
 import DashboardApp from './pages/DashboardApp';
+import InfoApp from './pages/InfoApp';
 // ----------------------------------------------------------------------
 
 export default function Router() {
@@ -10,7 +11,8 @@ export default function Router() {
     {
       element: <DashboardLayout />,
       children: [
-        { element: <DashboardApp /> }
+        { path: '/dashboard',element: <DashboardApp /> },
+        { path: '/info', element: <InfoApp /> }
       ]
     }
   ]);

@@ -4,7 +4,9 @@ import PropTypes from 'prop-types';
 // material
 import { alpha, styled } from '@mui/material/styles';
 import {  AppBar, Toolbar} from '@mui/material'; // Box, Stack, IconButton 
-// components
+
+import navbarConfig from './NavbarConfig'
+import NavSection from '../../components/NavSection';
 // ----------------------------------------------------------------------
 
 const DRAWER_WIDTH = 280;
@@ -36,7 +38,7 @@ export default function DashboardNavbar({ onOpenSidebar }) {
   return (
     <RootStyle>
       <ToolbarStyle>
-      {/* navbar meterlo */ } 
+      <NavSection navConfig={navbarConfig} />
       </ToolbarStyle>
     </RootStyle>
   );
