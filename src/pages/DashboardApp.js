@@ -35,13 +35,14 @@ export default function DashboardApp() {
   return (
     <Page title="Precariedapp">
       <Container maxWidth="xl">
+        <Grid item xs={12} md={12} lg={12}>
+          <AppFilters />
+        </Grid>
+
         <Grid container spacing={3}>
-          <Grid item xs={12} md={12} lg={12}>
+          {/* <Grid item xs={12} md={12} lg={12}>
             <AppHeader />
-          </Grid>
-          <Grid item xs={12} md={12} lg={12}>
-            <AppFilters />
-          </Grid>
+          </Grid> */}
           <Grid item xs={12} sm={6} md={3}>
             <AppTotalTweets totalTweets={totalTweets} />
           </Grid>

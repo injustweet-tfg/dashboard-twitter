@@ -3,15 +3,17 @@ import PropTypes from 'prop-types';
 // import menu2Fill from '@iconify/icons-eva/menu-2-fill';
 // material
 import { alpha, styled } from '@mui/material/styles';
-import {  AppBar, Toolbar} from '@mui/material'; // Box, Stack, IconButton 
+import { AppBar, Toolbar, Box, Button, Typography, Stack } from '@mui/material'; // Box, Stack, IconButton 
 
 import navbarConfig from './NavbarConfig'
 import NavSection from '../../components/NavSection';
+
+
 // ----------------------------------------------------------------------
 
 const DRAWER_WIDTH = 280;
-const APPBAR_MOBILE = 64;
-const APPBAR_DESKTOP = 92;
+const APPBAR_MOBILE = 40;
+const APPBAR_DESKTOP = 40;
 
 const RootStyle = styled(AppBar)(({ theme }) => ({
   boxShadow: 'none',
@@ -38,8 +40,14 @@ export default function DashboardNavbar({ onOpenSidebar }) {
   return (
     <RootStyle>
       <ToolbarStyle>
-      <NavSection navConfig={navbarConfig} />
+        <Box
+          component="img"
+          src="/static/illustrations/illustration_avatar.png"
+          sx={{ width: 70, position: 'absolute', top: 5 }}
+        />
+        <Box sx={{ flexGrow: 1 }} />
+        <NavSection navConfig={navbarConfig} />
       </ToolbarStyle>
-    </RootStyle>
+    </RootStyle >
   );
 }

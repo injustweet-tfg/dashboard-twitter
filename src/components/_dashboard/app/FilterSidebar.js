@@ -63,14 +63,14 @@ export default function FilterSidebar({
     const { values, getFieldProps, handleChange } = formik;
 
     return (
-        <>
+        <Stack direction="column">
             <Button
                 disableRipple
                 color="inherit"
                 endIcon={<Icon icon={commentOutlined} width={20} height={20} />}
                 onClick={onOpenFilter}
             >
-                Filters&nbsp;
+                Filters
             </Button>
 
             <FormikProvider value={formik}>
@@ -209,6 +209,6 @@ export default function FilterSidebar({
                     </Drawer>
                 </Form>
             </FormikProvider>
-        </>
+        </Stack>
     );
 }

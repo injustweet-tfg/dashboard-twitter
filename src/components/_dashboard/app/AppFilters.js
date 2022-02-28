@@ -1,15 +1,51 @@
-import { Typography, TextField } from '@mui/material';
-// Grid, Button, Container, Stack, 
-// import AdapterDateFns from '@mui/lab/AdapterDateFns';
-// import LocalizationProvider from '@mui/lab/LocalizationProvider';
+import { Card, CardHeader, CardContent, Avatar, Container, Stack, Typography, TextField, Box } from '@mui/material';
+import React, { useState } from 'react'
+import { useFormik } from 'formik';
+import { FilterSidebar } from '.';
 
 export default function AppFilters() {
-    return <div>
-        <Typography variant="h3" gutterBottom>
-            Observa la precariedad laboral
-        </Typography>
+    const [openFilter, setOpenFilter] = useState(false);
 
-        <TextField
+    const formik = useFormik({
+        initialValues: {
+            gender: '',
+            category: '',
+            colors: '',
+            priceRange: '',
+            rating: ''
+        },
+        onSubmit: () => {
+            setOpenFilter(false);
+        }
+    });
+
+    const { resetForm, handleSubmit } = formik;
+
+    const handleOpenFilter = () => {
+        setOpenFilter(true);
+    };
+
+    const handleCloseFilter = () => {
+        setOpenFilter(false);
+    };
+
+    const handleResetFilter = () => {
+        handleSubmit();
+        resetForm();
+    };
+    return (
+        <Stack direction="row" alignItems="center" justifyContent="space-between" spacing={12}>
+            <Typography variant="h3" gutterBottom>
+                Observa la precariedad laboral
+            </Typography>
+            <FilterSidebar
+                formik={formik}
+                isOpenFilter={openFilter}
+                onResetFilter={handleResetFilter}
+                onOpenFilter={handleOpenFilter}
+                onCloseFilter={handleCloseFilter}
+            />
+                    {/* <TextField
             id="date"
             label="Inicio"
             type="date"
@@ -28,8 +64,11 @@ export default function AppFilters() {
             InputLabelProps={{
                 shrink: true,
             }}
-        />
+        /> */}
+
+        </Stack>
+
+    );
 
 
-    </div>;
 }

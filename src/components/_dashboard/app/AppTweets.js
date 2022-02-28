@@ -129,7 +129,7 @@ export default function AppTweets() {
         </>
         } />
 
-      <Scrollbar>
+      <Scrollbar style={{ maxHeight: 600 }}>
         <Stack spacing={3} sx={{ p: 3, pr: 0 }}>
           {tweets.map((tweet, index) => (
             <TweetItem key={index} tweet={tweet} />
