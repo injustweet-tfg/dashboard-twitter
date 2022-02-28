@@ -10,3 +10,4 @@ export { default as AppFilters } from './AppFilters';
 export { default as AppWordcloud } from './AppWordcloud';
 export { default as AppTopHashtags } from './AppTopHashtags';
 export { default as AppTopUsers } from './AppTopUsers';
+export { default as FilterSidebar } from './FilterSidebar';
