@@ -14,9 +14,9 @@ import { fShortenNumber } from '../../../utils/formatNumber';
 const RootStyle = styled(Card)(({ theme }) => ({
   boxShadow: 'none',
   textAlign: 'center',
-  padding: theme.spacing(5, 0),
-  color: theme.palette.error.darker,
-  backgroundColor: theme.palette.error.lighter
+  padding: theme.spacing(2, 0),
+  color: theme.palette.info.darker,
+  backgroundColor: theme.palette.info.lighter
 }));
 
 const IconWrapperStyle = styled('div')(({ theme }) => ({
@@ -27,7 +27,7 @@ const IconWrapperStyle = styled('div')(({ theme }) => ({
   width: theme.spacing(8),
   height: theme.spacing(8),
   justifyContent: 'center',
-  marginBottom: theme.spacing(3),
+  marginBottom: theme.spacing(2),
   color: theme.palette.error.dark,
   backgroundImage: `linear-gradient(135deg, ${alpha(theme.palette.error.dark, 0)} 0%, ${alpha(
     theme.palette.error.dark,

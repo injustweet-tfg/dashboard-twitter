@@ -15,6 +15,7 @@ export default function AppTimeline({ dataTimeline }) {
   const tweets = data.map(value => value.tweet);
   const favs = data.map(value => value.fav);
   const rts = data.map(value => value.rt);
+  console.log(dates);
 
   const series = [{
     name: 'tweets',
@@ -29,22 +30,35 @@ export default function AppTimeline({ dataTimeline }) {
 
   const chartOptions = merge(BaseOptionChart(), {
     tooltip: {
-      enabled: false,
+      x: {
+        format: 'dd/MM/yy'
+      },
+      enabled: true,
     },
     xaxis: {
-      categories: dates
+      categories: dates,
+      tickAmount: 6,
+      labels:{
+        rotate: 0,
+        hideOverlappingLabels: true,
+      },
+      axisBorder: { show: true },
+      axisTicks: { show: true },
+      
+
     },
     stroke: {
       curve: 'smooth'
     },
   });
 
+
   return (
 
     <Card>
       <CardHeader title="Progreso" />
       <Box sx={{ mx: 3 }} dir="ltr">
-        <ReactApexChart type="area" series={series} options={chartOptions} height={380} />
+        <ReactApexChart type="area" series={series} options={chartOptions} height={400} />
       </Box>
 
     </Card>

@@ -2,6 +2,7 @@ import { useState } from 'react';
 import { merge } from 'lodash';
 import ReactApexChart from 'react-apexcharts';
 // material
+import { useTheme, styled } from '@mui/material/styles';
 import { Box, Card, CardHeader } from '@mui/material';
 // utils
 import { fNumber } from '../../../utils/formatNumber';
@@ -9,11 +10,30 @@ import { fNumber } from '../../../utils/formatNumber';
 import { BaseOptionChart } from '../../charts';
 
 // ----------------------------------------------------------------------
+const CHART_HEIGHT = 400;
+const LEGEND_HEIGHT = 0;
 
+
+const ChartWrapperStyle = styled('div')(({ theme }) => ({
+    height: CHART_HEIGHT,
+    marginTop: theme.spacing(2),
+    '& .apexcharts-canvas svg': { height: CHART_HEIGHT },
+    '& .apexcharts-canvas svg,.apexcharts-canvas foreignObject': {
+        overflow: 'visible'
+    },
+    '& .apexcharts-legend': {
+        height: LEGEND_HEIGHT,
+        alignContent: 'center',
+        position: 'relative !important',
+        borderTop: `solid 1px ${theme.palette.divider}`,
+        top: `calc(${CHART_HEIGHT - LEGEND_HEIGHT}px) !important`
+    },
+    marginRight: theme.spacing(2),
+}));
 
 export default function AppTopUsers({ topUsers }) {
     const [top, settop] = useState(topUsers);
-    const users = top.map(value => value.user);
+    const users = top.map(value => `@${value.user}`);
     const num = [{ data: top.map(value => value.tweets) }];
 
     const chartOptions = merge(BaseOptionChart(), {
@@ -32,9 +52,9 @@ export default function AppTopUsers({ topUsers }) {
     return (
         <Card>
             <CardHeader title="Top @users" />
-            <Box sx={{ mx: 3 }} dir="ltr">
-                <ReactApexChart type="bar" series={num} options={chartOptions} height={364} />
-            </Box>
+            <ChartWrapperStyle dir="ltr" style={{ maxHeight: 400 }}>
+                <ReactApexChart type="bar" series={num} options={chartOptions} height={400} />
+            </ChartWrapperStyle>
         </Card>
     );
 }

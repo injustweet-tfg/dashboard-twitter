@@ -139,6 +139,7 @@ function AppWordcloud() {
         <Card>
             <CardHeader title="Wordcloud" />
             <ReactWordcloud
+                style={{ maxHeight: 300 }}
                 options={options}
                 words={words}
             />

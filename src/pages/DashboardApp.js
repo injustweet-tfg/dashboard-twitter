@@ -1,7 +1,7 @@
 import React, { useContext } from "react";
 
 // material
-import { Box, Grid, Container, Typography } from '@mui/material';
+import { Box, Grid, Container, Typography, Button } from '@mui/material';
 import { TweetsProvider, context } from '../context';
 // components
 import Page from '../components/Page';
@@ -23,7 +23,7 @@ import {
 // ----------------------------------------------------------------------
 
 export default function DashboardApp() {
-  const [getTotals, getTimeline, getTopUsers, , getTweetsByDay, getHashtags] = useContext(context);
+  const [getTotals, getTimeline, getTopUsers, , getTweetsByDay, getHashtags,prueba] = useContext(context);
   const [totalTweets, totalUsers, totalRT, totalFAV] = getTotals();
   const dataTimeline = getTimeline();
   const topUsers = getTopUsers();
@@ -34,6 +34,7 @@ export default function DashboardApp() {
 
   return (
     <Page title="Precariedapp">
+      <Button onClick={() => prueba()}>prueba</Button>
       <Container maxWidth="xl">
         <Grid item xs={12} md={12} lg={12}>
           <AppFilters />

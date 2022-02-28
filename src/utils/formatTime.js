@@ -2,8 +2,14 @@ import { format, formatDistanceToNow } from 'date-fns';
 
 // ----------------------------------------------------------------------
 
+export function timetoline(date){
+  const monthNames = ['Enero', 'Febrero', 'Marzo', 'Abril', 'Mayo', 'Junio', 'Julio', 'Agosto', 'Septiembre', 'Octubre', 'Noviembre', 'Diciembre'];
+  return `${date.getDate()} ${monthNames[date.getMonth()].substring(0,3)} ${date.getFullYear()}`;
+}
+
 export function fDate(date) {
-  return format(new Date(date), 'dd MMMM yyyy');
+  return format(new Date(date), 'dd/MM/yyyy');
+  // return format(new Date(date), 'dd MMMM yyyy');
 }
 
 export function fDateTime(date) {

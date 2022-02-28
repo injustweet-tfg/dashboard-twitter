@@ -66,7 +66,7 @@ function AppTopHashtags({ topHashtags }) {
     return (
         <Card>
             <CardHeader title="Top #hashtags" />
-            <ChartWrapperStyle dir="ltr">
+            <ChartWrapperStyle dir="ltr" style={{ maxHeight: 400 }}>
                 <ReactApexChart type="pie" series={data} options={chartOptions} height={280} />
             </ChartWrapperStyle>
         </Card>

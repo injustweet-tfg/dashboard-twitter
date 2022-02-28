@@ -8,10 +8,11 @@ import InfoApp from './pages/InfoApp';
 
 export default function Router() {
   return useRoutes([
-    {
+    { 
       element: <DashboardLayout />,
       children: [
-        { path: '/dashboard',element: <DashboardApp /> },
+        { path: '/', element: <Navigate to="/dashboard" /> },
+        { path: '/dashboard', element: <DashboardApp /> },
         { path: '/info', element: <InfoApp /> }
       ]
     }

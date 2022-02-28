@@ -1,11 +1,16 @@
 import React, { useState, createContext } from "react";
-import examples from "./tweets.json"
+import examples from "./tweets.json";
+import {fDate, timetoline} from "./utils/formatTime";
 
 export const context = createContext();
 
 export const TweetsProvider = (props) => {
   const [tweets, setTweets] = useState(examples.examples);
 
+  const prueba = () => {
+    setTweets(examples.examples.splice(0,15));
+    console.log(tweets);
+  }
 
   const getTotals = () => {
     const totalTweets = tweets.length;
@@ -31,7 +36,9 @@ export const TweetsProvider = (props) => {
       // const d = (tweet.date).substring(0, (tweet.date).indexOf('-'));
 
       const fullDate = new Date(tweet.date);
-      const d = `${fullDate.getDate()}/${fullDate.getMonth() + 1}/${fullDate.getFullYear()}`;
+      const daux = new Date(fullDate.getFullYear(), fullDate.getMonth() + 1,fullDate.getDate());
+      const d = timetoline(daux)
+      
       if (!(d in dict)) {
         const elem = {
           date: d,
@@ -46,9 +53,9 @@ export const TweetsProvider = (props) => {
         dict[d].fav += tweet.likes;
         dict[d].rt += tweet.retweets;
       }
-    });
+    }); 
     const timeline = Object.values(dict);
-    timeline.sort((a, b) => new Date(a.date) - new Date(b.date));
+    timeline.sort((a, b) => a - b);
     return timeline;
   }
 
@@ -73,7 +80,7 @@ export const TweetsProvider = (props) => {
   };
 
   const getTweets = (option) => {
-    const NUMBER_OF_TWEETS = 5;
+    const NUMBER_OF_TWEETS = 10;
     switch (option) {
       // Newest
       case 0:
@@ -147,7 +154,7 @@ export const TweetsProvider = (props) => {
 
 
   return (
-    <context.Provider value={[getTotals, getTimeline, getTopUsers, getTweets, getTweetsByDay, getHashtags]}>
+    <context.Provider value={[getTotals, getTimeline, getTopUsers, getTweets, getTweetsByDay, getHashtags, prueba]}>
       {props.children}
     </context.Provider>
   );
@@ -158,9 +165,9 @@ export const TweetsProvider = (props) => {
 /*
 
 - wordcloud: limpiar tweets, palabras más frecuentes
-- users: personalizar/poner un poco más bonito
+- users: personalizar/poner un poco más bonito 
 - progreso: fechas
-- apptweets: link to tweet
+- apptweets: link to tweet + icono twitter 
 
 - estilos
 - filtro general
