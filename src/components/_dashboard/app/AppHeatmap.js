@@ -62,8 +62,8 @@ export default function AppHeatmap({ dataHeatmap }) {
   return (
     <Card>
       <CardHeader title="Tweets por día" />
-      <ChartWrapperStyle dir="ltr" style={{ maxHeight: 400 }}>
-        <ReactApexChart type="heatmap" series={data} options={chartOptions} height={380} />
+      <ChartWrapperStyle dir="ltr" style={{ maxHeight: 400, minHeight: 400 }}>
+        <ReactApexChart type="heatmap" series={data} options={chartOptions} height={375} />
       </ChartWrapperStyle>
     </Card >
   );

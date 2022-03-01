@@ -10,12 +10,12 @@ import { BaseOptionChart } from '../../charts';
 
 // ----------------------------------------------------------------------
 
-const CHART_HEIGHT = 372;
-const LEGEND_HEIGHT = 72;
+const CHART_HEIGHT = 400;
+const LEGEND_HEIGHT = 80;
 
 const ChartWrapperStyle = styled('div')(({ theme }) => ({
     height: CHART_HEIGHT,
-    marginTop: theme.spacing(5),
+    marginTop: theme.spacing(3),
     '& .apexcharts-canvas svg': { height: CHART_HEIGHT },
     '& .apexcharts-canvas svg,.apexcharts-canvas foreignObject': {
         overflow: 'visible'
@@ -66,8 +66,8 @@ function AppTopHashtags({ topHashtags }) {
     return (
         <Card>
             <CardHeader title="Top #hashtags" />
-            <ChartWrapperStyle dir="ltr" style={{ maxHeight: 400 }}>
-                <ReactApexChart type="pie" series={data} options={chartOptions} height={280} />
+            <ChartWrapperStyle dir="ltr" style={{ maxHeight: 400, minHeight: 400 }}>
+                <ReactApexChart type="pie" series={data} options={chartOptions} height={300} />
             </ChartWrapperStyle>
         </Card>
     );

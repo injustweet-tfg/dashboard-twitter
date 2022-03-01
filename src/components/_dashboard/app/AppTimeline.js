@@ -3,11 +3,26 @@ import React, { useState } from 'react';
 import { merge } from 'lodash';
 import ReactApexChart from 'react-apexcharts';
 // material
+import { useTheme, styled } from '@mui/material/styles';
 import { Card, CardHeader, Box } from '@mui/material';
 // import { AreaChart, Area, XAxis, YAxis, CartesianGrid, Tooltip, ResponsiveContainer } from 'recharts';
 import { BaseOptionChart } from '../../charts';
 
 // ----------------------------------------------------------------------
+const CHART_HEIGHT = 392;
+
+const ChartWrapperStyle = styled('div')(({ theme }) => ({
+  padding: theme.spacing(2),
+  height: CHART_HEIGHT,
+  marginTop: theme.spacing(2),
+  '& .apexcharts-canvas svg': {
+    height: CHART_HEIGHT
+  },
+  '& .apexcharts-canvas svg,.apexcharts-canvas foreignObject': {
+    overflow: 'visible'
+  },
+
+}));
 
 export default function AppTimeline({ dataTimeline }) {
   const [data, setTotal] = useState(dataTimeline);
@@ -37,13 +52,13 @@ export default function AppTimeline({ dataTimeline }) {
     xaxis: {
       categories: dates,
       tickAmount: 6,
-      labels:{
+      labels: {
         rotate: 0,
         hideOverlappingLabels: true,
       },
       axisBorder: { show: true },
       axisTicks: { show: true },
-      
+
 
     },
     stroke: {
@@ -56,9 +71,11 @@ export default function AppTimeline({ dataTimeline }) {
 
     <Card>
       <CardHeader title="Progreso" />
-      <Box sx={{ mx: 3 }} dir="ltr">
-        <ReactApexChart type="area" series={series} options={chartOptions} height={400} />
-      </Box>
+      <ChartWrapperStyle dir="ltr" style={{ maxHeight: 400, minHeight: 400 }}>
+        {/* <Box sx={{ mx: 3 }} dir="ltr"> */}
+        <ReactApexChart type="area" series={series} options={chartOptions} height={375} />
+        {/* </Box> */}
+      </ChartWrapperStyle >
 
     </Card>
 

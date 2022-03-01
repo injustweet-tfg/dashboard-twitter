@@ -10,6 +10,7 @@ import retweetOutlined from '@iconify/icons-ant-design/retweet-outlined';
 import starOutlined from '@iconify/icons-ant-design/star-outlined';
 import filterFilled from '@iconify/icons-ant-design/filter-filled';
 // material
+import { alpha, styled } from '@mui/material/styles';
 import { Box, Stack, Link, Card, Button, Divider, Typography, CardHeader, Grid, Menu, MenuItem } from '@mui/material';
 // utils
 import { mockImgAvatar } from '../../../utils/mockImages';
@@ -19,12 +20,18 @@ import Scrollbar from '../../Scrollbar';
 import { context } from '../../../context';
 
 // ----------------------------------------------------------------------
+const TweetStyle = styled(Stack)(({ theme }) => ({
+  flexDirection: 'row',
+  padding: theme.spacing(1, 2, 1),
+  backgroundColor: alpha(theme.palette.primary.main, 0.05),
+  boxShadow: theme.shadows[3],
+
+}));
 
 TweetItem.propTypes = {
   tweet: PropTypes.object.isRequired
 };
 
-const NUMBER_OF_TWEETS = 10;
 
 const SORT_BY_OPTIONS = [
   'Más recientes',
@@ -40,14 +47,15 @@ function TweetItem({ tweet }) {
   // console.log(fecha, new Date(fecha).getDay(), formatDistance(new Date(fecha), new Date()));
 
   return (
-    <Stack direction="row" alignItems="top" spacing={2}>
+    // <Stack direction="row" alignItems="top" spacing={2}>
+    <TweetStyle>
       <Box
         component="img"
         alt={id}
         src={mockImgAvatar((id % 20) + 1)}
         sx={{ width: 55, height: 55, borderRadius: '50%' }}
       />
-      <Stack direction="column" alignItems="left" sx={{ pr: 3 }}>
+      <Stack direction="column" alignItems="left" sx={{ px: 3 }}>
         <Link to="#" color="inherit" underline="hover" component={RouterLink}>
           <Typography variant="subtitle2" noWrap>
             {`@${user}`} <span>&nbsp;</span>
@@ -72,7 +80,7 @@ function TweetItem({ tweet }) {
           </Typography>
         </Box>
       </Stack>
-    </Stack>
+    </TweetStyle>
   );
 }
 export default function AppTweets() {
@@ -127,16 +135,17 @@ export default function AppTweets() {
             ))}
           </Menu>
         </>
-        } />
+        }
+        sx={{ mb: 2 }} />
 
-      <Scrollbar style={{ maxHeight: 800 }}>
-        <Stack spacing={3} sx={{ p: 3, pr: 0 }}>
+      <Scrollbar style={{ maxHeight: 820 }}>
+        <Stack spacing={2} sx={{ m: 3 }}>
           {tweets.map((tweet, index) => (
             <TweetItem key={index} tweet={tweet} />
           ))}
         </Stack>
       </Scrollbar>
 
-    </Card>
+    </Card >
   );
 }

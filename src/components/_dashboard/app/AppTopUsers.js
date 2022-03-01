@@ -16,7 +16,7 @@ const LEGEND_HEIGHT = 0;
 
 const ChartWrapperStyle = styled('div')(({ theme }) => ({
     height: CHART_HEIGHT,
-    marginTop: theme.spacing(2),
+    marginTop: theme.spacing(3),
     '& .apexcharts-canvas svg': { height: CHART_HEIGHT },
     '& .apexcharts-canvas svg,.apexcharts-canvas foreignObject': {
         overflow: 'visible'
@@ -52,8 +52,8 @@ export default function AppTopUsers({ topUsers }) {
     return (
         <Card>
             <CardHeader title="Top @users" />
-            <ChartWrapperStyle dir="ltr" style={{ maxHeight: 400 }}>
-                <ReactApexChart type="bar" series={num} options={chartOptions} height={400} />
+            <ChartWrapperStyle dir="ltr" style={{ maxHeight: 400, minHeight: 400 }}>
+                <ReactApexChart type="bar" series={num} options={chartOptions} height={375} />
             </ChartWrapperStyle>
         </Card>
     );
