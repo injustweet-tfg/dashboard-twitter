@@ -15,7 +15,6 @@ export default function AppTimeline({ dataTimeline }) {
   const tweets = data.map(value => value.tweet);
   const favs = data.map(value => value.fav);
   const rts = data.map(value => value.rt);
-  console.log(dates);
 
   const series = [{
     name: 'tweets',

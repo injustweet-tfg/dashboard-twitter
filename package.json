@@ -53,6 +53,7 @@
     "formik": "^2.2.9",
     "framer-motion": "^4.1.17",
     "history": "^5.0.1",
+    "lancaster-stemmer": "^2.0.0",
     "lodash": "^4.17.21",
     "numeral": "^2.0.6",
     "prop-types": "^15.7.2",
@@ -68,8 +69,10 @@
     "react-tagcloud": "^2.2.0",
     "react-wordcloud": "^1.2.7",
     "recharts": "^2.1.9",
+    "save-svg-as-png": "^1.4.17",
     "simplebar": "^5.3.5",
     "simplebar-react": "^2.3.5",
+    "stemmer": "^2.0.0",
     "uuidv4": "^6.2.12",
     "web-vitals": "^2.1.0",
     "yup": "^0.32.9"

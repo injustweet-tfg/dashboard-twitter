@@ -1,117 +1,21 @@
-import React, { useEffect, useState } from 'react';
-import { Card, CardHeader, Button } from '@mui/material';
+import React, { useEffect, useState, useRef, useMemo } from 'react';
+
+import { Card, CardHeader, Button, Box } from '@mui/material';
 import ReactWordcloud from 'react-wordcloud';
+import { saveSvgAsPng } from 'save-svg-as-png';
 // import randomize from 'randomize';
 // import randomColor from 'randomcolor';
 import { v4 as uuidv4 } from 'uuid';
 
-const words = [
-    {
-        text: 'told',
-        value: 50,
-    },
-    {
-        text: 'mistake',
-        value: 11,
-    },
-    {
-        text: 'thought',
-        value: 16,
-    },
-    {
-        text: 'bad',
-        value: 17,
-    },
-    {
-        text: 'told',
-        value: 64,
-    },
-    {
-        text: 'mistake',
-        value: 11,
-    },
-    {
-        text: 'thought',
-        value: 16,
-    },
-    {
-        text: 'bad',
-        value: 17,
-    },
-    {
-        text: 'told',
-        value: 50,
-    },
-    {
-        text: 'mistake',
-        value: 33,
-    },
-    {
-        text: 'thought',
-        value: 16,
-    },
-    {
-        text: 'bad',
-        value: 17,
-    },
-    {
-        text: 'told',
-        value: 64,
-    },
-    {
-        text: 'mistake',
-        value: 11,
-    },
-    {
-        text: 'thought',
-        value: 16,
-    },
-    {
-        text: 'bad',
-        value: 50,
-    },
-    {
-        text: 'told',
-        value: 64,
-    },
-    {
-        text: 'mistake',
-        value: 33,
-    },
-    {
-        text: 'thought',
-        value: 16,
-    },
-    {
-        text: 'bad',
-        value: 17,
-    },
-    {
-        text: 'told',
-        value: 64,
-    },
-    {
-        text: 'mistake',
-        value: 11,
-    },
-    {
-        text: 'thought',
-        value: 16,
-    },
-    {
-        text: 'bad',
-        value: 17,
-    },
-]
 
 const fontFamilys = ['courier', 'serif', 'sans-serif'];
 
 const options = {
     colors: ["#0000FF", "#00008B", "#ADD8E6", "#800080", "#808080", "#33C6FF"],
-    enableTooltip: false,
+    enableTooltip: true,
     deterministic: false,
     fontFamily: "impact",
-    fontSizes: [5, 60],
+    fontSizes: [15, 60],
     fontStyle: "normal",
     fontWeight: "normal",
     padding: 1,
@@ -124,39 +28,53 @@ const options = {
 
 
 
-function AppWordcloud() {
+function AppWordcloud({dataWordcloud}) {
+    const [words, setWords] = useState(dataWordcloud);
+    const wordcloudRef = useRef();
+
     const [selectedWord, setSelectedWord] = useState(null);
     const [randomSeed, setRandomSeed] = useState(uuidv4());
 
-    useEffect(() => {
-        setInterval(() => {
-            setRandomSeed(uuidv4());
-            setSelectedWord();
-        }, 10000);
-    });
+    // const [content, setContent] = useState(initialContent);
+    // const words = useMemo(() => tokenizeWords(content), [content]);
 
     return (
         <Card>
             <CardHeader title="Wordcloud" />
-            <ReactWordcloud
-                style={{ maxHeight: 300 }}
-                options={options}
-                words={words}
-            />
+            <Box ref={wordcloudRef}>
+                <ReactWordcloud
+                    style={{ maxHeight: 300 }}
+                    options={options}
+                    maxWords={20}
+                    words={words}
+                />
+            </Box>
+            <Button
+                onClick={() => {
+                    setRandomSeed(uuidv4());
+                    setSelectedWord();
+                }}
+            >
+                Animar
+            </Button>
+            <Button onClick={() => {
+                const svgElement = wordcloudRef.current.querySelector('svg');
+                saveSvgAsPng(svgElement, 'wordcloud.png');
+            }} >
+                Guardar
+            </Button>
         </Card>
     );
 }
 
 export default AppWordcloud;
 
-
 /*
-<Button
-                onClick={() => {
-                    setRandomSeed(uuidv4());
-                    setSelectedWord();
-                }}
-            >
-                Click me
-            </Button>
+useEffect(() => {
+        setInterval(() => {
+            setRandomSeed(uuidv4());
+            setSelectedWord();
+        }, 10000);
+    });
+    
 */

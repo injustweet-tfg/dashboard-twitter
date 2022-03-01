@@ -22,15 +22,15 @@ import {
 
 // ----------------------------------------------------------------------
 
+
 export default function DashboardApp() {
-  const [getTotals, getTimeline, getTopUsers, , getTweetsByDay, getHashtags,prueba] = useContext(context);
+  const [getTotals, getTimeline, getTopUsers, , getTweetsByDay, getHashtags,prueba,getDataWordcloud] = useContext(context);
   const [totalTweets, totalUsers, totalRT, totalFAV] = getTotals();
+  const dataWordcloud = getDataWordcloud();
   const dataTimeline = getTimeline();
   const topUsers = getTopUsers();
   const dataHeatmap = getTweetsByDay();
   const topHashtags = getHashtags();
-
-
 
   return (
     <Page title="Precariedapp">
@@ -59,7 +59,7 @@ export default function DashboardApp() {
 
           <Grid item xs={12} md={6} lg={6} container spacing={3}>
             <Grid item xs={12} md={12} lg={12}>
-              <AppWordcloud />
+              <AppWordcloud dataWordcloud={dataWordcloud}/>
             </Grid>
             <Grid item xs={12} md={6} lg={6}>
               <AppTopHashtags topHashtags={topHashtags} />
