@@ -11,6 +11,7 @@ import starOutlined from '@iconify/icons-ant-design/star-outlined';
 import filterFilled from '@iconify/icons-ant-design/filter-filled';
 // material
 import { alpha, styled } from '@mui/material/styles';
+import { makeStyles } from '@mui/styles';
 import { Box, Stack, Link, Card, Button, Divider, Typography, CardHeader, Grid, Menu, MenuItem } from '@mui/material';
 // utils
 import { mockImgAvatar } from '../../../utils/mockImages';
@@ -28,6 +29,18 @@ const TweetStyle = styled(Stack)(({ theme }) => ({
 
 }));
 
+const useStyles = makeStyles((theme) => ({
+  twlink: {
+    width: 'auto',
+    textDecoration: 'none',
+    color: theme.palette.text.primary,
+    '&:hover': {
+      textDecoration: 'underline',
+      color: theme.palette.primary.main,
+    }
+  },
+}));
+
 TweetItem.propTypes = {
   tweet: PropTypes.object.isRequired
 };
@@ -41,7 +54,7 @@ const SORT_BY_OPTIONS = [
 ];
 
 function TweetItem({ tweet }) {
-  const { url, id, text, user, date, likes, retweets, replies } = tweet;
+  const { link, id, text, user, date, likes, retweets, replies } = tweet;
   // console.log(faker.date.soon(), formatDistance(faker.date.soon(), new Date()));
   // console.log(date, newFormat(date));
   // console.log(fecha, new Date(fecha).getDay(), formatDistance(new Date(fecha), new Date()));
@@ -56,16 +69,18 @@ function TweetItem({ tweet }) {
         sx={{ width: 55, height: 55, borderRadius: '50%' }}
       />
       <Stack direction="column" alignItems="left" sx={{ px: 3 }}>
-        <Link to="#" color="inherit" underline="hover" component={RouterLink}>
+        {/* <Link to="#" color="inherit" underline="hover" component={RouterLink}> */}
+        <a className={useStyles().twlink} href={link} target="_blank" rel="noreferrer" >
           <Typography variant="subtitle2" noWrap>
-            {`@${user}`} <span>&nbsp;</span>
-            <Typography variant="caption" sx={{ pr: 0, flexShrink: 0, color: 'text.secondary' }} noWrap>
+            {`@${user}`} &nbsp;
+            <Typography variant="caption" sx={{ pr: 0, flexShrink: 0, color: 'text.secondary' }} noWrap >
               {/* {formatDistance(newFormat(date), new Date())} */}
               {fToNow(new Date(date))}
               {/* {console.log(newFormat(date))} */}
             </Typography>
           </Typography>
-        </Link>
+        </a>
+        {/* </Link> */}
         <Typography variant="body2" sx={{ color: 'text.secondary' }} paragraph >
           {text}
         </Typography>
