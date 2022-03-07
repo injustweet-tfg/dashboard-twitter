@@ -19,7 +19,7 @@ const RootStyle = styled(AppBar)(({ theme }) => ({
   boxShadow: 'none',
   backdropFilter: 'blur(6px)',
   WebkitBackdropFilter: 'blur(6px)', // Fix on Mobile
-  backgroundColor: alpha(theme.palette.background.default, 0.72)
+  backgroundColor: alpha(theme.palette.primary.dark, 0.8)
 }));
 
 const ToolbarStyle = styled(Toolbar)(({ theme }) => ({
@@ -42,8 +42,8 @@ export default function DashboardNavbar({ onOpenSidebar }) {
       <ToolbarStyle>
         <Box
           component="img"
-          src="/static/illustrations/illustration_avatar.png"
-          sx={{ width: 70, position: 'absolute', top: 5 }}
+          src="/static/illustrations/illustration_login.png"
+          sx={{ width: APPBAR_DESKTOP, top: 5 }}
         />
         <Box sx={{ flexGrow: 1 }} />
         <NavSection navConfig={navbarConfig} />

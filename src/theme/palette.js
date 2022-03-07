@@ -29,51 +29,51 @@ const GREY = {
 };
 
 const PRIMARY = {
-  lighter: '#E1ECF4',
-  light: '#89B2D2',
-  main: '#407BA7',
-  dark: '#004E89',
-  darker: '#002962',
+  lighter: '#ECF7FE',
+  light: '#78C6F7',
+  main: '#1DA1F2',
+  dark: '#0A6FAE',
+  darker: '#01295F', // '#03253A'
   contrastText: '#fff'
 };
 const SECONDARY = {
-  lighter: '#ff3355',
-  light: '#C00021',
-  main: '#A0001C',
-  dark: '#800016',
-  darker: '#3d000a',
+  lighter: '#FFD6DD',
+  light: '#FF7088',
+  main: '#FF002B',
+  dark: '#A3001B',
+  darker: '#3D000A',
   contrastText: '#fff'
 };
 const INFO = {
-  lighter: '#E1ECF4',
-  light: '#89B2D2',
-  main: '#407BA7',
-  dark: '#004E89',
-  darker: '#002962',
+  lighter: '#ECF7FE',
+  light: '#78C6F7',
+  main: '#1DA1F2',
+  dark: '#0A6FAE',
+  darker: '#01295F',
   contrastText: '#fff'
 };
 const SUCCESS = {
-  lighter: '#E9FCD4',
-  light: '#AAF27F',
-  main: '#54D62C',
-  dark: '#229A16',
-  darker: '#08660D',
+  lighter: '#E3EBAD',
+  light: '#C1D34A',
+  main: '#849324', // rt color'#18C981',
+  dark: '#4A5214',
+  darker: '#1E2108',
   contrastText: GREY[800]
 };
 const WARNING = {
-  lighter: '#FFF7CD',
-  light: '#FFE16A',
-  main: '#FFC107',
-  dark: '#B78103',
-  darker: '#7A4F01',
+  lighter: '#FFECC2',
+  light: '#FFCB5C',
+  main: '#FFB30F',
+  dark: '#CC8B00',
+  darker: '#A37000',
   contrastText: GREY[800]
 };
 const ERROR = {
-  lighter: '#FFE7D9',
-  light: '#FFA48D',
-  main: '#FF4842',
-  dark: '#B72136',
-  darker: '#7A0C2E',
+  lighter: '#FFD6DD',
+  light: '#FF7088',
+  main: '#FF002B',
+  dark: '#A3001B',
+  darker: '#3D000A',
   contrastText: '#fff'
 };
 
@@ -106,7 +106,7 @@ const palette = {
   chart: CHART_COLORS,
   divider: GREY[500_24],
   text: { primary: GREY[800], secondary: GREY[600], disabled: GREY[500] },
-  background: { paper: '#fff', default: '#fff', neutral: GREY[200] },
+  background: { paper: '#FFF', default: '#F5F8FA', neutral: GREY[200] },
   action: {
     active: GREY[600],
     hover: GREY[500_8],
