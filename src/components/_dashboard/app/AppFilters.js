@@ -35,7 +35,7 @@ export default function AppFilters() {
     };
     return (
         <Stack direction="row" alignItems="center" justifyContent="space-between" spacing={12} mb={3}>
-            <Typography variant="h3" gutterBottom>
+            <Typography variant="h4" gutterBottom>
                 Observa la precariedad laboral
             </Typography>
             <FilterSidebar
@@ -45,7 +45,7 @@ export default function AppFilters() {
                 onOpenFilter={handleOpenFilter}
                 onCloseFilter={handleCloseFilter}
             />
-                    {/* <TextField
+            {/* <TextField
             id="date"
             label="Inicio"
             type="date"

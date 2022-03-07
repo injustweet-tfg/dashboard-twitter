@@ -1,14 +1,16 @@
 import React, { useEffect, useState, useRef, useMemo } from 'react';
 
+// import { SaveIcon } from '@mui/icons-material/Save';
 import { Card, CardHeader, Button, Box } from '@mui/material';
 import ReactWordcloud from 'react-wordcloud';
 import { saveSvgAsPng } from 'save-svg-as-png';
 // import randomize from 'randomize';
 // import randomColor from 'randomcolor';
 import { v4 as uuidv4 } from 'uuid';
-
+import Iconify from '../../Iconify';
 
 const fontFamilys = ['courier', 'serif', 'sans-serif'];
+const getIcon = (name) => <Iconify icon={name} width={22} height={22} />;
 
 const options = {
     colors: ["#0000FF", "#00008B", "#ADD8E6", "#800080", "#808080", "#33C6FF"],
@@ -57,12 +59,13 @@ function AppWordcloud({ dataWordcloud }) {
             >
                 Animar
             </Button>
-            <Button onClick={() => {
-                const svgElement = wordcloudRef.current.querySelector('svg');
-                saveSvgAsPng(svgElement, 'wordcloud.png');
-            }} >
-                Guardar
-            </Button>
+            <Button
+                startIcon={getIcon('fluent:save-24-filled')}
+                onClick={() => {
+                    const svgElement = wordcloudRef.current.querySelector('svg');
+                    saveSvgAsPng(svgElement, 'wordcloud.png');
+                }} />
+
         </Card>
     );
 }

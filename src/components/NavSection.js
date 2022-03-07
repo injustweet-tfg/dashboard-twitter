@@ -12,12 +12,12 @@ import Iconify from './Iconify';
 const ListItemStyle = styled((props) => <ListItemButton disableGutters {...props} />)(
   ({ theme }) => ({
     ...theme.typography.body2,
-    height: 65,
+    height: 45,
     position: 'relative',
     textTransform: 'capitalize',
     paddingLeft: theme.spacing(2.5),
     paddingRight: theme.spacing(2.5),
-    color: theme.palette.text.secondary,
+    color: theme.palette.common.white,
   })
 );
 
@@ -47,9 +47,9 @@ function NavItem({ item, active }) {
   };
 
   const activeRootStyle = {
-    color: 'primary.main',
+    color: 'common.white',
     fontWeight: 'fontWeightMedium',
-    bgcolor: alpha(theme.palette.primary.main, theme.palette.action.selectedOpacity),
+    bgcolor: alpha(theme.palette.common.white, theme.palette.action.selectedOpacity),
     '&:before': { display: 'block' }
   };
 

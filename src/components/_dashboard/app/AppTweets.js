@@ -23,7 +23,7 @@ import { context } from '../../../context';
 const TweetStyle = styled(Stack)(({ theme }) => ({
   flexDirection: 'row',
   padding: theme.spacing(1, 2, 1),
-  backgroundColor: theme.palette.common.white,
+  backgroundColor: theme.palette.grey[200],
   boxShadow: theme.shadows[3],
   borderRadius: theme.shape.borderRadius,
 

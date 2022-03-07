@@ -67,6 +67,7 @@ export default function FilterSidebar({
             <Button
                 disableRipple
                 color="inherit"
+                variant="outlined"
                 endIcon={<Icon icon={commentOutlined} width={20} height={20} />}
                 onClick={onOpenFilter}
             >
