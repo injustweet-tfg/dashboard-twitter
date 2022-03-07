@@ -23,8 +23,9 @@ import { context } from '../../../context';
 const TweetStyle = styled(Stack)(({ theme }) => ({
   flexDirection: 'row',
   padding: theme.spacing(1, 2, 1),
-  backgroundColor: alpha(theme.palette.primary.main, 0.05),
+  backgroundColor: theme.palette.common.white,
   boxShadow: theme.shadows[3],
+  borderRadius: theme.shape.borderRadius,
 
 }));
 
@@ -136,7 +137,7 @@ export default function AppTweets() {
           </Menu>
         </>
         }
-        sx={{ mb: 2 }} />
+      />
 
       <Scrollbar style={{ maxHeight: 820 }}>
         <Stack spacing={2} sx={{ m: 3 }}>

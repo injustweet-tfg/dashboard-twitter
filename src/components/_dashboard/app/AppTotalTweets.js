@@ -13,12 +13,11 @@ import { fShortenNumber } from '../../../utils/formatNumber';
 // ----------------------------------------------------------------------
 
 const RootStyle = styled(Card)(({ theme }) => ({
-  boxShadow: 'none',
+  // boxShadow: 'none',
   textAlign: 'center',
   padding: theme.spacing(2, 0),
-  color: theme.palette.primary.darker,
-  backgroundColor: theme.palette.background.paper,
-  border: `1px solid ${theme.palette.primary.darker}`,
+  color: theme.palette.text.primary,
+  backgroundColor: theme.palette.primary.lighter,
 }));
 
 const IconWrapperStyle = styled('div')(({ theme }) => ({
@@ -30,8 +29,8 @@ const IconWrapperStyle = styled('div')(({ theme }) => ({
   height: theme.spacing(8),
   justifyContent: 'center',
   marginBottom: theme.spacing(2),
-  color: theme.palette.primary.dark,
-  backgroundImage: `linear-gradient(135deg, ${alpha(theme.palette.primary.dark, 0)} 0%, ${alpha(
+  color: theme.palette.primary.main,
+  backgroundImage: `linear-gradient(135deg, ${alpha(theme.palette.primary.darker, 0)} 0%, ${alpha(
     theme.palette.primary.dark,
     0.24
   )} 100%)`
@@ -41,7 +40,7 @@ const IconWrapperStyle = styled('div')(({ theme }) => ({
 
 // const TOTAL = 714000;
 
-export default function AppTotalTweets({totalTweets}) {
+export default function AppTotalTweets({ totalTweets }) {
   const [total, setTotal] = useState(totalTweets);
   return (
     <RootStyle>

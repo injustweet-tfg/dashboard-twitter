@@ -12,14 +12,14 @@ import NavSection from '../../components/NavSection';
 // ----------------------------------------------------------------------
 
 const DRAWER_WIDTH = 280;
-const APPBAR_MOBILE = 40;
-const APPBAR_DESKTOP = 40;
+const APPBAR_MOBILE = 60;
+const APPBAR_DESKTOP = 60;
 
 const RootStyle = styled(AppBar)(({ theme }) => ({
   boxShadow: 'none',
   backdropFilter: 'blur(6px)',
   WebkitBackdropFilter: 'blur(6px)', // Fix on Mobile
-  backgroundColor: alpha(theme.palette.background.default, 0.72)
+  backgroundColor: alpha(theme.palette.primary.main, 0.2)
 }));
 
 const ToolbarStyle = styled(Toolbar)(({ theme }) => ({
@@ -43,7 +43,7 @@ export default function DashboardNavbar({ onOpenSidebar }) {
         <Box
           component="img"
           src="/static/illustrations/illustration_avatar.png"
-          sx={{ width: 70, position: 'absolute', top: 5 }}
+          sx={{ width: APPBAR_DESKTOP, top: 5 }}
         />
         <Box sx={{ flexGrow: 1 }} />
         <NavSection navConfig={navbarConfig} />

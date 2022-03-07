@@ -28,7 +28,7 @@ const options = {
 
 
 
-function AppWordcloud({dataWordcloud}) {
+function AppWordcloud({ dataWordcloud }) {
     const [words, setWords] = useState(dataWordcloud);
     const wordcloudRef = useRef();
 

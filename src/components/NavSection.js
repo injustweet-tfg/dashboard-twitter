@@ -11,11 +11,11 @@ import Iconify from './Iconify';
 
 const ListItemStyle = styled((props) => <ListItemButton disableGutters {...props} />)(
   ({ theme }) => ({
-     ...theme.typography.body2,
-    height: 48,
+    ...theme.typography.body2,
+    height: 65,
     position: 'relative',
     textTransform: 'capitalize',
-    paddingLeft: theme.spacing(5),
+    paddingLeft: theme.spacing(2.5),
     paddingRight: theme.spacing(2.5),
     color: theme.palette.text.secondary,
   })
@@ -149,7 +149,7 @@ export default function NavSection({ navConfig, ...other }) {
     flexDirection: 'row',
     padding: 0,
   };
-  
+
 
   return (
     <Box {...other}>

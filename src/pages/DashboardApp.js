@@ -24,7 +24,7 @@ import {
 
 
 export default function DashboardApp() {
-  const [getTotals, getTimeline, getTopUsers, , getTweetsByDay, getHashtags,prueba,getDataWordcloud] = useContext(context);
+  const [getTotals, getTimeline, getTopUsers, , getTweetsByDay, getHashtags, prueba, getDataWordcloud] = useContext(context);
   const [totalTweets, totalUsers, totalRT, totalFAV] = getTotals();
   const dataWordcloud = getDataWordcloud();
   const dataTimeline = getTimeline();
@@ -34,8 +34,8 @@ export default function DashboardApp() {
 
   return (
     <Page title="Precariedapp">
-      <Button onClick={() => prueba()}>prueba</Button>
-      <Container maxWidth="xl">
+      {/* <Button onClick={() => prueba()}>prueba</Button> */}
+      <Container maxWidth="xxl">
         <Grid item xs={12} md={12} lg={12}>
           <AppFilters />
         </Grid>
@@ -59,7 +59,7 @@ export default function DashboardApp() {
 
           <Grid item xs={12} md={6} lg={6} container spacing={3}>
             <Grid item xs={12} md={12} lg={12}>
-              <AppWordcloud dataWordcloud={dataWordcloud}/>
+              <AppWordcloud dataWordcloud={dataWordcloud} />
             </Grid>
             <Grid item xs={12} md={6} lg={6}>
               <AppTopHashtags topHashtags={topHashtags} />

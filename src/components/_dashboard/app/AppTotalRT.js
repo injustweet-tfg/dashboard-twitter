@@ -12,11 +12,11 @@ import { fShortenNumber } from '../../../utils/formatNumber';
 // ----------------------------------------------------------------------
 
 const RootStyle = styled(Card)(({ theme }) => ({
-  boxShadow: 'none',
+  // boxShadow: 'none',
   textAlign: 'center',
   padding: theme.spacing(2, 0),
-  color: theme.palette.info.darker,
-  backgroundColor: theme.palette.info.lighter
+  color: theme.palette.text.primary,
+  backgroundColor: theme.palette.success.lighter
 }));
 
 const IconWrapperStyle = styled('div')(({ theme }) => ({
@@ -28,9 +28,9 @@ const IconWrapperStyle = styled('div')(({ theme }) => ({
   height: theme.spacing(8),
   justifyContent: 'center',
   marginBottom: theme.spacing(2),
-  color: theme.palette.warning.dark,
-  backgroundImage: `linear-gradient(135deg, ${alpha(theme.palette.warning.dark, 0)} 0%, ${alpha(
-    theme.palette.warning.dark,
+  color: theme.palette.success.main,
+  backgroundImage: `linear-gradient(135deg, ${alpha(theme.palette.success.darker, 0)} 0%, ${alpha(
+    theme.palette.success.darker,
     0.24
   )} 100%)`
 }));
@@ -38,7 +38,7 @@ const IconWrapperStyle = styled('div')(({ theme }) => ({
 // ----------------------------------------------------------------------
 
 
-export default function AppTotalRT({totalRT}) {
+export default function AppTotalRT({ totalRT }) {
   const [total, setTotal] = useState(totalRT);
   return (
     <RootStyle>

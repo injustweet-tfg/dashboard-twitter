@@ -5,8 +5,8 @@ export default function Card(theme) {
     MuiCard: {
       styleOverrides: {
         root: {
-          boxShadow: theme.customShadows.z16,
-          borderRadius: theme.shape.borderRadiusMd,
+          boxShadow: theme.customShadows.z4,
+          borderRadius: theme.shape.borderRadius,
           position: 'relative',
           zIndex: 0 // Fix Safari overflow: hidden with border radius
         }
@@ -15,11 +15,12 @@ export default function Card(theme) {
     MuiCardHeader: {
       defaultProps: {
         titleTypographyProps: { variant: 'h6' },
-        subheaderTypographyProps: { variant: 'body2' }
+        subheaderTypographyProps: { variant: 'body2' },
       },
       styleOverrides: {
         root: {
-          padding: theme.spacing(3, 3, 0)
+          padding: theme.spacing(1.5, 1.5, 1.5, 1.5),
+          background: theme.palette.divider,
         }
       }
     },
