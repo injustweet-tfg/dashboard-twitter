@@ -8,11 +8,8 @@ export default function AppFilters() {
 
     const formik = useFormik({
         initialValues: {
-            gender: '',
-            category: '',
-            colors: '',
-            priceRange: '',
-            rating: ''
+            start: '',
+            end: ''
         },
         onSubmit: () => {
             setOpenFilter(false);
@@ -45,7 +42,7 @@ export default function AppFilters() {
                 onOpenFilter={handleOpenFilter}
                 onCloseFilter={handleCloseFilter}
             />
-                    {/* <TextField
+            {/* <TextField
             id="date"
             label="Inicio"
             type="date"

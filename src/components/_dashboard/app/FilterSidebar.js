@@ -1,4 +1,5 @@
 import PropTypes from 'prop-types';
+import { useState } from 'react';
 import { Form, FormikProvider } from 'formik';
 // material
 import {
@@ -11,14 +12,18 @@ import {
     Divider,
     Checkbox,
     FormGroup,
+    TextField,
     IconButton,
     Typography,
     RadioGroup,
     FormControlLabel
 } from '@mui/material';
 //
+import esLocale from 'date-fns/locale/es';
 import { Icon } from '@iconify/react';
 import commentOutlined from '@iconify/icons-ant-design/comment-outlined';
+import { DatePicker, LocalizationProvider } from '@mui/lab';
+import AdapterDateFns from '@mui/lab/AdapterDateFns';
 import Scrollbar from '../../Scrollbar';
 
 
@@ -61,16 +66,18 @@ export default function FilterSidebar({
     formik
 }) {
     const { values, getFieldProps, handleChange } = formik;
+    const [start, setStart] = useState(new Date());
+    const [end, setEnd] = useState(new Date());
 
     return (
         <Stack direction="column">
             <Button
                 disableRipple
                 color="inherit"
-                endIcon={<Icon icon={commentOutlined} width={20} height={20} />}
+                endIcon={<Icon icon="bi:calendar2-date" width={20} height={20} />}
                 onClick={onOpenFilter}
             >
-                Filters
+                Filtra por fecha las denuncias
             </Button>
 
             <FormikProvider value={formik}>
@@ -90,10 +97,10 @@ export default function FilterSidebar({
                             sx={{ px: 1, py: 2 }}
                         >
                             <Typography variant="subtitle1" sx={{ ml: 1 }}>
-                                Filters
+                                Filtros
                             </Typography>
                             <IconButton onClick={onCloseFilter}>
-                                <Icon icon={commentOutlined} width={20} height={20} />
+                                <Icon icon="akar-icons:cross" width={20} height={20} />
                             </IconButton>
                         </Stack>
 
@@ -101,109 +108,86 @@ export default function FilterSidebar({
 
                         <Scrollbar>
                             <Stack spacing={3} sx={{ p: 3 }}>
-                                <div>
-                                    <Typography variant="subtitle1" gutterBottom>
-                                        Gender
-                                    </Typography>
-                                    <FormGroup>
-                                        {FILTER_GENDER_OPTIONS.map((item) => (
-                                            <FormControlLabel
-                                                key={item}
-                                                control={
-                                                    <Checkbox
-                                                        {...getFieldProps('gender')}
-                                                        value={item}
-                                                        checked={values.gender.includes(item)}
-                                                    />
-                                                }
-                                                label={item}
-                                            />
-                                        ))}
-                                    </FormGroup>
-                                </div>
+                                <Button
+                                    fullWidth
+                                    size="large"
+                                    type="submit"
+                                    color="primary"
+                                    variant="outlined"
+                                >
+                                    Últimos 7 días
+                                </Button>
+                                <Button
+                                    fullWidth
+                                    size="large"
+                                    type="submit"
+                                    color="primary"
+                                    variant="outlined"
+                                >
+                                    Último mes
+                                </Button>
+                                <Button
+                                    fullWidth
+                                    size="large"
+                                    type="submit"
+                                    color="primary"
+                                    variant="outlined"
+                                >
+                                    Último año
+                                </Button>
 
                                 <div>
                                     <Typography variant="subtitle1" gutterBottom>
-                                        Category
+                                        Fecha de inicio
                                     </Typography>
-                                    <RadioGroup {...getFieldProps('category')}>
-                                        {FILTER_CATEGORY_OPTIONS.map((item) => (
-                                            <FormControlLabel key={item} value={item} control={<Radio />} label={item} />
-                                        ))}
-                                    </RadioGroup>
+                                    <LocalizationProvider dateAdapter={AdapterDateFns} locale={esLocale}>
+                                        <DatePicker
+                                            value={start}
+                                            onChange={(newValue) => {
+                                                setStart(newValue);
+                                            }}
+                                            renderInput={(params) => <TextField {...params} />}
+                                        />
+
+                                        <Typography variant="subtitle1" gutterBottom>
+                                            Fecha de fin
+                                        </Typography>
+                                        <DatePicker
+                                            value={end}
+                                            onChange={(newValue) => {
+                                                setEnd(newValue);
+                                            }}
+                                            renderInput={(params) => <TextField {...params} />}
+                                        />
+
+                                    </LocalizationProvider>
                                 </div>
 
-                                <div>
-                                    <Typography variant="subtitle1" gutterBottom>
-                                        Colors
-                                    </Typography>
+                                <Button
+                                    fullWidth
+                                    size="large"
+                                    type="submit"
+                                    color="success"
+                                    variant="contained"
+                                    endIcon={<Icon icon="line-md:confirm-circle" width={20} height={20} />}
+                                >
+                                    Confirmar
+                                </Button>
 
-                                </div>
-
-                                <div>
-                                    <Typography variant="subtitle1" gutterBottom>
-                                        Price
-                                    </Typography>
-                                    <RadioGroup {...getFieldProps('priceRange')}>
-                                        {FILTER_PRICE_OPTIONS.map((item) => (
-                                            <FormControlLabel
-                                                key={item.value}
-                                                value={item.value}
-                                                control={<Radio />}
-                                                label={item.label}
-                                            />
-                                        ))}
-                                    </RadioGroup>
-                                </div>
-
-                                <div>
-                                    <Typography variant="subtitle1" gutterBottom>
-                                        Rating
-                                    </Typography>
-                                    <RadioGroup {...getFieldProps('rating')}>
-                                        {FILTER_RATING_OPTIONS.map((item, index) => (
-                                            <FormControlLabel
-                                                key={item}
-                                                value={item}
-                                                control={
-                                                    <Radio
-                                                        disableRipple
-                                                        color="default"
-                                                        icon={<Rating readOnly value={4 - index} />}
-                                                        checkedIcon={<Rating readOnly value={4 - index} />}
-                                                    />
-                                                }
-                                                label="& Up"
-                                                sx={{
-                                                    my: 0.5,
-                                                    borderRadius: 1,
-                                                    '& > :first-of-type': { py: 0.5 },
-                                                    '&:hover': {
-                                                        opacity: 0.48,
-                                                        '& > *': { bgcolor: 'transparent' }
-                                                    },
-                                                    ...(values.rating.includes(item) && {
-                                                        bgcolor: 'background.neutral'
-                                                    })
-                                                }}
-                                            />
-                                        ))}
-                                    </RadioGroup>
-                                </div>
                             </Stack>
                         </Scrollbar>
-
+                        <Divider />
                         <Box sx={{ p: 3 }}>
                             <Button
                                 fullWidth
                                 size="large"
                                 type="submit"
-                                color="inherit"
-                                variant="outlined"
+                                color="secondary"
+                                variant="contained"
                                 onClick={onResetFilter}
-                                startIcon={<Icon icon={commentOutlined} width={20} height={20} />}
+                                startIcon={<Icon icon="bi:trash" width={20} height={20} />}
                             >
-                                Clear All
+                                Borrar filtros
                             </Button>
                         </Box>
                     </Drawer>
