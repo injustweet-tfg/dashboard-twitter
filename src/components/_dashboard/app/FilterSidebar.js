@@ -29,27 +29,6 @@ import Scrollbar from '../../Scrollbar';
 
 // ----------------------------------------------------------------------
 
-export const FILTER_GENDER_OPTIONS = ['Men', 'Women', 'Kids'];
-export const FILTER_CATEGORY_OPTIONS = ['All', 'Shose', 'Apparel', 'Accessories'];
-export const FILTER_RATING_OPTIONS = ['up4Star', 'up3Star', 'up2Star', 'up1Star'];
-export const FILTER_PRICE_OPTIONS = [
-    { value: 'below', label: 'Below $25' },
-    { value: 'between', label: 'Between $25 - $75' },
-    { value: 'above', label: 'Above $75' }
-];
-export const FILTER_COLOR_OPTIONS = [
-    '#00AB55',
-    '#000000',
-    '#FFFFFF',
-    '#FFC0CB',
-    '#FF4842',
-    '#1890FF',
-    '#94D82D',
-    '#FFC107'
-];
-
-// ----------------------------------------------------------------------
-
 FilterSidebar.propTypes = {
     isOpenFilter: PropTypes.bool,
     onResetFilter: PropTypes.func,
@@ -66,8 +45,8 @@ export default function FilterSidebar({
     formik
 }) {
     const { values, getFieldProps, handleChange } = formik;
-    const [start, setStart] = useState(new Date());
-    const [end, setEnd] = useState(new Date());
+    const [start, setStart] = useState(null);
+    const [end, setEnd] = useState(null);
 
     return (
         <Stack direction="column">
@@ -168,8 +147,9 @@ export default function FilterSidebar({
                                     size="large"
                                     type="submit"
                                     color="success"
-                                    variant="contained"
-                                    endIcon={<Icon icon="line-md:confirm-circle" width={20} height={20} />}
+                                    variant="outlined"
+                                    sx={{ color: 'success.main' }}
+                                    startIcon={<Icon icon="line-md:confirm-circle" width={20} height={20} />}
                                 >
                                     Confirmar
                                 </Button>
@@ -183,8 +163,9 @@ export default function FilterSidebar({
                                 size="large"
                                 type="submit"
                                 color="secondary"
-                                variant="contained"
+                                variant="outlined"
                                 onClick={onResetFilter}
+                                sx={{ color: 'secondary.main' }}
                                 startIcon={<Icon icon="bi:trash" width={20} height={20} />}
                             >
                                 Borrar filtros

@@ -19,7 +19,7 @@ const RootStyle = styled(AppBar)(({ theme }) => ({
   boxShadow: 'none',
   backdropFilter: 'blur(6px)',
   WebkitBackdropFilter: 'blur(6px)', // Fix on Mobile
-  backgroundColor: alpha(theme.palette.primary.dark, 0.8)
+  backgroundColor: alpha(theme.palette.primary.main, 0.8)
 }));
 
 const ToolbarStyle = styled(Toolbar)(({ theme }) => ({
