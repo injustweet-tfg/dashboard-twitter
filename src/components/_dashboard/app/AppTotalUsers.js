@@ -41,7 +41,6 @@ const IconWrapperStyle = styled('div')(({ theme }) => ({
 // const TOTAL = 1352831;
 
 export default function AppTotalUsers({ totalUsers }) {
-  const [total, setTotal] = useState(totalUsers);
   return (
     <RootStyle>
       <Stack direction='row' justifyContent="space-between" alignItems="center">
@@ -49,7 +48,7 @@ export default function AppTotalUsers({ totalUsers }) {
           <Typography variant="subtitle1" align='center' sx={{ color: 'text.secondary' }}>
             Total de usuarios
           </Typography>
-          <Typography variant="h3">{fShortenNumber(total)}</Typography>
+          <Typography variant="h3">{fShortenNumber(totalUsers)}</Typography>
         </Stack>
         <IconWrapperStyle>
           <Icon icon={eyeFilled} width={24} height={24} />

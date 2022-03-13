@@ -42,7 +42,7 @@ const IconWrapperStyle = styled('div')(({ theme }) => ({
 // const TOTAL = 714000;
 
 export default function AppTotalTweets({ totalTweets }) {
-  const [total, setTotal] = useState(totalTweets);
+
   return (
     <RootStyle>
       <Stack direction='row' justifyContent="space-between" alignItems="center" >
@@ -50,7 +50,7 @@ export default function AppTotalTweets({ totalTweets }) {
           <Typography variant="subtitle1" align='center' sx={{ color: 'text.secondary' }}>
             Total de tweets
           </Typography>
-          <Typography variant="h3">{fShortenNumber(total)}</Typography>
+          <Typography variant="h3">{fShortenNumber(totalTweets)}</Typography>
         </Stack>
         <IconWrapperStyle>
           <Icon icon={twitterOutlined} width={24} height={24} />

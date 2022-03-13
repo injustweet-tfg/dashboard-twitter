@@ -24,6 +24,7 @@ import { Icon } from '@iconify/react';
 import commentOutlined from '@iconify/icons-ant-design/comment-outlined';
 import { DatePicker, LocalizationProvider } from '@mui/lab';
 import AdapterDateFns from '@mui/lab/AdapterDateFns';
+import { useTweets } from '../../../context';
 import Scrollbar from '../../Scrollbar';
 
 
@@ -44,6 +45,7 @@ export default function FilterSidebar({
     onCloseFilter,
     formik
 }) {
+    const { prueba } = useTweets();
     const { values, getFieldProps, handleChange } = formik;
     const [start, setStart] = useState(null);
     const [end, setEnd] = useState(null);
@@ -78,6 +80,7 @@ export default function FilterSidebar({
                             <Typography variant="subtitle1" sx={{ ml: 1 }}>
                                 Filtros
                             </Typography>
+                            <Button onClick={() => prueba()}>prueba</Button>
                             <IconButton onClick={onCloseFilter}>
                                 <Icon icon="akar-icons:cross" width={20} height={20} />
                             </IconButton>

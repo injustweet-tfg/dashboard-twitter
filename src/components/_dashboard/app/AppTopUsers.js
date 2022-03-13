@@ -32,9 +32,8 @@ const ChartWrapperStyle = styled('div')(({ theme }) => ({
 }));
 
 export default function AppTopUsers({ topUsers }) {
-    const [top, settop] = useState(topUsers);
-    const users = top.map(value => `@${value.user}`);
-    const num = [{ data: top.map(value => value.tweets) }];
+    const users = topUsers.map(value => `@${value.user}`);
+    const num = [{ data: topUsers.map(value => value.tweets) }];
 
     const chartOptions = merge(BaseOptionChart(), {
         tooltip: {

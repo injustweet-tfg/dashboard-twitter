@@ -25,11 +25,11 @@ const ChartWrapperStyle = styled('div')(({ theme }) => ({
 }));
 
 export default function AppTimeline({ dataTimeline }) {
-  const [data, setTotal] = useState(dataTimeline);
-  const dates = data.map(value => value.date);
-  const tweets = data.map(value => value.tweet);
-  const favs = data.map(value => value.fav);
-  const rts = data.map(value => value.rt);
+  // const [data, setTotal] = useState(dataTimeline); no more this
+  const dates = dataTimeline.map(value => value.date);
+  const tweets = dataTimeline.map(value => value.tweet);
+  const favs = dataTimeline.map(value => value.fav);
+  const rts = dataTimeline.map(value => value.rt);
 
   const series = [{
     name: 'tweets',

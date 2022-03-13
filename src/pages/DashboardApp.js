@@ -2,7 +2,7 @@ import React, { useContext } from "react";
 
 // material
 import { Box, Grid, Container, Typography, Button } from '@mui/material';
-import { TweetsProvider, context } from '../context';
+import { useTweets } from '../context';
 // components
 import Page from '../components/Page';
 import {
@@ -24,17 +24,10 @@ import {
 
 
 export default function DashboardApp() {
-  const [getTotals, getTimeline, getTopUsers, , getTweetsByDay, getHashtags, prueba, getDataWordcloud] = useContext(context);
-  const [totalTweets, totalUsers, totalRT, totalFAV] = getTotals();
-  const dataWordcloud = getDataWordcloud();
-  const dataTimeline = getTimeline();
-  const topUsers = getTopUsers();
-  const dataHeatmap = getTweetsByDay();
-  const topHashtags = getHashtags();
+  const { totals, topUsers, topHashtags, dataWordcloud, dataHeatmap, dataTimeline, tweetView, getTweetView, setTweetView } = useTweets();
 
   return (
     <Page title="Precariedapp">
-      {/* <Button onClick={() => prueba()}>prueba</Button> */}
       <Container maxWidth="xxl">
         <Grid item xs={12} md={12} lg={12}>
           <AppFilters />
@@ -45,16 +38,16 @@ export default function DashboardApp() {
             <AppHeader />
           </Grid> */}
           <Grid item xs={12} sm={6} md={3}>
-            <AppTotalTweets totalTweets={totalTweets} />
+            <AppTotalTweets totalTweets={totals.totalTweets} />
           </Grid>
           <Grid item xs={12} sm={6} md={3}>
-            <AppTotalUsers totalUsers={totalUsers} />
+            <AppTotalUsers totalUsers={totals.totalUsers} />
           </Grid>
           <Grid item xs={12} sm={6} md={3}>
-            <AppTotalRT totalRT={totalRT} />
+            <AppTotalRT totalRT={totals.totalRT} />
           </Grid>
           <Grid item xs={12} sm={6} md={3}>
-            <AppTotalFAV totalFAV={totalFAV} />
+            <AppTotalFAV totalFAV={totals.totalFAV} />
           </Grid>
 
           <Grid item xs={12} md={6} lg={6} container spacing={3}>
@@ -70,7 +63,7 @@ export default function DashboardApp() {
           </Grid>
 
           <Grid item xs={12} md={6} lg={6}>
-            <AppTweets />
+            <AppTweets tweetView={tweetView} getTweetView={getTweetView} setTweetView={setTweetView} />
           </Grid>
 
           <Grid item xs={12} md={6} lg={6}>

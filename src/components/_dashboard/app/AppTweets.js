@@ -18,7 +18,7 @@ import { mockImgAvatar } from '../../../utils/mockImages';
 import { newFormat, fToNow } from '../../../utils/formatTime';
 //
 import Scrollbar from '../../Scrollbar';
-import { context } from '../../../context';
+import { useTweets } from '../../../context';
 
 // ----------------------------------------------------------------------
 const TweetStyle = styled(Stack)(({ theme }) => ({
@@ -99,11 +99,9 @@ function TweetItem({ tweet }) {
     </TweetStyle>
   );
 }
-export default function AppTweets() {
-  const [, , , getTweets] = useContext(context);
+export default function AppTweets({ tweetView, getTweetView, setTweetView }) {
   const [open, setOpen] = useState(null);
   const [selected, setSelected] = useState(0);
-  const [tweets, setTweets] = useState(getTweets(selected));
 
   const handleOpen = (event) => {
     setOpen(event.currentTarget);
@@ -115,7 +113,7 @@ export default function AppTweets() {
 
   const handleChange = (event, index) => {
     setSelected(index);
-    setTweets(getTweets(index));
+    setTweetView(getTweetView(index));
     handleClose();
   };
 
@@ -156,7 +154,7 @@ export default function AppTweets() {
 
       <Scrollbar style={{ maxHeight: 820 }}>
         <Stack spacing={2} sx={{ m: 3 }}>
-          {tweets.map((tweet, index) => (
+          {tweetView.map((tweet, index) => (
             <TweetItem key={index} tweet={tweet} />
           ))}
         </Stack>

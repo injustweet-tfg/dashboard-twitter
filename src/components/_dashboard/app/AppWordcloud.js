@@ -31,7 +31,7 @@ const options = {
 
 
 function AppWordcloud({ dataWordcloud }) {
-    const [words, setWords] = useState(dataWordcloud);
+    // const [words, setWords] = useState(dataWordcloud); ahora words = dataWordcloud
     const wordcloudRef = useRef();
 
     const [selectedWord, setSelectedWord] = useState(null);
@@ -48,7 +48,7 @@ function AppWordcloud({ dataWordcloud }) {
                     style={{ maxHeight: 300 }}
                     options={options}
                     maxWords={20}
-                    words={words}
+                    words={dataWordcloud}
                 />
             </Box>
             <Button
