@@ -34,10 +34,6 @@ const ChartWrapperStyle = styled('div')(({ theme }) => ({
 
 export default function AppHeatmap({ dataHeatmap }) {
   const theme = useTheme();
-  const [data, setData] = useState(dataHeatmap);
-
-
-
 
   const chartOptions = merge(BaseOptionChart(), {
     colors: Array(10).fill("#008FFB"),
@@ -63,7 +59,7 @@ export default function AppHeatmap({ dataHeatmap }) {
     <Card>
       <CardHeader title="Tweets por día" />
       <ChartWrapperStyle dir="ltr" style={{ maxHeight: 400, minHeight: 400 }}>
-        <ReactApexChart type="heatmap" series={data} options={chartOptions} height={375} />
+        <ReactApexChart type="heatmap" series={dataHeatmap} options={chartOptions} height={375} />
       </ChartWrapperStyle>
     </Card >
   );

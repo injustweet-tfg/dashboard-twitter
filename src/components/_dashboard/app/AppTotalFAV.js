@@ -39,7 +39,6 @@ const IconWrapperStyle = styled('div')(({ theme }) => ({
 // ----------------------------------------------------------------------
 
 export default function AppTotalFAV({ totalFAV }) {
-  const [total, setTotal] = useState(totalFAV);
 
   return (
     <RootStyle>
@@ -48,7 +47,7 @@ export default function AppTotalFAV({ totalFAV }) {
           <Typography variant="subtitle1" align='center' sx={{ color: 'text.secondary' }}>
             Total de favoritos
           </Typography>
-          <Typography variant="h3">{fShortenNumber(total)}</Typography>
+          <Typography variant="h3">{fShortenNumber(totalFAV)}</Typography>
         </Stack>
         <IconWrapperStyle>
           <Icon icon={heartFilled} width={24} height={24} />
