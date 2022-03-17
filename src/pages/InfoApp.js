@@ -23,15 +23,6 @@ import {
 // ----------------------------------------------------------------------
 
 export default function DashboardApp() {
-  const [getTotals, getTimeline, getTopUsers, , getTweetsByDay, getHashtags] = useContext(context);
-  const [totalTweets, totalUsers, totalRT, totalFAV] = getTotals();
-  const dataTimeline = getTimeline();
-  const topUsers = getTopUsers();
-  const dataHeatmap = getTweetsByDay();
-  const topHashtags = getHashtags();
-
-
-
   return (
     <Page title="Precariedapp">
       <Container maxWidth="xl">
