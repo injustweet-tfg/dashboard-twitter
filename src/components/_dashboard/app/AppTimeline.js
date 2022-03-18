@@ -58,12 +58,40 @@ export default function AppTimeline({ dataTimeline }) {
       },
       axisBorder: { show: true },
       axisTicks: { show: true },
-
-
     },
     stroke: {
       curve: 'smooth'
     },
+    yaxis: [
+      {
+        seriesName: 'tweets',
+        axisTicks: {
+          show: true
+        },
+        axisBorder: {
+          show: true,
+        },
+        title: {
+          text: "Tweets"
+        }
+      },
+      {
+        seriesName: 'favs',
+        show: false
+      }, {
+        opposite: true,
+        seriesName: 'favs',
+        axisTicks: {
+          show: true
+        },
+        axisBorder: {
+          show: true,
+        },
+        title: {
+          text: "Favs y Rts"
+        }
+      }
+    ],
   });
 
 

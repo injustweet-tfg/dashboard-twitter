@@ -31,14 +31,9 @@ const options = {
 
 
 function AppWordcloud({ dataWordcloud }) {
-    // const [words, setWords] = useState(dataWordcloud); ahora words = dataWordcloud
     const wordcloudRef = useRef();
 
-    const [selectedWord, setSelectedWord] = useState(null);
-    const [randomSeed, setRandomSeed] = useState(uuidv4());
-
-    // const [content, setContent] = useState(initialContent);
-    // const words = useMemo(() => tokenizeWords(content), [content]);
+    const [update,setUpdate] = useState(uuidv4());
 
     return (
         <Card>
@@ -53,12 +48,12 @@ function AppWordcloud({ dataWordcloud }) {
             </Box>
             <Button
                 onClick={() => {
-                    setRandomSeed(uuidv4());
-                    setSelectedWord();
+                    setUpdate(uuidv4());
                 }}
             >
                 Animar
             </Button>
+            
             <Button
                 startIcon={getIcon('fluent:save-24-filled')}
                 onClick={() => {
@@ -80,4 +75,20 @@ useEffect(() => {
         }, 10000);
     });
     
+
+    <Button
+                onClick={() => {
+                    setRandomSeed(uuidv4());
+                    setSelectedWord();
+                }}
+            >
+                Animar
+            </Button>
+
+            useEffect(() => {
+  const interval = setInterval(() => {
+    console.log('This will run every second!');
+  }, 1000);
+  return () => clearInterval(interval);
+}, []);
 */

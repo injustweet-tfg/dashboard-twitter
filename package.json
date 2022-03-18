@@ -74,6 +74,7 @@
     "simplebar": "^5.3.5",
     "simplebar-react": "^2.3.5",
     "stemmer": "^2.0.0",
+    "stemmer_es": "^1.0.2",
     "uuidv4": "^6.2.12",
     "web-vitals": "^2.1.0",
     "yup": "^0.32.9"

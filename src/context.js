@@ -67,7 +67,7 @@ export const TweetsProvider = (props) => {
     tweets.forEach(tweet => {
       const words = tweet.text
         .split(' ')
-        .map((word) => word.toLowerCase().trim())
+        .map((word) => word.toLowerCase().replace(/[^a-zA-ZÀ-ÿ\u00f1\u00d1]/g,' ').trim())
         .filter((word) => !word.startsWith("#"));
 
       words.forEach(word => {
