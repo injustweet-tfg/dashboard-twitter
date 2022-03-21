@@ -90,7 +90,12 @@ const CHART_COLORS = {
   blue: ['#2D99FF', '#83CFFF', '#A5F3FF', '#CCFAFF'],
   green: ['#2CD9C5', '#60F1C8', '#A4F7CC', '#C0F2DC'],
   yellow: ['#FFE700', '#FFEF5A', '#FFF7AE', '#FFF3D6'],
-  red: ['#FF6C40', '#FF8F6D', '#FFBD98', '#FFF2D4']
+  red: ['#FF6C40', '#FF8F6D', '#FFBD98', '#FFF2D4'],
+  pink: ['#ffafcc', '#ffc4d6ff', '#ff87abff', '#ffacc5ff'],
+  other: ['#184e77ff', '#1e6091ff', '#1a759fff', '#168aadff', '#34a0a4ff', '#52b69aff', '#76c893ff', '#99d98cff', '#b5e48cff', '#d9ed92ff'],
+  other2: ["#1DA1F2", "#1CA5E5", "#1CAAD9", "#1BAECC", "#1BB3C0", "#1AB7B3", "#1ABCA7", "#19C09A", "#19C58E", "#18C981"]
+
+
 };
 
 const palette = {

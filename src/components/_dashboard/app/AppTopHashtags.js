@@ -41,9 +41,15 @@ function AppTopHashtags({ topHashtags }) {
     const chartOptions = merge(BaseOptionChart(), {
         colors: [
             theme.palette.primary.main,
-            theme.palette.info.main,
+            theme.palette.secondary.main,
+            theme.palette.success.main,
             theme.palette.warning.main,
-            theme.palette.error.main
+            theme.palette.chart.violet[0],
+            theme.palette.chart.red[0],
+            theme.palette.chart.green[0],
+            ...theme.palette.chart.other,
+            theme.palette.chart.pink[0],
+
         ],
         labels,
         stroke: { colors: [theme.palette.background.paper] },

@@ -33,7 +33,7 @@ const options = {
 function AppWordcloud({ dataWordcloud }) {
     const wordcloudRef = useRef();
 
-    const [update,setUpdate] = useState(uuidv4());
+    const [update, setUpdate] = useState(uuidv4());
 
     return (
         <Card>
@@ -53,7 +53,7 @@ function AppWordcloud({ dataWordcloud }) {
             >
                 Animar
             </Button>
-            
+
             <Button
                 startIcon={getIcon('fluent:save-24-filled')}
                 onClick={() => {

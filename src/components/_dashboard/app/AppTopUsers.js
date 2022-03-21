@@ -45,7 +45,6 @@ export default function AppTopUsers({ topUsers }) {
         xaxis: {
             categories: users
         },
-        colors: ['#2E93fA']
     });
 
     return (
