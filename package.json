@@ -10,7 +10,8 @@
     "test": "react-scripts test",
     "eject": "react-scripts eject",
     "lint": "eslint --ext .js,.jsx ./src",
-    "lint:fix": "eslint --fix --ext .js,.jsx ./src"
+    "lint:fix": "eslint --fix --ext .js,.jsx ./src",
+    "cache": "nodemon src/cache/index.js"
   },
   "eslintConfig": {
     "extends": [
@@ -49,13 +50,17 @@
     "@testing-library/jest-dom": "^5.14.1",
     "apexcharts": "^3.28.3",
     "change-case": "^4.1.2",
+    "cors": "^2.8.5",
     "date-fns": "^2.24.0",
+    "dotenv": "^16.0.0",
+    "express": "^4.17.3",
     "faker": "^5.5.3",
     "formik": "^2.2.9",
     "framer-motion": "^4.1.17",
     "history": "^5.0.1",
     "lancaster-stemmer": "^2.0.0",
     "lodash": "^4.17.21",
+    "mongodb": "^4.4.1",
     "numeral": "^2.0.6",
     "prop-types": "^15.7.2",
     "randomcolor": "^0.6.2",

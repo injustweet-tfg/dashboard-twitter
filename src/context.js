@@ -6,7 +6,7 @@ export const context = createContext();
 export const useTweets = () => useContext(context);
 
 export const TweetsProvider = (props) => {
-  const [tweets, setTweets] = useState(examples);
+  const [tweets, setTweets] = useState([]);
   const [totals, setTotals] = useState({ totalTweets: 0, totalUsers: 0, totalFAV: 0, totalRT: 0 });
   const [topUsers, setTopUsers] = useState([]);
   const [topHashtags, setTopHashtags] = useState([]);
@@ -16,7 +16,22 @@ export const TweetsProvider = (props) => {
   const [tweetView, setTweetView] = useState([]);
 
   useEffect(() => {
-    setTweets(tweets);
+    // setTweets(tweets); // -> cache
+    async function getCache() {
+      const response = await fetch(`http://localhost:5000/api/tweets`);
+      console.log("response:", response)
+      if (!response.ok) {
+        const message = `An error occurred: ${response.statusText}`;
+        window.alert(message);
+        return;
+      }
+
+      const twDb = await response.json();
+      setTweets(twDb);
+
+      console.log(tweets);
+    }
+    getCache();
     setTotals(getTotals());
     setTopUsers(getTopUsers());
     setTopHashtags(getTopHashtags());
@@ -24,18 +39,18 @@ export const TweetsProvider = (props) => {
     setDataTimeline(getDataTimeline());
     setDataHeatmap(getDataHeatmap());
     setTweetView(getTweetView(0));
-  }, [tweets]);
+  }, [tweets.length]);
 
 
-  const prueba = () => {
+  const prueba = (start = 0, end = 0) => {
     setTweets(tweets.slice(0, -55));
-    setTotals(getTotals());
-    setTopUsers(getTopUsers());
-    setTopHashtags(getTopHashtags());
-    setDataWordcloud(getDataWordcloud());
-    setDataTimeline(getDataTimeline());
-    setDataHeatmap(getDataHeatmap());
-    setTweetView(getTweetView(0));
+    // setTotals(getTotals());
+    // setTopUsers(getTopUsers());
+    // setTopHashtags(getTopHashtags());
+    // setDataWordcloud(getDataWordcloud());
+    // setDataTimeline(getDataTimeline());
+    // setDataHeatmap(getDataHeatmap());
+    // setTweetView(getTweetView(0));
   }
 
   const getTotals = () => {
@@ -67,7 +82,7 @@ export const TweetsProvider = (props) => {
     tweets.forEach(tweet => {
       const words = tweet.text
         .split(' ')
-        .map((word) => word.toLowerCase().replace(/[^a-zA-ZÀ-ÿ\u00f1\u00d1]/g,' ').trim())
+        .map((word) => word.toLowerCase().replace(/[^a-zA-ZÀ-ÿ\u00f1\u00d1]/g, ' ').trim())
         .filter((word) => !word.startsWith("#"));
 
       words.forEach(word => {

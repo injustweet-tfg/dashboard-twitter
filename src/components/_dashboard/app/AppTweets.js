@@ -55,7 +55,7 @@ const SORT_BY_OPTIONS = [
 ];
 
 function TweetItem({ tweet }) {
-  const { link, id, text, user, date, likes, retweets, replies } = tweet;
+  const { link, _id, text, user, date, likes, retweets, replies } = tweet;
   // console.log(faker.date.soon(), formatDistance(faker.date.soon(), new Date()));
   // console.log(date, newFormat(date));
   // console.log(fecha, new Date(fecha).getDay(), formatDistance(new Date(fecha), new Date()));
@@ -65,8 +65,8 @@ function TweetItem({ tweet }) {
     <TweetStyle>
       <Box
         component="img"
-        alt={id}
-        src={mockImgAvatar((id % 20) + 1)}
+        alt={_id}
+        src={mockImgAvatar(1)}
         sx={{ width: 55, height: 55, borderRadius: '50%' }}
       />
       <Stack direction="column" alignItems="left" sx={{ px: 3 }}>

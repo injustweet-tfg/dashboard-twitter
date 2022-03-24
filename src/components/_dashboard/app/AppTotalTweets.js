@@ -42,7 +42,7 @@ const IconWrapperStyle = styled('div')(({ theme }) => ({
 // const TOTAL = 714000;
 
 export default function AppTotalTweets({ totalTweets }) {
-
+  console.log("holaa");
   return (
     <RootStyle>
       <Stack direction='row' justifyContent="space-between" alignItems="center" >
