@@ -14,24 +14,32 @@ export const TweetsProvider = (props) => {
   const [dataTimeline, setDataTimeline] = useState([]);
   const [dataHeatmap, setDataHeatmap] = useState([]);
   const [tweetView, setTweetView] = useState([]);
+  const [dateStart,setDateStart] = useState('0')
+  const [dateEnd,setDateEnd] = useState(Date.now().toString())
 
   useEffect(() => {
-    // setTweets(tweets); // -> cache
+    // fetch all data when the number of tweets changes
+    console.log("context:useEffect")
+
     async function getCache() {
-      const response = await fetch(`http://localhost:5000/api/tweets`);
-      console.log("response:", response)
+      // const user = 'JobsMierda'
+      // const dEnd = '1644420650000'
+      // const dStart = '1633587778000'
+
+      // const response = await fetch(`http://localhost:5000/api/tweets/?user=${user}`);
+      const response = await fetch(`http://localhost:5000/api/tweets/?dateStart=${dateStart}&dateEnd=${dateEnd}`);
       if (!response.ok) {
         const message = `An error occurred: ${response.statusText}`;
         window.alert(message);
         return;
       }
-
       const twDb = await response.json();
       setTweets(twDb);
-
-      console.log(tweets);
     }
+
+    
     getCache();
+
     setTotals(getTotals());
     setTopUsers(getTopUsers());
     setTopHashtags(getTopHashtags());
@@ -39,18 +47,15 @@ export const TweetsProvider = (props) => {
     setDataTimeline(getDataTimeline());
     setDataHeatmap(getDataHeatmap());
     setTweetView(getTweetView(0));
-  }, [tweets.length]);
+  }, [tweets.length,dateStart,dateEnd]);
 
 
-  const prueba = (start = 0, end = 0) => {
-    setTweets(tweets.slice(0, -55));
-    // setTotals(getTotals());
-    // setTopUsers(getTopUsers());
-    // setTopHashtags(getTopHashtags());
-    // setDataWordcloud(getDataWordcloud());
-    // setDataTimeline(getDataTimeline());
-    // setDataHeatmap(getDataHeatmap());
-    // setTweetView(getTweetView(0));
+  const filterTime = (start = '0', end = Date.now().toString()) => {
+    setDateStart(start)
+    setDateEnd(end)
+    // setTweets(tweets.slice(0, -55));
+    // console.log("Array tras prueba")
+    // console.log(tweets.length)
   }
 
   const getTotals = () => {
@@ -110,7 +115,6 @@ export const TweetsProvider = (props) => {
     const dict = {}
     tweets.forEach(tweet => {
       // const d = (tweet.date).substring(0, (tweet.date).indexOf('-'));
-
       const fullDate = new Date(tweet.date);
       const daux = new Date(fullDate.getFullYear(), fullDate.getMonth() + 1, fullDate.getDate());
       const d = timetoline(daux)
@@ -231,7 +235,7 @@ export const TweetsProvider = (props) => {
 
 
   return (
-    <context.Provider value={{ prueba, totals, topUsers, topHashtags, dataWordcloud, dataTimeline, dataHeatmap, tweetView, getTweetView, setTweetView }}>
+    <context.Provider value={{ filterTime, totals, topUsers, topHashtags, dataWordcloud, dataTimeline, dataHeatmap, tweetView, getTweetView, setTweetView }}>
       {/* <context.Provider value={[getTotals, getTimeline, getTopUsers, getTweets, getTweetsByDay, getHashtags, prueba, getDataWordcloud]}> */}
       {props.children}
     </context.Provider>

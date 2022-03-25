@@ -4,24 +4,17 @@ import { Form, FormikProvider } from 'formik';
 // material
 import {
     Box,
-    Radio,
     Stack,
     Button,
     Drawer,
-    Rating,
     Divider,
-    Checkbox,
-    FormGroup,
     TextField,
     IconButton,
-    Typography,
-    RadioGroup,
-    FormControlLabel
+    Typography
 } from '@mui/material';
 //
 import esLocale from 'date-fns/locale/es';
 import { Icon } from '@iconify/react';
-import commentOutlined from '@iconify/icons-ant-design/comment-outlined';
 import { DatePicker, LocalizationProvider } from '@mui/lab';
 import AdapterDateFns from '@mui/lab/AdapterDateFns';
 import { useTweets } from '../../../context';
@@ -45,7 +38,7 @@ export default function FilterSidebar({
     onCloseFilter,
     formik
 }) {
-    const { prueba } = useTweets();
+    const { filterTime } = useTweets();
     const { values, getFieldProps, handleChange } = formik;
     const [start, setStart] = useState(null);
     const [end, setEnd] = useState(null);
@@ -80,7 +73,6 @@ export default function FilterSidebar({
                             <Typography variant="subtitle1" sx={{ ml: 1 }}>
                                 Filtros
                             </Typography>
-                            <Button onClick={() => prueba()}>prueba</Button>
                             <IconButton onClick={onCloseFilter}>
                                 <Icon icon="akar-icons:cross" width={20} height={20} />
                             </IconButton>
@@ -96,6 +88,7 @@ export default function FilterSidebar({
                                     type="submit"
                                     color="primary"
                                     variant="outlined"
+                                    onClick={() => filterTime((Date.now()-86400000*7).toString(),)}
                                 >
                                     Últimos 7 días
                                 </Button>
@@ -105,6 +98,7 @@ export default function FilterSidebar({
                                     type="submit"
                                     color="primary"
                                     variant="outlined"
+                                    onClick={() => filterTime((Date.now()-86400000*31).toString(),)}
                                 >
                                     Último mes
                                 </Button>
@@ -114,6 +108,7 @@ export default function FilterSidebar({
                                     type="submit"
                                     color="primary"
                                     variant="outlined"
+                                    onClick={() => filterTime((Date.now()-86400000*365).toString(),)}
                                 >
                                     Último año
                                 </Button>
@@ -153,6 +148,10 @@ export default function FilterSidebar({
                                     variant="outlined"
                                     sx={{ color: 'success.main' }}
                                     startIcon={<Icon icon="line-md:confirm-circle" width={20} height={20} />}
+                                    onClick={() => 
+                                        filterTime(start!=null ? start.getTime().toString(): '0', 
+                                        end!=null ?end.getTime().toString():Date.now().toString())
+                                    }
                                 >
                                     Confirmar
                                 </Button>
@@ -167,9 +166,9 @@ export default function FilterSidebar({
                                 type="submit"
                                 color="secondary"
                                 variant="outlined"
-                                onClick={onResetFilter}
                                 sx={{ color: 'secondary.main' }}
                                 startIcon={<Icon icon="bi:trash" width={20} height={20} />}
+                                onClick={() => filterTime()}
                             >
                                 Borrar filtros
                             </Button>
