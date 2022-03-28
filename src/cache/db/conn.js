@@ -1,5 +1,5 @@
 const { MongoClient, ServerApiVersion } = require("mongodb");
-const Db = "mongodb+srv://prueba:XBBoDua16543mhRN@twitter.0przp.mongodb.net/twitter?retryWrites=true&w=majority";
+const Db = process.env.ATLAS_URI;
 const client = new MongoClient(Db, {
     useNewUrlParser: true,
     useUnifiedTopology: true,
