@@ -14,12 +14,12 @@ app.use(cors());
 app.use(express.json());
 
 // Routes
-app.use('/api/tweets', require('./routes/tweets'));
-const dbo = require("./db/conn");
+app.use(require('./routes/tweets'));
+const dbo = require("./db/conn"); // connect MongoDB
 
 
 app.listen(port, () => {
-    dbo.connectToServer(function (err) {
+    dbo.connectToServer(function (err) { 
         if (err) console.error(err);
     });
     console.log(`Server is running on port: ${port}`);

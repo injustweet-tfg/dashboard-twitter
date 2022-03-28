@@ -1,11 +1,12 @@
 import React, { useState, createContext, useContext, useEffect } from "react";
-import examples from "./tweets.json";
 import { fDate, timetoline } from "./utils/formatTime";
 
 export const context = createContext();
 export const useTweets = () => useContext(context);
 
 export const TweetsProvider = (props) => {
+  // let tweets = [];
+  // const setTweets = (tw) => tweets = tw;
   const [tweets, setTweets] = useState([]);
   const [totals, setTotals] = useState({ totalTweets: 0, totalUsers: 0, totalFAV: 0, totalRT: 0 });
   const [topUsers, setTopUsers] = useState([]);
@@ -27,7 +28,7 @@ export const TweetsProvider = (props) => {
       // const dStart = '1633587778000'
 
       // const response = await fetch(`http://localhost:5000/api/tweets/?user=${user}`);
-      const response = await fetch(`http://localhost:5000/api/tweets/?dateStart=${dateStart}&dateEnd=${dateEnd}`);
+      const response = await fetch(`http://localhost:5000/?dateStart=${dateStart}&dateEnd=${dateEnd}`);
       if (!response.ok) {
         const message = `An error occurred: ${response.statusText}`;
         window.alert(message);
@@ -53,9 +54,6 @@ export const TweetsProvider = (props) => {
   const filterTime = (start = '0', end = Date.now().toString()) => {
     setDateStart(start)
     setDateEnd(end)
-    // setTweets(tweets.slice(0, -55));
-    // console.log("Array tras prueba")
-    // console.log(tweets.length)
   }
 
   const getTotals = () => {

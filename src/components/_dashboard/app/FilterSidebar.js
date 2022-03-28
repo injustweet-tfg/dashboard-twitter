@@ -88,7 +88,7 @@ export default function FilterSidebar({
                                     type="submit"
                                     color="primary"
                                     variant="outlined"
-                                    onClick={() => filterTime((Date.now()-86400000*7).toString(),)}
+                                    onClick={() => filterTime((Date.now() - 86400000 * 7).toString(),)}
                                 >
                                     Últimos 7 días
                                 </Button>
@@ -98,7 +98,7 @@ export default function FilterSidebar({
                                     type="submit"
                                     color="primary"
                                     variant="outlined"
-                                    onClick={() => filterTime((Date.now()-86400000*31).toString(),)}
+                                    onClick={() => filterTime((Date.now() - 86400000 * 31).toString(),)}
                                 >
                                     Último mes
                                 </Button>
@@ -108,7 +108,7 @@ export default function FilterSidebar({
                                     type="submit"
                                     color="primary"
                                     variant="outlined"
-                                    onClick={() => filterTime((Date.now()-86400000*365).toString(),)}
+                                    onClick={() => filterTime((Date.now() - 86400000 * 365).toString(),)}
                                 >
                                     Último año
                                 </Button>
@@ -148,9 +148,9 @@ export default function FilterSidebar({
                                     variant="outlined"
                                     sx={{ color: 'success.main' }}
                                     startIcon={<Icon icon="line-md:confirm-circle" width={20} height={20} />}
-                                    onClick={() => 
-                                        filterTime(start!=null ? start.getTime().toString(): '0', 
-                                        end!=null ?end.getTime().toString():Date.now().toString())
+                                    onClick={() =>
+                                        filterTime(start != null ? start.getTime().toString() : '0',
+                                            end != null ? end.getTime().toString() : Date.now().toString())
                                     }
                                 >
                                     Confirmar
@@ -168,7 +168,13 @@ export default function FilterSidebar({
                                 variant="outlined"
                                 sx={{ color: 'secondary.main' }}
                                 startIcon={<Icon icon="bi:trash" width={20} height={20} />}
-                                onClick={() => filterTime()}
+                                onClick={() => {
+                                    filterTime();
+                                    setStart(null);
+                                    setEnd(null);
+                                    onResetFilter();
+                                }
+                                }
                             >
                                 Borrar filtros
                             </Button>

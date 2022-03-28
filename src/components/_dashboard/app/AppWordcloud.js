@@ -42,7 +42,7 @@ function AppWordcloud({ dataWordcloud }) {
                 <ReactWordcloud
                     style={{ maxHeight: 300 }}
                     options={options}
-                    maxWords={20}
+                    maxWords={40}
                     words={dataWordcloud}
                 />
             </Box>
