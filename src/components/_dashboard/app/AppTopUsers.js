@@ -1,11 +1,8 @@
-import { useState } from 'react';
 import { merge } from 'lodash';
 import ReactApexChart from 'react-apexcharts';
 // material
-import { useTheme, styled } from '@mui/material/styles';
-import { Box, Card, CardHeader } from '@mui/material';
-// utils
-import { fNumber } from '../../../utils/formatNumber';
+import { styled } from '@mui/material/styles';
+import { Card, CardHeader } from '@mui/material';
 //
 import { BaseOptionChart } from '../../charts';
 
@@ -33,14 +30,23 @@ const ChartWrapperStyle = styled('div')(({ theme }) => ({
 
 export default function AppTopUsers({ topUsers }) {
     const users = topUsers.map(value => `@${value.user}`);
-    const num = [{ data: topUsers.map(value => value.tweets) }];
+    const num = [{ name: "Denuncias", data: topUsers.map(value => value.tweets) }];
 
     const chartOptions = merge(BaseOptionChart(), {
+        chart: {
+            events: {
+                dataPointSelection: (event, chartContext, config) => {
+                    window.open(`https://twitter.com/intent/user?screen_name=${topUsers[config.dataPointIndex].user}`);
+                }
+            },
+        },
         tooltip: {
-            enabled: false,
+            enabled: true,
+            intersect: true,
+            shared: false,
         },
         plotOptions: {
-            bar: { horizontal: true, barHeight: '28%', borderRadius: 2 }
+            bar: { horizontal: true, barHeight: '78%', borderRadius: 2 }
         },
         xaxis: {
             categories: users
@@ -50,7 +56,7 @@ export default function AppTopUsers({ topUsers }) {
     return (
         <Card>
             <CardHeader title="Top @users" />
-            <ChartWrapperStyle dir="ltr" style={{ maxHeight: 400, minHeight: 400 }}>
+            <ChartWrapperStyle dir="ltr">
                 <ReactApexChart type="bar" series={num} options={chartOptions} height={375} />
             </ChartWrapperStyle>
         </Card>

@@ -10,12 +10,12 @@ import { BaseOptionChart } from '../../charts';
 
 // ----------------------------------------------------------------------
 
-const CHART_HEIGHT = 400;
-const LEGEND_HEIGHT = 80;
+const CHART_HEIGHT = 384;
+const LEGEND_HEIGHT = 72;
 
 const ChartWrapperStyle = styled('div')(({ theme }) => ({
     height: CHART_HEIGHT,
-    marginTop: theme.spacing(3),
+    marginTop: theme.spacing(5),
     '& .apexcharts-canvas svg': { height: CHART_HEIGHT },
     '& .apexcharts-canvas svg,.apexcharts-canvas foreignObject': {
         overflow: 'visible'
@@ -31,7 +31,6 @@ const ChartWrapperStyle = styled('div')(({ theme }) => ({
 
 // ----------------------------------------------------------------------
 
-const CHART_DATA = [4344, 5435, 1443, 4443];
 
 function AppTopHashtags({ topHashtags }) {
     const theme = useTheme();
@@ -39,18 +38,25 @@ function AppTopHashtags({ topHashtags }) {
     const data = topHashtags.map(pair => pair[1]);
 
     const chartOptions = merge(BaseOptionChart(), {
-        colors: [
-            theme.palette.primary.main,
-            theme.palette.secondary.main,
-            theme.palette.success.main,
-            theme.palette.warning.main,
-            theme.palette.chart.violet[0],
-            theme.palette.chart.red[0],
-            theme.palette.chart.green[0],
-            ...theme.palette.chart.other,
-            theme.palette.chart.pink[0],
+        // colors: [
+        //     theme.palette.primary.main,
+        //     theme.palette.secondary.main,
+        //     theme.palette.success.main,
+        //     theme.palette.warning.main,
+        //     theme.palette.chart.violet[0],
+        //     theme.palette.chart.red[0],
+        //     theme.palette.chart.green[0],
+        //     ...theme.palette.chart.other,
+        //     theme.palette.chart.pink[0],
 
-        ],
+        // ],
+        chart: {
+            events: {
+                dataPointSelection: (event, chartContext, config) => {
+                    window.open(`https://twitter.com/intent/tweet?text=%23${topHashtags[config.dataPointIndex][0]}`);
+                }
+            },
+        },
         labels,
         stroke: { colors: [theme.palette.background.paper] },
         legend: { floating: true, horizontalAlign: 'center' },
@@ -72,8 +78,8 @@ function AppTopHashtags({ topHashtags }) {
     return (
         <Card>
             <CardHeader title="Top #hashtags" />
-            <ChartWrapperStyle dir="ltr" style={{ maxHeight: 400, minHeight: 400 }}>
-                <ReactApexChart type="pie" series={data} options={chartOptions} height={300} />
+            <ChartWrapperStyle dir="ltr" >
+                <ReactApexChart type="pie" series={data} options={chartOptions} height={280} />
             </ChartWrapperStyle>
         </Card>
     );

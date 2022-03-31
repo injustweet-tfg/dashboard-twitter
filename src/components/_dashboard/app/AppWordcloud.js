@@ -37,7 +37,16 @@ function AppWordcloud({ dataWordcloud }) {
 
     return (
         <Card>
-            <CardHeader title="Wordcloud" />
+            <CardHeader title="Palabras más precarias"
+                action={<Button
+                    endIcon={getIcon('fluent:save-24-filled')}
+                    onClick={() => {
+                        const svgElement = wordcloudRef.current.querySelector('svg');
+                        saveSvgAsPng(svgElement, 'wordcloud.png');
+                    }}>
+                    Descargar
+                </Button>}
+            />
             <Box ref={wordcloudRef}>
                 <ReactWordcloud
                     style={{ maxHeight: 300 }}
@@ -54,12 +63,7 @@ function AppWordcloud({ dataWordcloud }) {
                 Animar
             </Button>
 
-            <Button
-                startIcon={getIcon('fluent:save-24-filled')}
-                onClick={() => {
-                    const svgElement = wordcloudRef.current.querySelector('svg');
-                    saveSvgAsPng(svgElement, 'wordcloud.png');
-                }} />
+
 
         </Card>
     );

@@ -1,4 +1,4 @@
-import { Card, CardHeader, CardContent, Avatar, Container, Stack, Typography, TextField, Box } from '@mui/material';
+import { Stack, Typography, } from '@mui/material';
 import React, { useState } from 'react'
 import { useFormik } from 'formik';
 import { FilterSidebar } from '.';
@@ -32,8 +32,8 @@ export default function AppFilters() {
     };
     return (
         <Stack direction="row" alignItems="center" justifyContent="space-between" spacing={12} mb={3}>
-            <Typography variant="h4" gutterBottom>
-                Observa la precariedad laboral
+            <Typography variant="h3" gutterBottom>
+                Visualización de denuncias laborales en Twitter
             </Typography>
             <FilterSidebar
                 formik={formik}

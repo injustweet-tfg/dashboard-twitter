@@ -1,11 +1,10 @@
-import { Card, CardHeader, CardContent, Avatar, Container, Stack, Typography } from '@mui/material';
-import React, { useState } from 'react'
-import { useFormik } from 'formik';
-import { FilterSidebar } from '.';
+import { Card, CardHeader, CardContent, Avatar } from '@mui/material';
+import React from 'react'
+
 
 function AppHeader() {
     // const [tweets] = useContext(context);
-   
+
     return (
         <Card>
             <CardHeader avatar={<Avatar sx={{ bgcolor: "blue" }} aria-label="logo">:)</Avatar>}

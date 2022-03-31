@@ -83,6 +83,7 @@ export default function BaseOptionChart() {
       theme.palette.primary.main,
       theme.palette.secondary.main,
       theme.palette.success.main,
+      theme.palette.warning.main,
       theme.palette.chart.violet[0],
       theme.palette.chart.green[0],
       theme.palette.chart.red[0]
@@ -94,7 +95,7 @@ export default function BaseOptionChart() {
       zoom: { enabled: false },
       // animations: { enabled: false },
       foreColor: theme.palette.text.disabled,
-      fontFamily: theme.typography.fontFamily
+      fontFamily: theme.typography.fontFamily,
     },
 
     // States

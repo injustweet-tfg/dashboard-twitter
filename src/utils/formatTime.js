@@ -1,15 +1,14 @@
 import { format, formatDistanceToNow } from 'date-fns';
-
+import { es } from 'date-fns/locale'
 // ----------------------------------------------------------------------
 
-export function timetoline(date){
+export function timetoline(date) {
   const monthNames = ['Enero', 'Febrero', 'Marzo', 'Abril', 'Mayo', 'Junio', 'Julio', 'Agosto', 'Septiembre', 'Octubre', 'Noviembre', 'Diciembre'];
-  return `${date.getDate()} ${monthNames[date.getMonth()].substring(0,3)} ${date.getFullYear()-2000}`;
+  return `${date.getDate()} ${monthNames[date.getMonth()].substring(0, 3)} ${date.getFullYear() - 2000}`;
 }
 
 export function fDate(date) {
   return format(new Date(date), 'dd/MM/yyyy');
-  // return format(new Date(date), 'dd MMMM yyyy');
 }
 
 export function fDateTime(date) {
@@ -22,16 +21,17 @@ export function fDateTimeSuffix(date) {
 
 export function fToNow(date) {
   return formatDistanceToNow(new Date(date), {
-    addSuffix: true
+    addSuffix: true,
+    locale: es
   });
 }
 
-export function newFormat(date) {
-  const [calendar, time] = date.split(' - ');
-  const [day, month, year] = calendar.split('/');
-  const [hour, minute] = time.split(':');
-  return new Date(20 + year, month - 1, day, hour, minute);
-}
+// export function newFormat(date) {
+//   const [calendar, time] = date.split(' - ');
+//   const [day, month, year] = calendar.split('/');
+//   const [hour, minute] = time.split(':');
+//   return new Date(20 + year, month - 1, day, hour, minute);
+// }
 
 
 

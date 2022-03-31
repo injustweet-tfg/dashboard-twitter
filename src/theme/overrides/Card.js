@@ -5,10 +5,12 @@ export default function Card(theme) {
     MuiCard: {
       styleOverrides: {
         root: {
-          boxShadow: theme.customShadows.z4,
+          boxShadow: theme.customShadows.z2,
           borderRadius: theme.shape.borderRadius,
           position: 'relative',
-          zIndex: 0 // Fix Safari overflow: hidden with border radius
+          zIndex: 0, // Fix Safari overflow: hidden with border radius
+          // backgroundImage: `linear-gradient(50deg, #FFF 70%, ${theme.palette.grey[800]} 30%);`,
+
         }
       }
     },
@@ -19,8 +21,7 @@ export default function Card(theme) {
       },
       styleOverrides: {
         root: {
-          padding: theme.spacing(2.5, 2.5, 2.5, 2.5),
-          // background: theme.palette.divider,
+          padding: theme.spacing(2, 2, 2, 2),
         }
       }
     },

@@ -1,5 +1,5 @@
 import React, { useState, createContext, useContext, useEffect } from "react";
-import { fDate, timetoline } from "./utils/formatTime";
+import { timetoline } from "./utils/formatTime";
 
 export const context = createContext();
 export const useTweets = () => useContext(context);
@@ -15,8 +15,8 @@ export const TweetsProvider = (props) => {
   const [dataTimeline, setDataTimeline] = useState([]);
   const [dataHeatmap, setDataHeatmap] = useState([]);
   const [tweetView, setTweetView] = useState([]);
-  const [dateStart,setDateStart] = useState('0')
-  const [dateEnd,setDateEnd] = useState(Date.now().toString())
+  const [dateStart, setDateStart] = useState('0')
+  const [dateEnd, setDateEnd] = useState(Date.now().toString())
 
   useEffect(() => {
     // fetch all data when the number of tweets changes
@@ -38,7 +38,7 @@ export const TweetsProvider = (props) => {
       setTweets(twDb);
     }
 
-    
+
     getCache();
 
     setTotals(getTotals());
@@ -48,7 +48,7 @@ export const TweetsProvider = (props) => {
     setDataTimeline(getDataTimeline());
     setDataHeatmap(getDataHeatmap());
     setTweetView(getTweetView(0));
-  }, [tweets.length,dateStart,dateEnd]);
+  }, [tweets.length, dateStart, dateEnd]);
 
 
   const filterTime = (start = '0', end = Date.now().toString()) => {
@@ -214,7 +214,7 @@ export const TweetsProvider = (props) => {
   };
 
   const getTopHashtags = () => {
-    const NUMBER_OF_HASHTAGS = 10;
+    const NUMBER_OF_HASHTAGS = 5;
     const dict = {};
     tweets.forEach(tweet => {
       tweet.hashtags.forEach(hashtag => {

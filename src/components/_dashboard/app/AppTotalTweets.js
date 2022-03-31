@@ -1,10 +1,7 @@
-import { useState, useMemo } from 'react';
-
 import { Icon } from '@iconify/react';
-import androidFilled from '@iconify/icons-ant-design/android-filled';
 import twitterOutlined from '@iconify/icons-ant-design/twitter-outlined';
 // material
-import { alpha, styled } from '@mui/material/styles';
+import { styled } from '@mui/material/styles';
 import { Card, Stack, Typography } from '@mui/material';
 // utils
 import { fShortenNumber } from '../../../utils/formatNumber';
@@ -18,6 +15,7 @@ const RootStyle = styled(Card)(({ theme }) => ({
   padding: theme.spacing(2, 4),
   color: theme.palette.text.primary,
   // backgroundColor: theme.palette.primary.light,
+  backgroundImage: `linear-gradient(150deg, #FFF 70%, ${theme.palette.primary.lighter} 30%);`,
 }));
 
 const IconWrapperStyle = styled('div')(({ theme }) => ({
@@ -25,8 +23,8 @@ const IconWrapperStyle = styled('div')(({ theme }) => ({
   display: 'flex',
   borderRadius: '50%',
   alignItems: 'center',
-  width: theme.spacing(8),
-  height: theme.spacing(8),
+  minWidth: theme.spacing(8),
+  minHeight: theme.spacing(8),
   justifyContent: 'center',
   // marginBottom: theme.spacing(2),
   color: theme.palette.common.white,
@@ -44,20 +42,20 @@ const IconWrapperStyle = styled('div')(({ theme }) => ({
 export default function AppTotalTweets({ totalTweets }) {
   console.log("AppTotalTweets:update");
 
-    return (
-      <RootStyle>
-        <Stack direction='row' justifyContent="space-between" alignItems="center" >
-          <Stack direction='column' justifyContent="space-between" alignItems="flex-start">
-            <Typography variant="subtitle1" align='center' sx={{ color: 'text.secondary' }}>
-              Total de tweets
-            </Typography>
-            <Typography variant="h3">{fShortenNumber(totalTweets)}</Typography>
-          </Stack>
-          <IconWrapperStyle>
-            <Icon icon={twitterOutlined} width={24} height={24} />
-          </IconWrapperStyle>
+  return (
+    <RootStyle>
+      <Stack direction='row' justifyContent="space-between" alignItems="center" >
+        <Stack direction='column' justifyContent="space-between" alignItems="flex-start">
+          <Typography variant="subtitle1" align='left' sx={{ color: 'text.secondary' }}>
+            Total de tweets
+          </Typography>
+          <Typography variant="h3">{fShortenNumber(totalTweets)}</Typography>
         </Stack>
-      </RootStyle >
-    );
+        <IconWrapperStyle>
+          <Icon icon={twitterOutlined} width={24} height={24} />
+        </IconWrapperStyle>
+      </Stack>
+    </RootStyle >
+  );
 
 }

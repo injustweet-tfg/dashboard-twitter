@@ -1,7 +1,7 @@
-import React, { useContext } from "react";
+import React from "react";
 
 // material
-import { Box, Grid, Container, Typography, Button } from '@mui/material';
+import { Grid, Container } from '@mui/material';
 import { useTweets } from '../context';
 // components
 import Page from '../components/Page';
@@ -15,7 +15,6 @@ import {
   AppTopUsers,
   AppTimeline,
   AppHeatmap,
-  AppHeader,
   AppFilters,
   AppWordcloud
 } from '../components/_dashboard/app';
@@ -28,12 +27,12 @@ export default function DashboardApp() {
 
   return (
     <Page title="Precariedapp">
-      <Container maxWidth="xxl">
+      <Container maxWidth="xl" >
         <Grid item xs={12} md={12} lg={12}>
           <AppFilters />
         </Grid>
 
-        <Grid container spacing={3}>
+        <Grid container spacing={2}>
           {/* <Grid item xs={12} md={12} lg={12}>
             <AppHeader />
           </Grid> */}

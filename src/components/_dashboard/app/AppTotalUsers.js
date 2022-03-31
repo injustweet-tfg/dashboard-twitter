@@ -1,10 +1,7 @@
-import { useState } from 'react';
-
 import { Icon } from '@iconify/react';
-
 import eyeFilled from '@iconify/icons-ant-design/eye-filled';
 // material
-import { alpha, styled } from '@mui/material/styles';
+import { styled } from '@mui/material/styles';
 import { Card, Typography, Stack } from '@mui/material';
 // utils
 import { fShortenNumber } from '../../../utils/formatNumber';
@@ -17,6 +14,8 @@ const RootStyle = styled(Card)(({ theme }) => ({
   padding: theme.spacing(2, 4),
   color: theme.palette.text.primary,
   // backgroundColor: theme.palette.warning.light
+  backgroundImage: `linear-gradient(150deg, #FFF 70%, ${theme.palette.warning.lighter} 20%);`,
+  // backgroundImage: `linear-gradient(150deg, #FFF 70%, ${theme.palette.warning.lighter} 70% 75%, #FFF 75% 80%, ${theme.palette.warning.lighter} 20%);`,
 }));
 
 const IconWrapperStyle = styled('div')(({ theme }) => ({
@@ -24,8 +23,8 @@ const IconWrapperStyle = styled('div')(({ theme }) => ({
   display: 'flex',
   borderRadius: '50%',
   alignItems: 'center',
-  width: theme.spacing(8),
-  height: theme.spacing(8),
+  minWidth: theme.spacing(8),
+  minHeight: theme.spacing(8),
   justifyContent: 'center',
   // marginBottom: theme.spacing(2),
   color: theme.palette.common.white,
@@ -45,7 +44,7 @@ export default function AppTotalUsers({ totalUsers }) {
     <RootStyle>
       <Stack direction='row' justifyContent="space-between" alignItems="center">
         <Stack direction='column' justifyContent="space-between" alignItems="flex-start">
-          <Typography variant="subtitle1" align='center' sx={{ color: 'text.secondary' }}>
+          <Typography variant="subtitle1" align='left' sx={{ color: 'text.secondary' }}>
             Total de usuarios
           </Typography>
           <Typography variant="h3">{fShortenNumber(totalUsers)}</Typography>

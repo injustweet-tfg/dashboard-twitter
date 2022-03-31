@@ -1,23 +1,11 @@
-import React, { useContext } from "react";
+import React from "react";
 
 // material
-import { Box, Grid, Container, Typography } from '@mui/material';
-import { TweetsProvider, context } from '../context';
+import { Grid, Container } from '@mui/material';
 // components
 import Page from '../components/Page';
 import {
-  AppTotalUsers,
-  AppTotalFAV,
-  AppTotalRT,
-  AppTweets,
-  AppTotalTweets,
-  AppTopHashtags,
-  AppTopUsers,
-  AppTimeline,
-  AppHeatmap,
   AppHeader,
-  AppFilters,
-  AppWordcloud
 } from '../components/_dashboard/app';
 
 // ----------------------------------------------------------------------

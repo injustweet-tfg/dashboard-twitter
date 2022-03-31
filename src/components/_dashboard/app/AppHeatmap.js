@@ -1,10 +1,8 @@
-import { useState } from 'react';
 import { merge } from 'lodash';
 import ReactApexChart from 'react-apexcharts';
 // material
 import { useTheme, styled } from '@mui/material/styles';
 import { Card, CardHeader } from '@mui/material';
-//
 import { BaseOptionChart } from '../../charts';
 
 // ----------------------------------------------------------------------
@@ -36,9 +34,9 @@ export default function AppHeatmap({ dataHeatmap }) {
   const theme = useTheme();
 
   const chartOptions = merge(BaseOptionChart(), {
-    colors: Array(10).fill("#008FFB"),
+    // colors: Array(10).fill("#008FFB"),
     stroke: { width: 2 },
-    fill: { opacity: 0.48 },
+    fill: { opacity: 0.8 },
     legend: { floating: true, horizontalAlign: 'center' },
     xaxis: {
       categories: ['Enero', 'Febrero', 'Marzo', 'Abril', 'Mayo', 'Junio', 'Julio', 'Agosto', 'Septiembre', 'Octubre', 'Noviembre', 'Diciembre'],
@@ -57,7 +55,7 @@ export default function AppHeatmap({ dataHeatmap }) {
 
   return (
     <Card>
-      <CardHeader title="Tweets por día" />
+      <CardHeader title="Denuncias por día" />
       <ChartWrapperStyle dir="ltr" style={{ maxHeight: 400, minHeight: 400 }}>
         <ReactApexChart type="heatmap" series={dataHeatmap} options={chartOptions} height={375} />
       </ChartWrapperStyle>

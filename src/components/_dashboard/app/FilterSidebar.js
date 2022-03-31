@@ -47,7 +47,7 @@ export default function FilterSidebar({
         <Stack direction="column">
             <Button
                 disableRipple
-                color="inherit"
+                // color="inherit"
                 endIcon={<Icon icon="bi:calendar2-date" width={20} height={20} />}
                 onClick={onOpenFilter}
             >
