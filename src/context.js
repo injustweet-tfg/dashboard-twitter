@@ -28,7 +28,7 @@ export const TweetsProvider = (props) => {
       // const dStart = '1633587778000'
 
       // const response = await fetch(`http://localhost:5000/api/tweets/?user=${user}`);
-      const response = await fetch(`http://localhost:5000/?dateStart=${dateStart}&dateEnd=${dateEnd}`);
+      const response = await fetch(`https://cache-twitter.herokuapp.com/?dateStart=${dateStart}&dateEnd=${dateEnd}`);
       if (!response.ok) {
         const message = `An error occurred: ${response.statusText}`;
         window.alert(message);
