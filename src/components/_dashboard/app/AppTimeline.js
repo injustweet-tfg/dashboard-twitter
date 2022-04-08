@@ -34,7 +34,7 @@ export default function AppTimeline({ dataTimeline }) {
     name: 'tweets',
     data: tweets
   }, {
-    name: 'favs',
+    name: 'likes',
     data: favs
   }, {
     name: 'rts',
@@ -75,11 +75,11 @@ export default function AppTimeline({ dataTimeline }) {
         }
       },
       {
-        seriesName: 'favs',
+        seriesName: 'likes',
         show: false
       }, {
         opposite: true,
-        seriesName: 'favs',
+        seriesName: 'likes',
         axisTicks: {
           show: true
         },
@@ -87,7 +87,7 @@ export default function AppTimeline({ dataTimeline }) {
           show: true,
         },
         title: {
-          text: "Favs y Rts"
+          text: "Rts y likes"
         }
       }
     ],

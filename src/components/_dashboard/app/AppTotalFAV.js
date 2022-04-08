@@ -45,7 +45,7 @@ export default function AppTotalFAV({ totalFAV }) {
       <Stack direction='row' justifyContent="space-between" alignItems="center">
         <Stack direction='column' justifyContent="space-between" alignItems="flex-start">
           <Typography variant="subtitle1" align='left' sx={{ color: 'text.secondary' }}>
-            Total de favoritos
+            Total de likes
           </Typography>
           <Typography variant="h3">{fShortenNumber(totalFAV)}</Typography>
         </Stack>
