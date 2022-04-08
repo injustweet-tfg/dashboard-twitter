@@ -37,7 +37,7 @@ function AppWordcloud({ dataWordcloud }) {
 
     return (
         <Card>
-            <CardHeader title="Palabras más precarias"
+            <CardHeader title="Palabras más usadas"
                 action={<Button
                     endIcon={getIcon('fluent:save-24-filled')}
                     onClick={() => {
