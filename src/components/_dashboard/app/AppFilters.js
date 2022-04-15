@@ -31,7 +31,7 @@ export default function AppFilters() {
         resetForm();
     };
     return (
-        <Stack direction="row" alignItems="center" justifyContent="space-between" spacing={12} mb={3}>
+        <Stack direction={{ xs: 'column', sm: 'row' }} alignItems={{ xs: 'start', sm: 'center' }} justifyContent="space-between" mb={3}>
             <Typography variant="h3" gutterBottom>
                 Visualización de denuncias laborales en Twitter
             </Typography>
@@ -42,27 +42,6 @@ export default function AppFilters() {
                 onOpenFilter={handleOpenFilter}
                 onCloseFilter={handleCloseFilter}
             />
-            {/* <TextField
-            id="date"
-            label="Inicio"
-            type="date"
-            defaultValue="2017-05-24"
-            sx={{ width: 220 }}
-            InputLabelProps={{
-                shrink: true,
-            }}
-        />
-        <TextField
-            id="date"
-            label="Fin"
-            type="date"
-            defaultValue="2017-05-24"
-            sx={{ width: 220 }}
-            InputLabelProps={{
-                shrink: true,
-            }}
-        /> */}
-
         </Stack>
 
     );

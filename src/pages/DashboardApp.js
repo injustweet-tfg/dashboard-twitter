@@ -26,7 +26,7 @@ export default function DashboardApp() {
   const { totals, topUsers, topHashtags, dataWordcloud, dataHeatmap, dataTimeline, tweetView, getTweetView, setTweetView } = useTweets();
 
   return (
-    <Page title="Precariedapp">
+    <Page title="Injustweet">
       <Container maxWidth="xl" >
         <Grid item xs={12} md={12} lg={12}>
           <AppFilters />
@@ -36,16 +36,16 @@ export default function DashboardApp() {
           {/* <Grid item xs={12} md={12} lg={12}>
             <AppHeader />
           </Grid> */}
-          <Grid item xs={12} sm={6} md={3}>
+          <Grid item xs={6} sm={6} md={3}>
             <AppTotalTweets totalTweets={totals.totalTweets} />
           </Grid>
-          <Grid item xs={12} sm={6} md={3}>
+          <Grid item xs={6} sm={6} md={3}>
             <AppTotalUsers totalUsers={totals.totalUsers} />
           </Grid>
-          <Grid item xs={12} sm={6} md={3}>
+          <Grid item xs={6} sm={6} md={3}>
             <AppTotalRT totalRT={totals.totalRT} />
           </Grid>
-          <Grid item xs={12} sm={6} md={3}>
+          <Grid item xs={6} sm={6} md={3}>
             <AppTotalFAV totalFAV={totals.totalFAV} />
           </Grid>
 

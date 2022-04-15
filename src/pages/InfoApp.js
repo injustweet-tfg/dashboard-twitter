@@ -12,7 +12,7 @@ import {
 
 export default function DashboardApp() {
   return (
-    <Page title="Precariedapp">
+    <Page title="Injustweet">
       <Container maxWidth="xl">
         <Grid container spacing={3}>
           <Grid item xs={12} md={12} lg={12}>

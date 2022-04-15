@@ -52,9 +52,9 @@ export const TweetsProvider = (props) => {
 
 
   const filterTime = (start = '0', end = Date.now().toString()) => {
-    setDateStart(start)
-    setDateEnd(end)
-  }
+    setDateStart(start);
+    setDateEnd(end);
+  };
 
   const getTotals = () => {
     const totalTweets = tweets.length;
@@ -76,11 +76,11 @@ export const TweetsProvider = (props) => {
       totalFAV,
       totalRT,
     };
-  }
+  };
 
   const getDataWordcloud = () => {
     const stopWordsSet = new Set(['vuelva', 'realizar', 'vimos', 'semana', 'pasada', 'luego', 'dices', 'k', 'poner', 'hablamos', 'favor', 'sale', 'digo', 'miro', 'tarde', 'saludo', 'dejan', 'dado', 'quería', 'necesitaría', 'decir', 'día', 'hacerlo', 'hace', 'muchas', 'pedimos', 'ido', 'genial', 'preguntar', 'quedo', 'pasa', 'días', 'tardes', 'buenas', 'necesito', 'buenos', 'hola', 'gracias', 'quieres', 'quiero', 'de', 'la', 'que', 'el', 'en', 'y', 'a', 'los', 'del', 'se', 'las', 'por', 'un', 'para', 'con', 'no', 'una', 'su', 'al', 'lo', 'como', 'más', 'pero', 'sus', 'le', 'ya', 'o', 'este', 'sí', 'porque', 'esta', 'entre', 'cuando', 'muy', 'sin', 'sobre', 'también', 'me', 'hasta', 'hay', 'donde', 'quien', 'desde', 'todo', 'nos', 'durante', 'todos', 'uno', 'les', 'ni', 'contra', 'otros', 'ese', 'eso', 'ante', 'ellos', 'e', 'esto', 'mí', 'antes', 'algunos', 'qué', 'unos', 'yo', 'otro', 'otras', 'otra', 'él', 'tanto', 'esa', 'estos', 'mucho', 'quienes', 'nada', 'muchos', 'cual', 'poco', 'ella', 'estar', 'estas', 'algunas', 'algo', 'nosotros', 'mi', 'mis', 'tú', 'te', 'ti', 'tu', 'tus', 'ellas', 'nosotras', 'vosotros', 'vosotras', 'os', 'mío', 'mía', 'míos', 'mías', 'tuyo', 'tuya', 'tuyos', 'tuyas', 'suyo', 'suya', 'suyos', 'suyas', 'nuestro', 'nuestra', 'nuestros', 'nuestras', 'vuestro', 'vuestra', 'vuestros', 'vuestras', 'esos', 'esas', 'estoy', 'estás', 'está', 'estamos', 'estáis', 'están', 'esté', 'estés', 'estemos', 'estéis', 'estén', 'estaré', 'estarás', 'estará', 'estaremos', 'estaréis', 'estarán', 'estaría', 'estarías', 'estaríamos', 'estaríais', 'estarían', 'estaba', 'estabas', 'estábamos', 'estabais', 'estaban', 'estuve', 'estuviste', 'estuvo', 'estuvimos', 'estuvisteis', 'estuvieron', 'estuviera', 'estuvieras', 'estuviéramos', 'estuvierais', 'estuvieran', 'estuviese', 'estuvieses', 'estuviésemos', 'estuvieseis', 'estuviesen', 'estando', 'estado', 'estada', 'estados', 'estadas', 'estad', 'he', 'has', 'ha', 'hemos', 'habéis', 'han', 'haya', 'hayas', 'hayamos', 'hayáis', 'hayan', 'habré', 'habrás', 'habrá', 'habremos', 'habréis', 'habrán', 'habría', 'habrías', 'habríamos', 'habríais', 'habrían', 'había', 'habías', 'habíamos', 'habíais', 'habían', 'hube', 'hubiste', 'hubo', 'hubimos', 'hubisteis', 'hubieron', 'hubiera', 'hubieras', 'hubiéramos', 'hubierais', 'hubieran', 'hubiese', 'hubieses', 'hubiésemos', 'hubieseis', 'hubiesen', 'habiendo', 'habido', 'habida', 'habidos', 'habidas', 'soy', 'eres', 'es', 'somos', 'sois', 'son', 'sea', 'seas', 'seamos', 'seáis', 'sean', 'seré', 'serás', 'será', 'seremos', 'seréis', 'serán', 'sería', 'serías', 'seríamos', 'seríais', 'serían', 'era', 'eras', 'éramos', 'erais', 'eran', 'fui', 'fuiste', 'fue', 'fuimos', 'fuisteis', 'fueron', 'fuera', 'fueras', 'fuéramos', 'fuerais', 'fueran', 'fuese', 'fueses', 'fuésemos', 'fueseis', 'fuesen', 'siendo', 'sido', 'tengo', 'tienes', 'tiene', 'tenemos', 'tenéis', 'tienen', 'tenga', 'tengas', 'tengamos', 'tengáis', 'tengan', 'tendré', 'tendrás', 'tendrá', 'tendremos', 'tendréis', 'tendrán', 'tendría', 'tendrías', 'tendríamos', 'tendríais', 'tendrían', 'tenía', 'tenías', 'teníamos', 'teníais', 'tenían', 'tuve', 'tuviste', 'tuvo', 'tuvimos', 'tuvisteis', 'tuvieron', 'tuviera', 'tuvieras', 'tuviéramos', 'tuvierais', 'tuvieran', 'tuviese', 'tuvieses', 'tuviésemos', 'tuvieseis', 'tuviesen', 'teniendo', 'tenido', 'tenida', 'tenidos', 'tenidas', 'tened', 'ahí', 'ajena', 'ajeno', 'ajenas', 'ajenos', 'algúna', 'allá', 'ambos', 'aquello', 'aquellas', 'aquellos', 'así', 'atrás', 'aun', 'aunque', 'bajo', 'bastante', 'bien', 'cabe', 'cada', 'casi', 'cierto', 'cierta', 'ciertos', 'ciertas', 'conmigo', 'conseguimos', 'conseguir', 'consigo', 'consigue', 'consiguen', 'consigues', 'cualquier', 'cualquiera', 'cualquieras', 'cuan', 'cuanto', 'cuanta', 'cuantas', 'cuantos', 'de', 'dejar', 'demás', 'demasiadas', 'demasiados', 'dentro', 'dos', 'ello', 'emplean', 'emplear', 'empleas', 'encima', 'entonces', 'era', 'eras', 'eramos', 'eses', 'estes', 'gueno', 'hacer', 'hacemos', 'hacia', 'hago', 'incluso', 'intenta', 'intentas', 'intentamos', 'intentan', 'intento', 'ir', 'mismo', 'ningúno', 'nunca', 'parecer', 'podemos', 'podría', 'podrías', 'podríais', 'podríamos', 'podrían', 'primero', 'puedes', 'pueden', 'pues', 'querer', 'quiénes', 'quienesquiera', 'quienquiera', 'quizás', 'sabe', 'sabes', 'saben', 'sabéis', 'sabemos', 'saber', 'sino', 'solo', 'esta', 'tampoco', 'tan', 'tanta', 'tantas', 'tantos', 'tener', 'tiempo', 'toda', 'todas', 'tomar', 'trabaja', 'trabajas', 'tras', 'último', 'ultimo', 'última', 'ultima', 'unas', 'ustedes', 'variasos', 'verdadera', 'pocas', 'pocos', 'podéis', 'podemos', 'poder', 'podría', 'podrías', 'podríais', 'podríamos', 'podrían', 'primero', 'puede', 'puedo', 'pueda', 'pues', 'querer', 'quiénes', 'quienesquiera', 'quienquiera', 'quizás', 'mas', 'sabe', 'sabes', 'saben', 'sabéis', 'sabemos', 'saber', 'según', 'ser', 'si', 'siempre', 'sino', 'so', 'solamente', 'solo', 'sólo', 'sr', 'sra', 'sres', 'sta', 'tal', 'tales', 'tampoco', 'tan', 'tanta', 'tantas', 'tantos', 'tener', 'tiempo', 'toda', 'den', 'queria', 'todas', 'tomar', 'trabaja', 'trabajo', 'trabajáis', 'trabajamos', 'trabajan', 'trabajar', 'trabajas', 'tras', 'último', 'ultimo', 'unas', 'usa', 'usas', 'usáis', 'usamos', 'usan', 'usar', 'uso', 'usted', 'ustedes', 'va', 'van', 'vais', 'valor', 'vamos', 'varias', 'varias', 'varios', 'vaya', 'verdadera', 'voy', 'vez', 'más', 'ok']);
-    const dict = {}
+    const dict = {};
 
     tweets.forEach(tweet => {
       const words = tweet.text
@@ -94,7 +94,7 @@ export const TweetsProvider = (props) => {
             const elem = {
               text: word,
               value: 1
-            }
+            };
             dict[word] = elem;
           }
           else {
@@ -107,15 +107,15 @@ export const TweetsProvider = (props) => {
 
     const data = Object.values(dict);
     return data
-  }
+  };
 
   const getDataTimeline = () => {
-    const dict = {}
+    const dict = {};
     tweets.forEach(tweet => {
       // const d = (tweet.date).substring(0, (tweet.date).indexOf('-'));
       const fullDate = new Date(tweet.date);
       const daux = new Date(fullDate.getFullYear(), fullDate.getMonth() + 1, fullDate.getDate());
-      const d = timetoline(daux)
+      const d = timetoline(daux);
 
       if (!(d in dict)) {
         const elem = {
@@ -123,7 +123,7 @@ export const TweetsProvider = (props) => {
           tweet: 1,
           fav: tweet.likes,
           rt: tweet.retweets
-        }
+        };
         dict[d] = elem;
       }
       else {
@@ -135,7 +135,7 @@ export const TweetsProvider = (props) => {
     const timeline = Object.values(dict);
     timeline.sort((a, b) => a - b);
     return timeline;
-  }
+  };
 
   const getTopUsers = () => {
     const dict = {}
@@ -144,7 +144,7 @@ export const TweetsProvider = (props) => {
         const elem = {
           user: tweet.user,
           tweets: 1
-        }
+        };
         dict[tweet.user] = elem;
       }
       else {

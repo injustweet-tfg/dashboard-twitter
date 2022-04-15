@@ -114,7 +114,7 @@ const palette = {
   background: { paper: '#FFF', default: '#F5F8FA', neutral: GREY[200] },
   action: {
     active: GREY[600],
-    hover: GREY[500_8],
+    hover: alpha('#FFF', 0.3),
     selected: GREY[500_16],
     disabled: GREY[500_80],
     disabledBackground: GREY[500_24],
