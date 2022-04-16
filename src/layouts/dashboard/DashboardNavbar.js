@@ -1,6 +1,3 @@
-// import PropTypes from 'prop-types';
-// import { Icon } from '@iconify/react';
-// import menu2Fill from '@iconify/icons-eva/menu-2-fill';
 // material
 import { alpha, styled } from '@mui/material/styles';
 import { AppBar, Toolbar, Box } from '@mui/material'; // Box, Stack, IconButton 

@@ -1,11 +1,9 @@
-import { Icon } from '@iconify/react';
-// import bugFilled from '@iconify/icons-ant-design/bug-filled';
-import heartFilled from '@iconify/icons-ant-design/heart-filled';
 // material
 import { styled } from '@mui/material/styles';
 import { Card, Typography, Stack } from '@mui/material';
 // utils
 import { fShortenNumber } from '../../../utils/formatNumber';
+import Iconify from '../../Iconify';
 
 
 // ----------------------------------------------------------------------
@@ -50,7 +48,7 @@ export default function AppTotalFAV({ totalFAV }) {
           <Typography variant="h3">{fShortenNumber(totalFAV)}</Typography>
         </Stack>
         <IconWrapperStyle>
-          <Icon icon={heartFilled} width={24} height={24} />
+          <Iconify icon="ant-design:heart-filled" width={24} height={24} />
         </IconWrapperStyle>
       </Stack>
     </RootStyle >

@@ -2,8 +2,8 @@ import { useState } from 'react';
 import PropTypes from 'prop-types';
 // material
 import { styled } from '@mui/material/styles';
-import { makeStyles } from '@mui/styles';
-import { Box, Stack, Card, Button, Divider, Typography, CardHeader, Menu, MenuItem } from '@mui/material';
+import { makeStyles, useTheme } from '@mui/styles';
+import { Box, Stack, Card, Button, Divider, Typography, CardHeader, Menu, MenuItem, Avatar } from '@mui/material';
 import Iconify from '../../Iconify';
 // utils
 import { mockImgAvatar } from '../../../utils/mockImages';
@@ -47,16 +47,17 @@ const SORT_BY_OPTIONS = [
 ];
 
 function TweetItem({ tweet }) {
-  const { link, _id, text, user, date, likes, retweets, replies } = tweet;
-
+  const { link, _id, id, text, user, date, likes, retweets, replies } = tweet;
+  const theme = useTheme();
+  console.log(tweet);
+  const color = [theme.palette.primary.main, theme.palette.secondary.main, theme.palette.success.main, theme.palette.warning.main].at(id % 4);
 
   return (
     <TweetStyle>
-      <Box
-        component="img"
+      <Avatar
         alt={_id}
-        src={mockImgAvatar(1)}
-        sx={{ width: 55, height: 55, borderRadius: '50%' }}
+        src='/favicon/tfg512.png'
+        sx={{ width: 55, height: 55, borderRadius: '50%', bgcolor: color }}
       />
 
       <Stack direction="column" alignItems="left" sx={{ px: 3 }}>

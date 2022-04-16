@@ -1,10 +1,9 @@
-import { Icon } from '@iconify/react';
-import twitterOutlined from '@iconify/icons-ant-design/twitter-outlined';
 // material
 import { styled } from '@mui/material/styles';
 import { Card, Stack, Typography } from '@mui/material';
 // utils
 import { fShortenNumber } from '../../../utils/formatNumber';
+import Iconify from '../../Iconify';
 
 
 // ----------------------------------------------------------------------
@@ -52,7 +51,7 @@ export default function AppTotalTweets({ totalTweets }) {
           <Typography variant="h3">{fShortenNumber(totalTweets)}</Typography>
         </Stack>
         <IconWrapperStyle>
-          <Icon icon={twitterOutlined} width={24} height={24} />
+          <Iconify icon="ant-design:twitter-outlined" width={24} height={24} />
         </IconWrapperStyle>
       </Stack>
     </RootStyle >

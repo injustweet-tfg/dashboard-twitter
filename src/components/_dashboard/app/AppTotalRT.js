@@ -1,10 +1,9 @@
-import { Icon } from '@iconify/react';
-import retweetOutlined from '@iconify/icons-ant-design/retweet-outlined';
 // material
 import { styled } from '@mui/material/styles';
 import { Card, Typography, Stack } from '@mui/material';
 // utils
 import { fShortenNumber } from '../../../utils/formatNumber';
+import Iconify from '../../Iconify';
 
 
 // ----------------------------------------------------------------------
@@ -48,7 +47,7 @@ export default function AppTotalRT({ totalRT }) {
           <Typography variant="h3">{fShortenNumber(totalRT)}</Typography>
         </Stack>
         <IconWrapperStyle>
-          <Icon icon={retweetOutlined} width={24} height={24} />
+          <Iconify icon="ant-design:retweet-outlined" width={24} height={24} />
         </IconWrapperStyle>
       </Stack>
     </RootStyle >

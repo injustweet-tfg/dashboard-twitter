@@ -1,10 +1,9 @@
-import { Icon } from '@iconify/react';
-import eyeFilled from '@iconify/icons-ant-design/eye-filled';
 // material
 import { styled } from '@mui/material/styles';
 import { Card, Typography, Stack } from '@mui/material';
 // utils
 import { fShortenNumber } from '../../../utils/formatNumber';
+import Iconify from '../../Iconify';
 
 // ----------------------------------------------------------------------
 
@@ -50,7 +49,7 @@ export default function AppTotalUsers({ totalUsers }) {
           <Typography variant="h3">{fShortenNumber(totalUsers)}</Typography>
         </Stack>
         <IconWrapperStyle>
-          <Icon icon={eyeFilled} width={24} height={24} />
+          <Iconify icon="ant-design:eye-filled" width={24} height={24} />
         </IconWrapperStyle>
       </Stack>
     </RootStyle >
