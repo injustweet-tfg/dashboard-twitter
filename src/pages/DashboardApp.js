@@ -2,7 +2,7 @@ import React from "react";
 
 // material
 import { Grid, Container } from '@mui/material';
-import { useTweets } from '../context';
+
 // components
 import Page from '../components/Page';
 import {
@@ -23,7 +23,6 @@ import {
 
 
 export default function DashboardApp() {
-  const { totals, topUsers, topHashtags, dataWordcloud, dataHeatmap, dataTimeline, tweetView, getTweetView, setTweetView } = useTweets();
 
   return (
     <Page title="Injustweet">
@@ -37,40 +36,40 @@ export default function DashboardApp() {
             <AppHeader />
           </Grid> */}
           <Grid item xs={6} sm={6} md={3}>
-            <AppTotalTweets totalTweets={totals.totalTweets} />
+            <AppTotalTweets/>
           </Grid>
           <Grid item xs={6} sm={6} md={3}>
-            <AppTotalUsers totalUsers={totals.totalUsers} />
+            <AppTotalUsers/>
           </Grid>
           <Grid item xs={6} sm={6} md={3}>
-            <AppTotalRT totalRT={totals.totalRT} />
+            <AppTotalRT/>
           </Grid>
           <Grid item xs={6} sm={6} md={3}>
-            <AppTotalFAV totalFAV={totals.totalFAV} />
+            <AppTotalFAV/>
           </Grid>
 
           <Grid item xs={12} md={6} lg={6} container spacing={3}>
             <Grid item xs={12} md={12} lg={12}>
-              <AppWordcloud dataWordcloud={dataWordcloud} />
+              <AppWordcloud/>
             </Grid>
             <Grid item xs={12} md={6} lg={6}>
-              <AppTopHashtags topHashtags={topHashtags} />
+              <AppTopHashtags/>
             </Grid>
             <Grid item xs={12} md={6} lg={6}>
-              <AppTopUsers topUsers={topUsers} />
+              <AppTopUsers/>
             </Grid>
           </Grid>
 
           <Grid item xs={12} md={6} lg={6}>
-            <AppTweets tweetView={tweetView} getTweetView={getTweetView} setTweetView={setTweetView} />
+            <AppTweets/>
           </Grid>
 
           <Grid item xs={12} md={6} lg={6}>
-            <AppHeatmap dataHeatmap={dataHeatmap} />
+            <AppHeatmap/>
           </Grid>
 
           <Grid item xs={12} md={6} lg={6}>
-            < AppTimeline dataTimeline={dataTimeline} />
+            < AppTimeline/>
           </Grid>
         </Grid>
       </Container>

@@ -4,6 +4,7 @@ import { Card, Typography, Stack } from '@mui/material';
 // utils
 import { fShortenNumber } from '../../../utils/formatNumber';
 import Iconify from '../../Iconify';
+import { useTweets } from '../../../context';
 
 // ----------------------------------------------------------------------
 
@@ -38,7 +39,8 @@ const IconWrapperStyle = styled('div')(({ theme }) => ({
 
 // const TOTAL = 1352831;
 
-export default function AppTotalUsers({ totalUsers }) {
+export default function AppTotalUsers() {
+  const { totals} = useTweets();
   return (
     <RootStyle>
       <Stack direction='row' justifyContent="space-between" alignItems="center">
@@ -46,7 +48,7 @@ export default function AppTotalUsers({ totalUsers }) {
           <Typography variant="subtitle1" align='left' sx={{ color: 'text.secondary' }}>
             Total de usuarios
           </Typography>
-          <Typography variant="h3">{fShortenNumber(totalUsers)}</Typography>
+          <Typography variant="h3">{fShortenNumber(totals.totalUsers)}</Typography>
         </Stack>
         <IconWrapperStyle>
           <Iconify icon="ant-design:eye-filled" width={24} height={24} />

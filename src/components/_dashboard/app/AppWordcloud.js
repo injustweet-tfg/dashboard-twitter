@@ -8,6 +8,7 @@ import { saveSvgAsPng } from 'save-svg-as-png';
 // import randomColor from 'randomcolor';
 import { v4 as uuidv4 } from 'uuid';
 import Iconify from '../../Iconify';
+import { useTweets } from '../../../context';
 
 const fontFamilys = ['courier', 'serif', 'sans-serif'];
 const getIcon = (name) => <Iconify icon={name} width={22} height={22} />;
@@ -30,7 +31,8 @@ const options = {
 
 
 
-function AppWordcloud({ dataWordcloud }) {
+function AppWordcloud() {
+    const { dataWordcloud } = useTweets();
     const wordcloudRef = useRef();
 
     const [update, setUpdate] = useState(uuidv4());

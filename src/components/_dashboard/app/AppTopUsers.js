@@ -5,6 +5,7 @@ import { styled } from '@mui/material/styles';
 import { Card, CardHeader } from '@mui/material';
 //
 import { BaseOptionChart } from '../../charts';
+import { useTweets } from '../../../context';
 
 // ----------------------------------------------------------------------
 const CHART_HEIGHT = 400;
@@ -28,7 +29,8 @@ const ChartWrapperStyle = styled('div')(({ theme }) => ({
     marginRight: theme.spacing(2),
 }));
 
-export default function AppTopUsers({ topUsers }) {
+export default function AppTopUsers() {
+    const { topUsers } = useTweets();
     const users = topUsers.map(value => `@${value.user}`);
     const num = [{ name: "Denuncias", data: topUsers.map(value => value.tweets) }];
 

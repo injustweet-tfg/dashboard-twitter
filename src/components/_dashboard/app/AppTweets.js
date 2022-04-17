@@ -10,6 +10,7 @@ import { mockImgAvatar } from '../../../utils/mockImages';
 import { fToNow } from '../../../utils/formatTime';
 //
 import Scrollbar from '../../Scrollbar';
+import { useTweets } from '../../../context';
 
 
 // ----------------------------------------------------------------------
@@ -86,7 +87,8 @@ function TweetItem({ tweet }) {
   );
 }
 
-export default function AppTweets({ tweetView, getTweetView, setTweetView }) {
+export default function AppTweets() {
+  const {tweetView, getTweetView, setTweetView } = useTweets();
   const [open, setOpen] = useState(null);
   const [selected, setSelected] = useState(0);
 

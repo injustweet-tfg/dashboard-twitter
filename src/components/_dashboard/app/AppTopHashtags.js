@@ -7,6 +7,7 @@ import { Card, CardHeader } from '@mui/material';
 import { fNumber } from '../../../utils/formatNumber';
 //
 import { BaseOptionChart } from '../../charts';
+import { useTweets } from '../../../context';
 
 // ----------------------------------------------------------------------
 
@@ -32,7 +33,8 @@ const ChartWrapperStyle = styled('div')(({ theme }) => ({
 // ----------------------------------------------------------------------
 
 
-function AppTopHashtags({ topHashtags }) {
+function AppTopHashtags() {
+    const { topHashtags} = useTweets();
     const theme = useTheme();
     const labels = topHashtags.map(pair => `#${pair[0]}`);
     const data = topHashtags.map(pair => pair[1]);

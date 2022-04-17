@@ -7,6 +7,7 @@ import { styled } from '@mui/material/styles';
 import { Card, CardHeader } from '@mui/material';
 // import { AreaChart, Area, XAxis, YAxis, CartesianGrid, Tooltip, ResponsiveContainer } from 'recharts';
 import { BaseOptionChart } from '../../charts';
+import { useTweets } from '../../../context';
 
 // ----------------------------------------------------------------------
 const CHART_HEIGHT = 392;
@@ -24,7 +25,8 @@ const ChartWrapperStyle = styled('div')(({ theme }) => ({
 
 }));
 
-export default function AppTimeline({ dataTimeline }) {
+export default function AppTimeline() {
+  const { dataTimeline } = useTweets();
   const dates = dataTimeline.map(value => value.date);
   const tweets = dataTimeline.map(value => value.tweet);
   const favs = dataTimeline.map(value => value.fav);

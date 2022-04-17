@@ -4,6 +4,7 @@ import ReactApexChart from 'react-apexcharts';
 import { useTheme, styled } from '@mui/material/styles';
 import { Card, CardHeader } from '@mui/material';
 import { BaseOptionChart } from '../../charts';
+import { useTweets } from '../../../context';
 
 // ----------------------------------------------------------------------
 
@@ -30,7 +31,8 @@ const ChartWrapperStyle = styled('div')(({ theme }) => ({
 
 // ----------------------------------------------------------------------
 
-export default function AppHeatmap({ dataHeatmap }) {
+export default function AppHeatmap() {
+  const { dataHeatmap } = useTweets();
   const theme = useTheme();
 
   const chartOptions = merge(BaseOptionChart(), {

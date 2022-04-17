@@ -4,6 +4,7 @@ import { Card, Stack, Typography } from '@mui/material';
 // utils
 import { fShortenNumber } from '../../../utils/formatNumber';
 import Iconify from '../../Iconify';
+import { useTweets } from '../../../context';
 
 
 // ----------------------------------------------------------------------
@@ -38,8 +39,9 @@ const IconWrapperStyle = styled('div')(({ theme }) => ({
 
 // const TOTAL = 714000;
 
-export default function AppTotalTweets({ totalTweets }) {
+export default function AppTotalTweets() {
   console.log("AppTotalTweets:update");
+  const { totals} = useTweets();
 
   return (
     <RootStyle>
@@ -48,7 +50,7 @@ export default function AppTotalTweets({ totalTweets }) {
           <Typography variant="subtitle1" align='left' sx={{ color: 'text.secondary' }}>
             Total de tweets
           </Typography>
-          <Typography variant="h3">{fShortenNumber(totalTweets)}</Typography>
+          <Typography variant="h3">{fShortenNumber(totals.totalTweets)}</Typography>
         </Stack>
         <IconWrapperStyle>
           <Iconify icon="ant-design:twitter-outlined" width={24} height={24} />

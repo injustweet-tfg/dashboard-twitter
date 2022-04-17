@@ -4,6 +4,7 @@ import { Card, Typography, Stack } from '@mui/material';
 // utils
 import { fShortenNumber } from '../../../utils/formatNumber';
 import Iconify from '../../Iconify';
+import { useTweets } from '../../../context';
 
 
 // ----------------------------------------------------------------------
@@ -36,8 +37,10 @@ const IconWrapperStyle = styled('div')(({ theme }) => ({
 
 // ----------------------------------------------------------------------
 
-export default function AppTotalFAV({ totalFAV }) {
 
+
+export default function AppTotalFAV() {
+  const { totals} = useTweets();
   return (
     <RootStyle>
       <Stack direction='row' justifyContent="space-between" alignItems="center">
@@ -45,7 +48,7 @@ export default function AppTotalFAV({ totalFAV }) {
           <Typography variant="subtitle1" align='left' sx={{ color: 'text.secondary' }}>
             Total de likes
           </Typography>
-          <Typography variant="h3">{fShortenNumber(totalFAV)}</Typography>
+          <Typography variant="h3">{fShortenNumber(totals.totalFAV)}</Typography>
         </Stack>
         <IconWrapperStyle>
           <Iconify icon="ant-design:heart-filled" width={24} height={24} />

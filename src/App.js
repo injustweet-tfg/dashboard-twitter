@@ -18,9 +18,7 @@ export default function App() {
       <ScrollToTop />
       <GlobalStyles />
       <BaseOptionChartStyle />
-      <TweetsProvider>
         <Router />
-      </TweetsProvider>
     </ThemeConfig>
   );
 }

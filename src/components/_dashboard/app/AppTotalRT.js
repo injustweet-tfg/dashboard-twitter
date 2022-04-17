@@ -4,6 +4,7 @@ import { Card, Typography, Stack } from '@mui/material';
 // utils
 import { fShortenNumber } from '../../../utils/formatNumber';
 import Iconify from '../../Iconify';
+import { useTweets } from '../../../context';
 
 
 // ----------------------------------------------------------------------
@@ -36,7 +37,8 @@ const IconWrapperStyle = styled('div')(({ theme }) => ({
 // ----------------------------------------------------------------------
 
 
-export default function AppTotalRT({ totalRT }) {
+export default function AppTotalRT() {
+  const { totals} = useTweets();
   return (
     <RootStyle>
       <Stack direction='row' justifyContent="space-between" alignItems="center">
@@ -44,7 +46,7 @@ export default function AppTotalRT({ totalRT }) {
           <Typography variant="subtitle1" align='left' sx={{ color: 'text.secondary' }}>
             Total de retweets
           </Typography>
-          <Typography variant="h3">{fShortenNumber(totalRT)}</Typography>
+          <Typography variant="h3">{fShortenNumber(totals.totalRT)}</Typography>
         </Stack>
         <IconWrapperStyle>
           <Iconify icon="ant-design:retweet-outlined" width={24} height={24} />
