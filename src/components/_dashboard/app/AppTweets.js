@@ -50,7 +50,7 @@ const SORT_BY_OPTIONS = [
 function TweetItem({ tweet }) {
   const { link, _id, id, text, user, date, likes, retweets, replies } = tweet;
   const theme = useTheme();
-  console.log(tweet);
+  // console.log(tweet);
   const color = [theme.palette.primary.main, theme.palette.secondary.main, theme.palette.success.main, theme.palette.warning.main].at(id % 4);
 
   return (
@@ -66,7 +66,7 @@ function TweetItem({ tweet }) {
           <Typography variant="subtitle2" noWrap>
             {`@${user}`} &nbsp;
             <Typography variant="caption" sx={{ pr: 0, flexShrink: 0, color: 'text.secondary' }} noWrap >
-              {fToNow(new Date(date))}
+              {fToNow(new Date(date * 1000))}
             </Typography>
           </Typography>
         </a>
@@ -88,7 +88,7 @@ function TweetItem({ tweet }) {
 }
 
 export default function AppTweets() {
-  const {tweetView, getTweetView, setTweetView } = useTweets();
+  const { getTweetView } = useTweets();
   const [open, setOpen] = useState(null);
   const [selected, setSelected] = useState(0);
 
@@ -102,7 +102,6 @@ export default function AppTweets() {
 
   const handleChange = (event, index) => {
     setSelected(index);
-    setTweetView(getTweetView(index));
     handleClose();
   };
 
@@ -143,7 +142,7 @@ export default function AppTweets() {
 
       <Scrollbar style={{ maxHeight: 790 }}>
         <Stack spacing={2} sx={{ m: 3 }}>
-          {tweetView.map((tweet, index) => (
+          {getTweetView(selected).map((tweet, index) => (
             <TweetItem key={index} tweet={tweet} />
           ))}
         </Stack>

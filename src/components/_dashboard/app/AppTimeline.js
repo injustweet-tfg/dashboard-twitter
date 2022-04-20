@@ -26,7 +26,8 @@ const ChartWrapperStyle = styled('div')(({ theme }) => ({
 }));
 
 export default function AppTimeline() {
-  const { dataTimeline } = useTweets();
+  const { getDataTimeline } = useTweets();
+  const dataTimeline = getDataTimeline();
   const dates = dataTimeline.map(value => value.date);
   const tweets = dataTimeline.map(value => value.tweet);
   const favs = dataTimeline.map(value => value.fav);

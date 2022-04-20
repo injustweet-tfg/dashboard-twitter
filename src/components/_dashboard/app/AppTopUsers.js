@@ -30,7 +30,9 @@ const ChartWrapperStyle = styled('div')(({ theme }) => ({
 }));
 
 export default function AppTopUsers() {
-    const { topUsers } = useTweets();
+    const { getTopUsers } = useTweets();
+    const topUsers = getTopUsers();
+
     const users = topUsers.map(value => `@${value.user}`);
     const num = [{ name: "Denuncias", data: topUsers.map(value => value.tweets) }];
 

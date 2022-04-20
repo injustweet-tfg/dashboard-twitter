@@ -11,3 +11,4 @@ export { default as AppWordcloud } from './AppWordcloud';
 export { default as AppTopHashtags } from './AppTopHashtags';
 export { default as AppTopUsers } from './AppTopUsers';
 export { default as FilterSidebar } from './FilterSidebar';
+export { default as FilterSidebar2 } from './FilterSidebar2';

@@ -40,7 +40,8 @@ const IconWrapperStyle = styled('div')(({ theme }) => ({
 // const TOTAL = 1352831;
 
 export default function AppTotalUsers() {
-  const { totals} = useTweets();
+  const { getTotals } = useTweets();
+
   return (
     <RootStyle>
       <Stack direction='row' justifyContent="space-between" alignItems="center">
@@ -48,7 +49,7 @@ export default function AppTotalUsers() {
           <Typography variant="subtitle1" align='left' sx={{ color: 'text.secondary' }}>
             Total de usuarios
           </Typography>
-          <Typography variant="h3">{fShortenNumber(totals.totalUsers)}</Typography>
+          <Typography variant="h3">{fShortenNumber(getTotals().totalUsers)}</Typography>
         </Stack>
         <IconWrapperStyle>
           <Iconify icon="ant-design:eye-filled" width={24} height={24} />

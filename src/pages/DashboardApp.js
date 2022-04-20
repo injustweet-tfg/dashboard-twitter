@@ -36,40 +36,40 @@ export default function DashboardApp() {
             <AppHeader />
           </Grid> */}
           <Grid item xs={6} sm={6} md={3}>
-            <AppTotalTweets/>
+            <AppTotalTweets />
           </Grid>
           <Grid item xs={6} sm={6} md={3}>
-            <AppTotalUsers/>
+            <AppTotalUsers />
           </Grid>
           <Grid item xs={6} sm={6} md={3}>
-            <AppTotalRT/>
+            <AppTotalRT />
           </Grid>
           <Grid item xs={6} sm={6} md={3}>
-            <AppTotalFAV/>
+            <AppTotalFAV />
           </Grid>
 
           <Grid item xs={12} md={6} lg={6} container spacing={3}>
             <Grid item xs={12} md={12} lg={12}>
-              <AppWordcloud/>
+              <AppWordcloud />
             </Grid>
             <Grid item xs={12} md={6} lg={6}>
-              <AppTopHashtags/>
+              <AppTopHashtags />
             </Grid>
             <Grid item xs={12} md={6} lg={6}>
-              <AppTopUsers/>
+              <AppTopUsers />
             </Grid>
           </Grid>
 
           <Grid item xs={12} md={6} lg={6}>
-            <AppTweets/>
+            <AppTweets />
           </Grid>
 
           <Grid item xs={12} md={6} lg={6}>
-            <AppHeatmap/>
+            <AppHeatmap />
           </Grid>
 
           <Grid item xs={12} md={6} lg={6}>
-            < AppTimeline/>
+            < AppTimeline />
           </Grid>
         </Grid>
       </Container>

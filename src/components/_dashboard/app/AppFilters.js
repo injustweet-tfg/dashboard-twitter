@@ -2,6 +2,7 @@ import { Stack, Typography, } from '@mui/material';
 import React, { useState } from 'react'
 import { useFormik } from 'formik';
 import { FilterSidebar } from '.';
+import FilterSidebar2 from './FilterSidebar2';
 
 export default function AppFilters() {
     const [openFilter, setOpenFilter] = useState(false);
@@ -35,10 +36,15 @@ export default function AppFilters() {
             <Typography variant="h3" gutterBottom>
                 Visualización de denuncias laborales en Twitter
             </Typography>
-            <FilterSidebar
+            {/* <FilterSidebar
                 formik={formik}
                 isOpenFilter={openFilter}
                 onResetFilter={handleResetFilter}
+                onOpenFilter={handleOpenFilter}
+                onCloseFilter={handleCloseFilter}
+            /> */}
+            <FilterSidebar2
+                isOpenFilter={openFilter}
                 onOpenFilter={handleOpenFilter}
                 onCloseFilter={handleCloseFilter}
             />

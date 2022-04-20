@@ -32,7 +32,8 @@ const ChartWrapperStyle = styled('div')(({ theme }) => ({
 // ----------------------------------------------------------------------
 
 export default function AppHeatmap() {
-  const { dataHeatmap } = useTweets();
+  const { getDataHeatmap } = useTweets();
+  const dataHeatmap = getDataHeatmap();
   const theme = useTheme();
 
   const chartOptions = merge(BaseOptionChart(), {

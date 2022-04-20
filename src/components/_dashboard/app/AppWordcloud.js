@@ -32,7 +32,8 @@ const options = {
 
 
 function AppWordcloud() {
-    const { dataWordcloud } = useTweets();
+    const { getDataWordcloud } = useTweets();
+    const dataWordcloud = getDataWordcloud();
     const wordcloudRef = useRef();
 
     const [update, setUpdate] = useState(uuidv4());

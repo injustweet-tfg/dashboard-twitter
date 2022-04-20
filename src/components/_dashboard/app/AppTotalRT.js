@@ -38,7 +38,7 @@ const IconWrapperStyle = styled('div')(({ theme }) => ({
 
 
 export default function AppTotalRT() {
-  const { totals} = useTweets();
+  const { getTotals } = useTweets();
   return (
     <RootStyle>
       <Stack direction='row' justifyContent="space-between" alignItems="center">
@@ -46,7 +46,7 @@ export default function AppTotalRT() {
           <Typography variant="subtitle1" align='left' sx={{ color: 'text.secondary' }}>
             Total de retweets
           </Typography>
-          <Typography variant="h3">{fShortenNumber(totals.totalRT)}</Typography>
+          <Typography variant="h3">{fShortenNumber(getTotals().totalRT)}</Typography>
         </Stack>
         <IconWrapperStyle>
           <Iconify icon="ant-design:retweet-outlined" width={24} height={24} />

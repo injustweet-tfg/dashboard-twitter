@@ -34,7 +34,8 @@ const ChartWrapperStyle = styled('div')(({ theme }) => ({
 
 
 function AppTopHashtags() {
-    const { topHashtags} = useTweets();
+    const { getTopHashtags } = useTweets();
+    const topHashtags = getTopHashtags();
     const theme = useTheme();
     const labels = topHashtags.map(pair => `#${pair[0]}`);
     const data = topHashtags.map(pair => pair[1]);
