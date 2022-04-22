@@ -50,12 +50,24 @@ export default function AppTopUsers() {
             shared: false,
         },
         plotOptions: {
-            bar: { horizontal: true, barHeight: '78%', borderRadius: 2 }
+            bar: { horizontal: true, barHeight: '58%', borderRadius: 2 }
         },
         xaxis: {
             categories: users
         },
-    });
+        // Theme
+        theme: {
+            mode: 'light',
+            palette: 'palette7',
+            monochrome: {
+                enabled: false,
+                color: '#255aee',
+                shadeTo: 'light',
+                shadeIntensity: 0.65
+            },
+        },
+    }
+    );
 
     return (
         <Card>

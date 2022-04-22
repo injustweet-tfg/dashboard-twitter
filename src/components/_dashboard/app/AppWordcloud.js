@@ -1,6 +1,7 @@
 import React, { useEffect, useState, useRef, Memo } from 'react';
 
 // import { SaveIcon } from '@mui/icons-material/Save';
+import { useTheme } from '@mui/styles';
 import { Card, CardHeader, Button, Box } from '@mui/material';
 import ReactWordcloud from 'react-wordcloud';
 import { saveSvgAsPng } from 'save-svg-as-png';
@@ -13,30 +14,31 @@ import { useTweets } from '../../../context';
 const fontFamilys = ['courier', 'serif', 'sans-serif'];
 const getIcon = (name) => <Iconify icon={name} width={22} height={22} />;
 
-const options = {
-    colors: ["#0000FF", "#00008B", "#ADD8E6", "#800080", "#808080", "#33C6FF"],
-    enableTooltip: true,
-    deterministic: false,
-    fontFamily: "impact",
-    fontSizes: [15, 60],
-    fontStyle: "normal",
-    fontWeight: "normal",
-    padding: 1,
-    rotations: 3,
-    rotationAngles: [0, 90],
-    scale: "sqrt",
-    spiral: "archimedean",
-    transitionDuration: 1000
-};
-
-
-
 function AppWordcloud() {
-    const { getDataWordcloud } = useTweets();
+    const { getDataWordcloud, loading } = useTweets();
     const dataWordcloud = getDataWordcloud();
     const wordcloudRef = useRef();
+    const theme = useTheme();
+
+    const options = {
+        // colors: ["#0000FF", "#00008B", "#ADD8E6", "#800080", "#808080", "#33C6FF"],
+        colors: theme.palette.chart.wordcloud,
+        enableTooltip: false,
+        deterministic: false,
+        fontFamily: "impact",
+        fontSizes: [15, 60],
+        fontStyle: "normal",
+        fontWeight: "normal",
+        padding: 1,
+        rotations: 3,
+        rotationAngles: [0, 90],
+        scale: "sqrt",
+        spiral: "archimedean",
+        transitionDuration: 1000
+    };
 
     const [update, setUpdate] = useState(uuidv4());
+
 
     return (
         <Card>
@@ -51,12 +53,13 @@ function AppWordcloud() {
                 </Button>}
             />
             <Box ref={wordcloudRef}>
-                <ReactWordcloud
-                    style={{ maxHeight: 300 }}
-                    options={options}
-                    maxWords={40}
-                    words={dataWordcloud}
-                />
+                {loading ? "Loading..." :
+                    <ReactWordcloud
+                        style={{ maxHeight: 300 }}
+                        options={options}
+                        maxWords={40}
+                        words={dataWordcloud}
+                    />}
             </Box>
             <Button
                 onClick={() => {

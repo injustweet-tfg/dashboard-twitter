@@ -43,7 +43,7 @@ export default function DashboardNavbar() {
           component="img"
           src="/static/tfgtitle.png"
           sx={{ width: 200, top: 5 }}
-          onClick={() => navigate('/dashboard')}
+          onClick={() => { navigate('/dashboard'); window.scrollTo({ top: 0, behavior: 'smooth' }); }}
         />
         <Box sx={{ flexGrow: 1 }} />
         <NavSection navConfig={navbarConfig} />
