@@ -2,7 +2,7 @@ import { merge } from 'lodash';
 import ReactApexChart from 'react-apexcharts';
 // material
 import { useTheme, styled } from '@mui/material/styles';
-import { Card, CardHeader } from '@mui/material';
+import { Card, CardHeader, Skeleton } from '@mui/material';
 import { BaseOptionChart } from '../../charts';
 import { useTweets } from '../../../context';
 
@@ -32,7 +32,7 @@ const ChartWrapperStyle = styled('div')(({ theme }) => ({
 // ----------------------------------------------------------------------
 
 export default function AppHeatmap() {
-  const { getDataHeatmap } = useTweets();
+  const { getDataHeatmap, loading } = useTweets();
   const dataHeatmap = getDataHeatmap();
   const theme = useTheme();
 
@@ -59,9 +59,12 @@ export default function AppHeatmap() {
   return (
     <Card>
       <CardHeader title="Denuncias por día" />
-      <ChartWrapperStyle dir="ltr" style={{ maxHeight: 400, minHeight: 400 }}>
-        <ReactApexChart type="heatmap" series={dataHeatmap} options={chartOptions} height={375} />
-      </ChartWrapperStyle>
+      {loading ?
+        <Skeleton variant="rect" width="100%" height={415} />
+        :
+        <ChartWrapperStyle dir="ltr" style={{ maxHeight: 400, minHeight: 400 }}>
+          <ReactApexChart type="heatmap" series={dataHeatmap} options={chartOptions} height={375} />
+        </ChartWrapperStyle>}
     </Card >
   );
 }

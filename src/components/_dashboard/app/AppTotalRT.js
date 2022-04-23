@@ -1,6 +1,6 @@
 // material
 import { styled } from '@mui/material/styles';
-import { Card, Typography, Stack } from '@mui/material';
+import { Card, Typography, Stack, Skeleton } from '@mui/material';
 // utils
 import { fShortenNumber } from '../../../utils/formatNumber';
 import Iconify from '../../Iconify';
@@ -38,7 +38,7 @@ const IconWrapperStyle = styled('div')(({ theme }) => ({
 
 
 export default function AppTotalRT() {
-  const { getTotals } = useTweets();
+  const { getTotals, loading } = useTweets();
   return (
     <RootStyle>
       <Stack direction='row' justifyContent="space-between" alignItems="center">
@@ -46,7 +46,7 @@ export default function AppTotalRT() {
           <Typography variant="subtitle1" align='left' sx={{ color: 'text.secondary' }}>
             Total de retweets
           </Typography>
-          <Typography variant="h3">{fShortenNumber(getTotals().totalRT)}</Typography>
+          <Typography variant="h3">{loading ? <Skeleton width={50} /> : fShortenNumber(getTotals().totalRT)}</Typography>
         </Stack>
         <IconWrapperStyle>
           <Iconify icon="ant-design:retweet-outlined" width={24} height={24} />

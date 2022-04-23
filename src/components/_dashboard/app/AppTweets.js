@@ -3,7 +3,7 @@ import PropTypes from 'prop-types';
 // material
 import { styled } from '@mui/material/styles';
 import { makeStyles, useTheme } from '@mui/styles';
-import { Box, Stack, Card, Button, Divider, Typography, CardHeader, Menu, MenuItem, Avatar } from '@mui/material';
+import { Box, Stack, Card, Button, Divider, Typography, CardHeader, Menu, MenuItem, Avatar, Skeleton } from '@mui/material';
 import Iconify from '../../Iconify';
 // utils
 import { mockImgAvatar } from '../../../utils/mockImages';
@@ -47,22 +47,29 @@ const SORT_BY_OPTIONS = [
   'Más FAVs'
 ];
 
-function TweetItem({ tweet }) {
-  const { link, _id, id, text, user, date, likes, retweets, replies } = tweet;
+function TweetItem({ tweet, loading }) {
   const theme = useTheme();
-  // console.log(tweet);
-  const color = [theme.palette.primary.main, theme.palette.secondary.main, theme.palette.success.main, theme.palette.warning.main].at(id % 4);
+  const linkStyle = useStyles();
 
+  const color = [theme.palette.primary.main, theme.palette.secondary.main, theme.palette.success.main, theme.palette.warning.main];
+  if (loading) {
+    return (
+      <TweetStyle width="100%">
+        <Skeleton variant="circular" width={55} height={55} />
+        <Skeleton sx={{ ml: 3 }} width="85%" height={55} />
+      </TweetStyle>
+    );
+  }
+  const { link, _id, id, text, user, date, likes, retweets, replies } = tweet;
   return (
     <TweetStyle>
       <Avatar
         alt={_id}
         src='/favicon/tfg512.png'
-        sx={{ width: 55, height: 55, borderRadius: '50%', bgcolor: color }}
+        sx={{ width: 55, height: 55, borderRadius: '50%', bgcolor: color[Math.trunc(id / 1000) % 4] }}
       />
-
       <Stack direction="column" alignItems="left" sx={{ px: 3 }}>
-        <a className={useStyles().twlink} href={link} target="_blank" rel="noreferrer" >
+        <a className={linkStyle.twlink} href={link} target="_blank" rel="noreferrer" >
           <Typography variant="subtitle2" noWrap>
             {`@${user}`} &nbsp;
             <Typography variant="caption" sx={{ pr: 0, flexShrink: 0, color: 'text.secondary' }} noWrap >
@@ -88,7 +95,7 @@ function TweetItem({ tweet }) {
 }
 
 export default function AppTweets() {
-  const { getTweetView } = useTweets();
+  const { getTweetView, loading } = useTweets();
   const [open, setOpen] = useState(null);
   const [selected, setSelected] = useState(0);
 
@@ -141,10 +148,11 @@ export default function AppTweets() {
       />
 
       <Scrollbar style={{ maxHeight: 790 }}>
-        <Stack spacing={2} sx={{ m: 3 }}>
-          {getTweetView(selected).map((tweet, index) => (
-            <TweetItem key={index} tweet={tweet} />
-          ))}
+        <Stack spacing={2} sx={{ m: 3 }} direction={loading ? "row" : "column"}>
+          {loading ? <TweetItem loading={loading} />
+            : getTweetView(selected).map((tweet, index) => (
+              <TweetItem key={index} tweet={tweet} />
+            ))}
         </Stack>
       </Scrollbar>
 

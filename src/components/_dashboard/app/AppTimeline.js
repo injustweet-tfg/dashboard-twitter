@@ -4,7 +4,7 @@ import { merge } from 'lodash';
 import ReactApexChart from 'react-apexcharts';
 // material
 import { styled } from '@mui/material/styles';
-import { Card, CardHeader } from '@mui/material';
+import { Card, CardHeader, Skeleton } from '@mui/material';
 // import { AreaChart, Area, XAxis, YAxis, CartesianGrid, Tooltip, ResponsiveContainer } from 'recharts';
 import { BaseOptionChart } from '../../charts';
 import { useTweets } from '../../../context';
@@ -26,7 +26,7 @@ const ChartWrapperStyle = styled('div')(({ theme }) => ({
 }));
 
 export default function AppTimeline() {
-  const { getDataTimeline } = useTweets();
+  const { getDataTimeline, loading } = useTweets();
   const dataTimeline = getDataTimeline();
   const dates = dataTimeline.map(value => value.date);
   const tweets = dataTimeline.map(value => value.tweet);
@@ -101,11 +101,12 @@ export default function AppTimeline() {
 
     <Card>
       <CardHeader title="Progreso de denuncias en el tiempo" />
-      <ChartWrapperStyle dir="ltr" style={{ maxHeight: 400, minHeight: 400 }}>
-        {/* <Box sx={{ mx: 3 }} dir="ltr"> */}
-        <ReactApexChart type="area" series={series} options={chartOptions} height={375} />
-        {/* </Box> */}
-      </ChartWrapperStyle >
+      {loading ? <Skeleton variant="rect" width="100%" height={415} /> :
+        <ChartWrapperStyle dir="ltr" style={{ maxHeight: 400, minHeight: 400 }}>
+          {/* <Box sx={{ mx: 3 }} dir="ltr"> */}
+          <ReactApexChart type="area" series={series} options={chartOptions} height={375} />
+          {/* </Box> */}
+        </ChartWrapperStyle >}
 
     </Card>
 

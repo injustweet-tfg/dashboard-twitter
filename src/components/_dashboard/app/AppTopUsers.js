@@ -2,7 +2,7 @@ import { merge } from 'lodash';
 import ReactApexChart from 'react-apexcharts';
 // material
 import { styled } from '@mui/material/styles';
-import { Card, CardHeader } from '@mui/material';
+import { Card, CardHeader, Skeleton } from '@mui/material';
 //
 import { BaseOptionChart } from '../../charts';
 import { useTweets } from '../../../context';
@@ -30,7 +30,7 @@ const ChartWrapperStyle = styled('div')(({ theme }) => ({
 }));
 
 export default function AppTopUsers() {
-    const { getTopUsers } = useTweets();
+    const { getTopUsers, loading } = useTweets();
     const topUsers = getTopUsers();
 
     const users = topUsers.map(value => `@${value.user}`);
@@ -72,9 +72,11 @@ export default function AppTopUsers() {
     return (
         <Card>
             <CardHeader title="Top @users" />
-            <ChartWrapperStyle dir="ltr">
-                <ReactApexChart type="bar" series={num} options={chartOptions} height={375} />
-            </ChartWrapperStyle>
+            {loading ? <Skeleton variant="rect" width="100%" height={CHART_HEIGHT} />
+                :
+                <ChartWrapperStyle dir="ltr">
+                    <ReactApexChart type="bar" series={num} options={chartOptions} height={375} />
+                </ChartWrapperStyle>}
         </Card>
     );
 }

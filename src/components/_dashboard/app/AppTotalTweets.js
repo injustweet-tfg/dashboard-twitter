@@ -49,8 +49,8 @@ export default function AppTotalTweets() {
           <Typography variant="subtitle1" align='left' sx={{ color: 'text.secondary' }}>
             Total de tweets
           </Typography>
-          {loading ? ("Loading....") :
-            (<Typography variant="h3">{fShortenNumber(getTotals().totalTweets)}</Typography>)}
+
+          <Typography variant="h3">{loading ? <Skeleton width={50} /> : fShortenNumber(getTotals().totalTweets)}</Typography>
 
         </Stack>
         <IconWrapperStyle>

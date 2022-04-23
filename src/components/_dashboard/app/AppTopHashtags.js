@@ -2,7 +2,7 @@ import { merge } from 'lodash';
 import ReactApexChart from 'react-apexcharts';
 // material
 import { useTheme, styled } from '@mui/material/styles';
-import { Card, CardHeader } from '@mui/material';
+import { Card, CardHeader, Skeleton } from '@mui/material';
 // utils
 import { fNumber } from '../../../utils/formatNumber';
 //
@@ -34,7 +34,7 @@ const ChartWrapperStyle = styled('div')(({ theme }) => ({
 
 
 function AppTopHashtags() {
-    const { getTopHashtags } = useTweets();
+    const { getTopHashtags, loading } = useTweets();
     const topHashtags = getTopHashtags();
     const theme = useTheme();
     const labels = topHashtags.map(pair => `#${pair[0]}`);
@@ -81,9 +81,12 @@ function AppTopHashtags() {
     return (
         <Card>
             <CardHeader title="Top #hashtags" />
-            <ChartWrapperStyle dir="ltr" >
-                <ReactApexChart type="pie" series={data} options={chartOptions} height={280} />
-            </ChartWrapperStyle>
+            {loading ?
+                <Skeleton variant="rect" width="100%" height={CHART_HEIGHT} />
+                :
+                <ChartWrapperStyle dir="ltr">
+                    <ReactApexChart type="pie" series={data} options={chartOptions} height={280} />
+                </ChartWrapperStyle>}
         </Card>
     );
 }

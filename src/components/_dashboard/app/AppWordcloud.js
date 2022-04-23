@@ -2,7 +2,7 @@ import React, { useEffect, useState, useRef, Memo } from 'react';
 
 // import { SaveIcon } from '@mui/icons-material/Save';
 import { useTheme } from '@mui/styles';
-import { Card, CardHeader, Button, Box } from '@mui/material';
+import { Card, CardHeader, Button, Box, Skeleton } from '@mui/material';
 import ReactWordcloud from 'react-wordcloud';
 import { saveSvgAsPng } from 'save-svg-as-png';
 // import randomize from 'randomize';
@@ -53,7 +53,9 @@ function AppWordcloud() {
                 </Button>}
             />
             <Box ref={wordcloudRef}>
-                {loading ? "Loading..." :
+                {loading ?
+                    <Skeleton sx={{ height: 300 }} variant="rectangular" />
+                    :
                     <ReactWordcloud
                         style={{ maxHeight: 300 }}
                         options={options}
