@@ -10,6 +10,7 @@ export const TweetsProvider = (props) => {
   const [dateStart, setDateStart] = useState('0');
   const [dateEnd, setDateEnd] = useState((new Date().setHours(0, 0, 0, 0) / 1000).toString());
   const [loading, setLoading] = useState(true);
+  console.log("hola soy context");
 
   useEffect(() => {
     // fetch all data when the number of tweets changes
@@ -142,26 +143,16 @@ export const TweetsProvider = (props) => {
     return arraytop;
   };
 
-  const getTweetView = (option) => {
-    const NUMBER_OF_TWEETS = 10;
-    switch (option) {
-      // Newest
-      case 0:
-        return tweets.sort((a, b) => b.date - a.date).slice(0, NUMBER_OF_TWEETS);
-      // Oldest
-      case 1:
-        return tweets.sort((a, b) => a.date - b.date).slice(0, NUMBER_OF_TWEETS);
-      // Most Retweeted
-      case 2:
-        return tweets.sort((a, b) => b.retweets - a.retweets).slice(0, NUMBER_OF_TWEETS);
-      // Most Favorited
-      case 3:
-        return tweets.sort((a, b) => b.likes - a.likes).slice(0, NUMBER_OF_TWEETS);
-      default:
-        return tweets.slice(0, NUMBER_OF_TWEETS);
-    }
+  /*
+  const getTweetView = async (option, search) => {
+    const response = await fetch(`https://cache-twitter.herokuapp.com/words/?dateStart=${dateStart}&dateEnd=${dateEnd}&word=${search}&order=${option}`)
+      .catch(error => {
+        console.log(error);
+      })
+      .then(response => response.json());
+      return response;
   };
-
+*/
 
   const getDataHeatmap = () => {
     const week = ['Lunes', 'Martes', 'Miércoles', 'Jueves', 'Viernes', 'Sábado', 'Domingo'];
@@ -217,7 +208,7 @@ export const TweetsProvider = (props) => {
   };
 
   return (
-    <context.Provider value={{ loading, filterTime, getTotals, getTopUsers, getTopHashtags, getDataWordcloud, getDataTimeline, getDataHeatmap, getTweetView }}>
+    <context.Provider value={{ loading, filterTime, getTotals, getTopUsers, getTopHashtags, getDataWordcloud, getDataTimeline, getDataHeatmap, dateStart, dateEnd }}>
       {props.children}
     </context.Provider>
   );

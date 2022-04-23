@@ -40,7 +40,7 @@ export default function AppTimeline() {
     name: 'likes',
     data: favs
   }, {
-    name: 'rts',
+    name: 'retweets',
     data: rts
   }]
 
@@ -90,7 +90,7 @@ export default function AppTimeline() {
           show: true,
         },
         title: {
-          text: "Rts y likes"
+          text: "rts y likes"
         }
       }
     ],

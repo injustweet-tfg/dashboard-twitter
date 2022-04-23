@@ -1,9 +1,10 @@
 import { useState } from 'react';
 import PropTypes from 'prop-types';
 // material
-import { styled } from '@mui/material/styles';
+import { styled, alpha } from '@mui/material/styles';
 import { makeStyles, useTheme } from '@mui/styles';
-import { Box, Stack, Card, Button, Divider, Typography, CardHeader, Menu, MenuItem, Avatar, Skeleton } from '@mui/material';
+import { Box, Stack, Card, Button, Divider, Typography, CardHeader, Menu, MenuItem, Avatar, Skeleton, Input, InputAdornment } from '@mui/material';
+import useFetch from '../../../useFetch';
 import Iconify from '../../Iconify';
 // utils
 import { mockImgAvatar } from '../../../utils/mockImages';
@@ -12,8 +13,8 @@ import { fToNow } from '../../../utils/formatTime';
 import Scrollbar from '../../Scrollbar';
 import { useTweets } from '../../../context';
 
-
 // ----------------------------------------------------------------------
+// styles
 const TweetStyle = styled(Stack)(({ theme }) => ({
   flexDirection: 'row',
   padding: theme.spacing(1, 2, 1),
@@ -35,9 +36,55 @@ const useStyles = makeStyles((theme) => ({
   },
 }));
 
-TweetItem.propTypes = {
-  tweet: PropTypes.object.isRequired
-};
+const SearchbarStyle = styled('div')(({ theme }) => ({
+  width: '100%',
+  display: 'flex',
+  alignItems: 'center',
+  height: 90,
+  backdropFilter: 'blur(6px)',
+  WebkitBackdropFilter: 'blur(6px)', // Fix on Mobile
+  padding: theme.spacing(0, 3),
+  boxShadow: theme.customShadows.z8,
+  backgroundColor: `${alpha(theme.palette.background.default, 0.72)}`,
+}));
+
+// ----------------------------------------------------------------------
+// Searchbar
+function Searchbar({setSearch}) {
+  const [value, setValue] = useState();
+  const handleClickSearch = (event) => {
+    console.log(event.currentTarget);
+  }
+
+  return (
+    <SearchbarStyle>
+      <Input
+        value={value}
+        onChange={(e) => setValue(e.target.value)}
+        autoFocus
+        fullWidth
+        disableUnderline
+        placeholder="Search"
+        startAdornment={
+          <InputAdornment position="start">
+            <Iconify icon="eva:search-fill" sx={{ color: 'text.disabled', width: 20, height: 20 }} />
+          </InputAdornment>
+        }
+        sx={{ mr: 1, fontWeight: 'fontWeightBold' }}
+      />
+      <Button onClick={() => setSearch(value)}>
+        Search
+      </Button>
+    </SearchbarStyle>
+
+  );
+}
+
+// ----------------------------------------------------------------------
+// TweetItem
+// TweetItem.propTypes = {
+//   tweet: PropTypes.object.isRequired
+// };
 
 
 const SORT_BY_OPTIONS = [
@@ -95,9 +142,12 @@ function TweetItem({ tweet, loading }) {
 }
 
 export default function AppTweets() {
-  const { getTweetView, loading } = useTweets();
+  const { dateStart, dateEnd } = useTweets();
   const [open, setOpen] = useState(null);
   const [selected, setSelected] = useState(0);
+  const [search, setSearch] = useState("");
+
+  const {loading, data ,error} = useFetch(`https://cache-twitter.herokuapp.com/words/?dateStart=${dateStart}&dateEnd=${dateEnd}&word=${search}&order=${selected}`);
 
   const handleOpen = (event) => {
     setOpen(event.currentTarget);
@@ -146,15 +196,16 @@ export default function AppTweets() {
         </>
         }
       />
+      <Searchbar setSearch={setSearch} />
 
-      <Scrollbar style={{ maxHeight: 790 }}>
-        <Stack spacing={2} sx={{ m: 3 }} direction={loading ? "row" : "column"}>
+       <Scrollbar style={{ maxHeight: 790 }}>
+         <Stack spacing={2} sx={{ m: 3 }} direction={loading ? "row" : "column"}>
           {loading ? <TweetItem loading={loading} />
-            : getTweetView(selected).map((tweet, index) => (
+            : data.map((tweet, index) => (
               <TweetItem key={index} tweet={tweet} />
             ))}
-        </Stack>
-      </Scrollbar>
+        </Stack> 
+      </Scrollbar> 
 
       <Divider />
 

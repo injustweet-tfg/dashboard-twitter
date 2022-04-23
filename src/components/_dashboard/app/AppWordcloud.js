@@ -37,9 +37,6 @@ function AppWordcloud() {
         transitionDuration: 1000
     };
 
-    const [update, setUpdate] = useState(uuidv4());
-
-
     return (
         <Card>
             <CardHeader title="Palabras más usadas"
@@ -63,44 +60,8 @@ function AppWordcloud() {
                         words={dataWordcloud}
                     />}
             </Box>
-            <Button
-                onClick={() => {
-                    setUpdate(uuidv4());
-                }}
-            >
-                Animar
-            </Button>
-
-
-
         </Card>
     );
 }
 
 export default AppWordcloud;
-
-/*
-useEffect(() => {
-        setInterval(() => {
-            setRandomSeed(uuidv4());
-            setSelectedWord();
-        }, 10000);
-    });
-    
-
-    <Button
-                onClick={() => {
-                    setRandomSeed(uuidv4());
-                    setSelectedWord();
-                }}
-            >
-                Animar
-            </Button>
-
-            useEffect(() => {
-  const interval = setInterval(() => {
-    console.log('This will run every second!');
-  }, 1000);
-  return () => clearInterval(interval);
-}, []);
-*/
