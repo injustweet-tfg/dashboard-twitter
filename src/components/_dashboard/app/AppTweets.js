@@ -3,7 +3,8 @@ import PropTypes from 'prop-types';
 // material
 import { styled, alpha } from '@mui/material/styles';
 import { makeStyles, useTheme } from '@mui/styles';
-import { Box, Stack, Card, Button, Divider, Typography, CardHeader, Menu, MenuItem, Avatar, Skeleton, Input, InputAdornment } from '@mui/material';
+import { Box, Stack, Card, Button, Divider, Typography, CardHeader, Menu, MenuItem, Avatar, Skeleton, Input, InputAdornment, IconButton } from '@mui/material';
+import { Icon } from '@iconify/react';
 import useFetch from '../../../useFetch';
 import Iconify from '../../Iconify';
 // utils
@@ -17,7 +18,7 @@ import { useTweets } from '../../../context';
 // styles
 const TweetStyle = styled(Stack)(({ theme }) => ({
   flexDirection: 'row',
-  padding: theme.spacing(1, 2, 1),
+  padding: theme.spacing(0, 2, 1),
   backgroundColor: theme.palette.grey[100],
   boxShadow: theme.shadows[3],
   borderRadius: theme.shape.borderRadius,
@@ -37,46 +38,56 @@ const useStyles = makeStyles((theme) => ({
 }));
 
 const SearchbarStyle = styled('div')(({ theme }) => ({
-  width: '100%',
+  margin: theme.spacing(0, 3),
   display: 'flex',
   alignItems: 'center',
-  height: 90,
+  height: 40,
   backdropFilter: 'blur(6px)',
   WebkitBackdropFilter: 'blur(6px)', // Fix on Mobile
-  padding: theme.spacing(0, 3),
-  boxShadow: theme.customShadows.z8,
-  backgroundColor: `${alpha(theme.palette.background.default, 0.72)}`,
+  padding: theme.spacing(0, 1),
+  backgroundColor: `${alpha(theme.palette.background.neutral, 0.72)}`,
+  borderRadius: theme.shape.borderRadius,
+
 }));
 
 // ----------------------------------------------------------------------
 // Searchbar
-function Searchbar({setSearch}) {
+function Searchbar({ search, setSearch, dataLength }) {
   const [value, setValue] = useState();
-  const handleClickSearch = (event) => {
-    console.log(event.currentTarget);
-  }
 
   return (
-    <SearchbarStyle>
-      <Input
-        value={value}
-        onChange={(e) => setValue(e.target.value)}
-        autoFocus
-        fullWidth
-        disableUnderline
-        placeholder="Search"
-        startAdornment={
-          <InputAdornment position="start">
-            <Iconify icon="eva:search-fill" sx={{ color: 'text.disabled', width: 20, height: 20 }} />
-          </InputAdornment>
-        }
-        sx={{ mr: 1, fontWeight: 'fontWeightBold' }}
-      />
-      <Button onClick={() => setSearch(value)}>
-        Search
-      </Button>
-    </SearchbarStyle>
+    <Stack direction="column">
+      <SearchbarStyle>
+        <Input
+          value={value}
+          onChange={(e) => setValue(e.target.value)}
+          autoFocus
+          fullWidth
+          disableUnderline
+          placeholder="Busca un @username o una palabra"
+          startAdornment={
+            <InputAdornment position="start">
+              <Iconify icon="eva:search-fill" sx={{ color: 'text.disabled', width: 20, height: 20 }} />
+            </InputAdornment>
+          }
+          sx={{ mx: 1, fontWeight: 'fontWeightBold' }}
+        />
+        <Button onClick={() => setSearch(value)}>
+          Buscar
+        </Button>
 
+      </SearchbarStyle>
+      <Stack direction={search === "" ? "row-reverse" : "row"} px={4} alignItems="center" justifyContent="space-between" spacing={1} my={1}>
+        {search === "" ? <></> : <div>
+          <IconButton onClick={() => { setSearch(""); setValue(""); }}>
+            <Icon icon="akar-icons:cross" width={10} height={10} />
+          </IconButton>
+          <Typography variant="overline" sx={{ color: 'primary.main' }}>Buscando por: </Typography>
+          <Typography variant="caption" sx={{ color: 'text.primary' }}>{search}</Typography>
+        </div>}
+        <Typography variant="overline" sx={{ color: 'primary.main' }}>{dataLength} tweets </Typography>
+      </Stack>
+    </Stack>
   );
 }
 
@@ -98,7 +109,6 @@ function TweetItem({ tweet, loading }) {
   const theme = useTheme();
   const linkStyle = useStyles();
 
-  const color = [theme.palette.primary.main, theme.palette.secondary.main, theme.palette.success.main, theme.palette.warning.main];
   if (loading) {
     return (
       <TweetStyle width="100%">
@@ -113,7 +123,7 @@ function TweetItem({ tweet, loading }) {
       <Avatar
         alt={_id}
         src='/favicon/tfg512.png'
-        sx={{ width: 55, height: 55, borderRadius: '50%', bgcolor: color[Math.trunc(id / 1000) % 4] }}
+        sx={{ width: 55, height: 55, borderRadius: '50%', bgcolor: theme.palette.warning.main }}
       />
       <Stack direction="column" alignItems="left" sx={{ px: 3 }}>
         <a className={linkStyle.twlink} href={link} target="_blank" rel="noreferrer" >
@@ -147,7 +157,7 @@ export default function AppTweets() {
   const [selected, setSelected] = useState(0);
   const [search, setSearch] = useState("");
 
-  const {loading, data ,error} = useFetch(`https://cache-twitter.herokuapp.com/words/?dateStart=${dateStart}&dateEnd=${dateEnd}&word=${search}&order=${selected}`);
+  const { loading, data, error } = useFetch(`https://cache-twitter.herokuapp.com/words/?dateStart=${dateStart}&dateEnd=${dateEnd}&word=${search}&order=${selected}`);
 
   const handleOpen = (event) => {
     setOpen(event.currentTarget);
@@ -165,6 +175,7 @@ export default function AppTweets() {
   return (
     <Card>
       <CardHeader
+        sx={{ mb: -1 }}
         title="Denuncias en tweets"
         action={<>
           <Button onClick={handleOpen} aria-label="filter" endIcon={<Iconify icon="bx:sort" />}>
@@ -196,16 +207,16 @@ export default function AppTweets() {
         </>
         }
       />
-      <Searchbar setSearch={setSearch} />
+      <Searchbar search={search} setSearch={setSearch} dataLength={data.length} />
 
-       <Scrollbar style={{ maxHeight: 790 }}>
-         <Stack spacing={2} sx={{ m: 3 }} direction={loading ? "row" : "column"}>
+      <Scrollbar style={{ maxHeight: 550 }}>
+        <Stack spacing={2} sx={{ m: 3 }} direction={loading ? "row" : "column"}>
           {loading ? <TweetItem loading={loading} />
             : data.map((tweet, index) => (
               <TweetItem key={index} tweet={tweet} />
             ))}
-        </Stack> 
-      </Scrollbar> 
+        </Stack>
+      </Scrollbar>
 
       <Divider />
 

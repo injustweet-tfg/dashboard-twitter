@@ -8,13 +8,12 @@ import { BaseOptionChart } from '../../charts';
 import { useTweets } from '../../../context';
 
 // ----------------------------------------------------------------------
-const CHART_HEIGHT = 400;
+const CHART_HEIGHT = 300;
 const LEGEND_HEIGHT = 0;
 
 
 const ChartWrapperStyle = styled('div')(({ theme }) => ({
     height: CHART_HEIGHT,
-    marginTop: theme.spacing(3),
     '& .apexcharts-canvas svg': { height: CHART_HEIGHT },
     '& .apexcharts-canvas svg,.apexcharts-canvas foreignObject': {
         overflow: 'visible'
@@ -26,7 +25,9 @@ const ChartWrapperStyle = styled('div')(({ theme }) => ({
         borderTop: `solid 1px ${theme.palette.divider}`,
         top: `calc(${CHART_HEIGHT - LEGEND_HEIGHT}px) !important`
     },
-    marginRight: theme.spacing(2),
+    paddingLeft: theme.spacing(6),
+    paddingRight: theme.spacing(6),
+
 }));
 
 export default function AppTopUsers() {
@@ -35,7 +36,7 @@ export default function AppTopUsers() {
 
     const users = topUsers.map(value => `@${value.user}`);
     const num = [{ name: "Denuncias", data: topUsers.map(value => value.tweets) }];
-
+    console.log(num)
     const chartOptions = merge(BaseOptionChart(), {
         chart: {
             events: {
@@ -44,16 +45,56 @@ export default function AppTopUsers() {
                 }
             },
         },
+        dataLabels: {
+            enabled: true,
+            textAnchor: 'start',
+            style: {
+                colors: ['#fff']
+            },
+            formatter: (val, opt) => `${users[opt.dataPointIndex]}`,
+            offsetX: 0,
+            dropShadow: {
+                enabled: true
+            }
+        },
         tooltip: {
             enabled: true,
             intersect: true,
             shared: false,
         },
         plotOptions: {
-            bar: { horizontal: true, barHeight: '58%', borderRadius: 2 }
+            // bar: { horizontal: true, barHeight: '58%', borderRadius: 2 }
+            bar: {
+                barHeight: '70%',
+                distributed: true,
+                horizontal: true,
+                dataLabels: {
+                    position: 'bottom'
+                }
+            },
         },
         xaxis: {
-            categories: users
+            categories: users,
+            tickAmount: num[0].data[0],
+            labels: {
+                show: true,
+                decimalsInFloat: 0,
+                style: {
+                    fontSize: '16px',
+                    fontWeight: 500,
+                },
+                formatter: (val) => `${val.toFixed(0)}`,
+            },
+        },
+        yaxis: {
+            labels: {
+                show: false
+            }
+        },
+        title: {
+            text: 'Tweets por usuario',
+            align: 'center',
+            floating: true
         },
         // Theme
         theme: {
@@ -75,7 +116,7 @@ export default function AppTopUsers() {
             {loading ? <Skeleton variant="rect" width="100%" height={CHART_HEIGHT} />
                 :
                 <ChartWrapperStyle dir="ltr">
-                    <ReactApexChart type="bar" series={num} options={chartOptions} height={375} />
+                    <ReactApexChart type="bar" series={num} options={chartOptions} height={300} />
                 </ChartWrapperStyle>}
         </Card>
     );

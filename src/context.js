@@ -139,7 +139,7 @@ export const TweetsProvider = (props) => {
     });
     const array = Object.values(dict);
     array.sort((a, b) => b.tweets - a.tweets);
-    const arraytop = array.slice(0, Math.min(array.length, 10));
+    const arraytop = array.slice(0, Math.min(array.length, 5));
     return arraytop;
   };
 
