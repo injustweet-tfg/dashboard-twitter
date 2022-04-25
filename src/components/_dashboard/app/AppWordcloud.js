@@ -1,17 +1,14 @@
-import React, { useEffect, useState, useRef, Memo } from 'react';
+import React, {useRef} from 'react';
 
-// import { SaveIcon } from '@mui/icons-material/Save';
 import { useTheme } from '@mui/styles';
 import { Card, CardHeader, Button, Box, Skeleton } from '@mui/material';
 import ReactWordcloud from 'react-wordcloud';
 import { saveSvgAsPng } from 'save-svg-as-png';
-// import randomize from 'randomize';
-// import randomColor from 'randomcolor';
-import { v4 as uuidv4 } from 'uuid';
+
 import Iconify from '../../Iconify';
 import { useTweets } from '../../../context';
 
-const fontFamilys = ['courier', 'serif', 'sans-serif'];
+
 const getIcon = (name) => <Iconify icon={name} width={22} height={22} />;
 
 function AppWordcloud() {
@@ -21,7 +18,6 @@ function AppWordcloud() {
     const theme = useTheme();
 
     const options = {
-        // colors: ["#0000FF", "#00008B", "#ADD8E6", "#800080", "#808080", "#33C6FF"],
         colors: theme.palette.chart.wordcloud,
         enableTooltip: false,
         deterministic: false,

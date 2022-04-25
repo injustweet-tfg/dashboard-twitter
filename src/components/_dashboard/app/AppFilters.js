@@ -35,7 +35,13 @@ export default function AppFilters() {
         <Stack direction={{ xs: 'column', sm: 'row' }} alignItems={{ xs: 'start', sm: 'center' }} justifyContent="space-between" mb={3}>
             <Typography variant="h3" gutterBottom>
                 Visualización de denuncias laborales en Twitter
+                <Typography variant="h6" gutterBottom>
+                Visualización de denuncias laborales en Twitter
             </Typography>
+            </Typography>
+
+            
+
             {/* <FilterSidebar
                 formik={formik}
                 isOpenFilter={openFilter}

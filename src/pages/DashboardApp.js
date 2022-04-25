@@ -16,7 +16,8 @@ import {
   AppTimeline,
   AppHeatmap,
   AppFilters,
-  AppWordcloud
+  AppWordcloud,
+  AppWordsTime
 } from '../components/_dashboard/app';
 
 // ----------------------------------------------------------------------
@@ -70,6 +71,10 @@ export default function DashboardApp() {
 
           <Grid item xs={12} md={6} lg={6}>
             < AppTimeline />
+          </Grid>
+
+          <Grid item xs={12} md={6} lg={6}>
+            < AppWordsTime />
           </Grid>
         </Grid>
       </Container>

@@ -8,6 +8,7 @@ export { default as AppTotalTweets } from './AppTotalTweets';
 export { default as AppHeader } from './AppHeader';
 export { default as AppFilters } from './AppFilters';
 export { default as AppWordcloud } from './AppWordcloud';
+export { default as AppWordsTime } from './AppWordsTime';
 export { default as AppTopHashtags } from './AppTopHashtags';
 export { default as AppTopUsers } from './AppTopUsers';
 export { default as FilterSidebar } from './FilterSidebar';

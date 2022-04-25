@@ -89,18 +89,78 @@ export const TweetsProvider = (props) => {
       });
 
     });
-
     const data = Object.values(dict);
     return data;
+  };
+
+  const getDataWordsTime = () => {
+    const data = getDataWordcloud();
+ 
+    const maxs = [{ text: '', value: 0 }, { text: '', value: 0 }, { text: '', value: 0 }]
+    data.forEach(elem => {
+      if (elem.value > maxs[2].value) {
+        maxs[2].text = elem.text;
+        maxs[2].value = elem.value;
+        maxs.sort((a, b) => b.value - a.value); // de mayor a menor
+      }
+    });
+
+    const dict = [{}, {}, {}];
+
+    tweets.forEach(tweet => {
+      const fullDate = new Date(tweet.date * 1000);
+      const daux = new Date(fullDate.getFullYear(), fullDate.getMonth(), fullDate.getDate());
+
+      const index = [0, 1, 2];
+      index.forEach(i => {
+        const regex = new RegExp(maxs[i].text, 'g'); // /palabra/g
+        const num = (tweet.text.match(regex) || []).length;
+
+        if (num !== 0) {
+          if (!(daux in dict[i])) {
+            const elem = {
+              date: daux,
+              count: num
+            };
+            dict[i][daux] = elem;
+          }
+          else {
+            dict[i][daux].count += num;
+          }
+        }
+        else if (!(daux in dict[i])) {
+          const elem = {
+            date: daux,
+            count: 0
+          };
+          dict[i][daux] = elem;
+        }
+      })
+    });
+
+    const maxs0 = Object.values(dict[0]);
+    maxs0.sort((a, b) => a.date.getTime() - b.date.getTime());
+    maxs0.map(elem => elem.date = timetoline(elem.date));
+    const maxs1 = Object.values(dict[1]);
+    maxs1.sort((a, b) => a.date.getTime() - b.date.getTime());
+    maxs1.map(elem => elem.date = timetoline(elem.date));
+    const maxs2 = Object.values(dict[2]);
+    maxs2.sort((a, b) => a.date.getTime() - b.date.getTime());
+    maxs2.map(elem => elem.date = timetoline(elem.date));
+
+    const sol0 = maxs[0].text;
+    const sol1 = maxs[1].text;
+    const sol2 = maxs[2].text;
+
+    // date-count for each word, and the three words
+    return { maxs0, maxs1, maxs2, sol0, sol1, sol2 };
   };
 
   const getDataTimeline = () => {
     const dict = {};
     tweets.forEach(tweet => {
-      // const d = (tweet.date).substring(0, (tweet.date).indexOf('-'));
       const fullDate = new Date(tweet.date * 1000);
       const daux = new Date(fullDate.getFullYear(), fullDate.getMonth(), fullDate.getDate());
-      // const d = timetoline(daux);
 
       if (!(daux in dict)) {
         const elem = {
@@ -208,7 +268,7 @@ export const TweetsProvider = (props) => {
   };
 
   return (
-    <context.Provider value={{ loading, filterTime, getTotals, getTopUsers, getTopHashtags, getDataWordcloud, getDataTimeline, getDataHeatmap, dateStart, dateEnd }}>
+    <context.Provider value={{ loading, filterTime, getTotals, getTopUsers, getTopHashtags, getDataWordcloud, getDataTimeline, getDataHeatmap, getDataWordsTime, dateStart, dateEnd }}>
       {props.children}
     </context.Provider>
   );
