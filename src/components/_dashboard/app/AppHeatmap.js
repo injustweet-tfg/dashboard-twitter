@@ -37,7 +37,7 @@ export default function AppHeatmap() {
   const theme = useTheme();
 
   const chartOptions = merge(BaseOptionChart(), {
-    // colors: Array(10).fill("#008FFB"),
+    colors: theme.palette.chart.wordcloud,
     stroke: { width: 2 },
     fill: { opacity: 0.8 },
     legend: { floating: true, horizontalAlign: 'center' },
@@ -63,7 +63,7 @@ export default function AppHeatmap() {
         <Skeleton variant="rect" width="100%" height={415} />
         :
         <ChartWrapperStyle dir="ltr" style={{ maxHeight: 400, minHeight: 400 }}>
-          <ReactApexChart type="heatmap" series={dataHeatmap} options={chartOptions} height={375} />
+          <ReactApexChart type="heatmap" series={dataHeatmap} options={chartOptions} height={350} />
         </ChartWrapperStyle>}
     </Card >
   );

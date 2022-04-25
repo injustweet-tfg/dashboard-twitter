@@ -1,4 +1,4 @@
-import { Stack, Typography, } from '@mui/material';
+import { Stack, Typography, Container, Grid } from '@mui/material';
 import React, { useState } from 'react'
 import { useFormik } from 'formik';
 import { FilterSidebar } from '.';
@@ -34,10 +34,7 @@ export default function AppFilters() {
     return (
         <Stack direction={{ xs: 'column', sm: 'row' }} alignItems={{ xs: 'start', sm: 'center' }} justifyContent="space-between" mb={3}>
             <Typography variant="h3" gutterBottom>
-                Visualización de denuncias laborales en Twitter
-                <Typography variant="h6" gutterBottom>
-                Visualización de denuncias laborales en Twitter
-            </Typography>
+                Visualización de denuncias laborales
             </Typography>
 
             
@@ -55,6 +52,7 @@ export default function AppFilters() {
                 onCloseFilter={handleCloseFilter}
             />
         </Stack>
+
 
     );
 

@@ -10,7 +10,6 @@ export const TweetsProvider = (props) => {
   const [dateStart, setDateStart] = useState('0');
   const [dateEnd, setDateEnd] = useState((new Date().setHours(0, 0, 0, 0) / 1000).toString());
   const [loading, setLoading] = useState(true);
-  console.log("hola soy context");
 
   useEffect(() => {
     // fetch all data when the number of tweets changes
@@ -42,7 +41,6 @@ export const TweetsProvider = (props) => {
   };
 
   const getTotals = () => {
-    console.log("getTotals", tweets.length);
     const totalTweets = tweets.length;
     const dictUsers = {};
     let totalUsers = 0;
@@ -90,7 +88,7 @@ export const TweetsProvider = (props) => {
 
     });
     const data = Object.values(dict);
-    return data;
+    return data; 
   };
 
   const getDataWordsTime = () => {
@@ -183,26 +181,6 @@ export const TweetsProvider = (props) => {
     return timeline;
   };
 
-  const getTopUsers = () => {
-    const dict = {}
-    tweets.forEach(tweet => {
-      if (!(tweet.user in dict)) {
-        const elem = {
-          user: tweet.user,
-          tweets: 1
-        };
-        dict[tweet.user] = elem;
-      }
-      else {
-        dict[tweet.user].tweets += 1;
-      }
-    });
-    const array = Object.values(dict);
-    array.sort((a, b) => b.tweets - a.tweets);
-    const arraytop = array.slice(0, Math.min(array.length, 5));
-    return arraytop;
-  };
-
   /*
   const getTweetView = async (option, search) => {
     const response = await fetch(`https://cache-twitter.herokuapp.com/words/?dateStart=${dateStart}&dateEnd=${dateEnd}&word=${search}&order=${option}`)
@@ -249,22 +227,49 @@ export const TweetsProvider = (props) => {
     return chartData;
   };
 
+  const getTopUsers = () => {
+    const dict = {}
+    tweets.forEach(tweet => {
+      if (!(tweet.user in dict)) {
+        const elem = {
+          user: tweet.user,
+          tweets: 1
+        };
+        dict[tweet.user] = elem;
+      }
+      else {
+        dict[tweet.user].tweets += 1;
+      }
+    });
+    const array = Object.values(dict);
+    array.sort((a, b) => b.tweets - a.tweets);
+    const arraytop = array.slice(0, Math.min(array.length, 5));
+    console.log("top users:", arraytop);
+    return arraytop;
+  };
+
   const getTopHashtags = () => {
     const NUMBER_OF_HASHTAGS = 5;
     const dict = {};
     tweets.forEach(tweet => {
       tweet.hashtags.forEach(hashtag => {
         if (!(hashtag in dict)) {
-          dict[hashtag] = 1;
+          const elem = {
+            hashtag,
+            tweets: 1
+          };
+          dict[hashtag] = elem;
         }
         else {
-          dict[hashtag] += 1;
+          dict[hashtag].tweets += 1;
         }
       });
     });
-    const items = Object.keys(dict).map(key => ([key, dict[key]]));
-    items.sort((first, second) => second[1] - first[1]);
-    return items.slice(0, Math.min(items.length, NUMBER_OF_HASHTAGS));
+    const array = Object.values(dict);
+    array.sort((a, b) => b.tweets - a.tweets);
+    const arraytop = array.slice(0, Math.min(array.length, 5));
+    console.log("top hashtags:", arraytop);
+    return arraytop;
   };
 
   return (

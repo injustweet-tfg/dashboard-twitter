@@ -1,5 +1,6 @@
 
 import React from 'react';
+
 import { merge } from 'lodash';
 import ReactApexChart from 'react-apexcharts';
 // material
@@ -8,6 +9,7 @@ import { Card, CardHeader, Skeleton } from '@mui/material';
 // import { AreaChart, Area, XAxis, YAxis, CartesianGrid, Tooltip, ResponsiveContainer } from 'recharts';
 import { BaseOptionChart } from '../../charts';
 import { useTweets } from '../../../context';
+
 
 // ----------------------------------------------------------------------
 const CHART_HEIGHT = 392;
@@ -45,6 +47,19 @@ export default function AppTimeline() {
   }]
 
   const chartOptions = merge(BaseOptionChart(), {
+    chart: {
+      type: 'area',
+      stacked: false,
+      height: 350,
+      zoom: {
+        type: 'x',
+        enabled: true,
+        autoScaleYaxis: true
+      },
+      toolbar: {
+        autoSelected: 'zoom'
+      }
+    },
     tooltip: {
       x: {
         format: 'dd/MM/yy'

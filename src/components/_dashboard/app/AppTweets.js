@@ -123,7 +123,7 @@ function TweetItem({ tweet, loading }) {
       <Avatar
         alt={_id}
         src='/favicon/tfg512.png'
-        sx={{ width: 55, height: 55, borderRadius: '50%', bgcolor: theme.palette.warning.main }}
+        sx={{ width: 55, height: 55, borderRadius: '50%', bgcolor: theme.palette.primary.main, m:1 }}
       />
       <Stack direction="column" alignItems="left" sx={{ px: 3 }}>
         <a className={linkStyle.twlink} href={link} target="_blank" rel="noreferrer" >
@@ -209,7 +209,7 @@ export default function AppTweets() {
       />
       <Searchbar search={search} setSearch={setSearch} dataLength={data.length} />
 
-      <Scrollbar style={{ maxHeight: 550 }}>
+      <Scrollbar style={{ maxHeight: 935 }}>
         <Stack spacing={2} sx={{ m: 3 }} direction={loading ? "row" : "column"}>
           {loading ? <TweetItem loading={loading} />
             : data.map((tweet, index) => (

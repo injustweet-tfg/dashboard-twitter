@@ -1,7 +1,7 @@
 import { merge } from 'lodash';
 import ReactApexChart from 'react-apexcharts';
 // material
-import { styled } from '@mui/material/styles';
+import { styled, useTheme } from '@mui/material/styles';
 import { Card, CardHeader, Skeleton } from '@mui/material';
 //
 import { BaseOptionChart } from '../../charts';
@@ -33,7 +33,7 @@ const ChartWrapperStyle = styled('div')(({ theme }) => ({
 export default function AppTopUsers() {
     const { getTopUsers, loading } = useTweets();
     const topUsers = getTopUsers();
-
+    const theme = useTheme()
     const users = topUsers.map(value => `@${value.user}`);
     const num = [{ name: "Denuncias", data: topUsers.map(value => value.tweets) }];
     console.log(num)
@@ -65,7 +65,7 @@ export default function AppTopUsers() {
         plotOptions: {
             // bar: { horizontal: true, barHeight: '58%', borderRadius: 2 }
             bar: {
-                barHeight: '70%',
+                barHeight: '50%',
                 distributed: true,
                 horizontal: true,
                 dataLabels: {
@@ -101,8 +101,8 @@ export default function AppTopUsers() {
             mode: 'light',
             palette: 'palette7',
             monochrome: {
-                enabled: false,
-                color: '#255aee',
+                enabled: true,
+                color: theme.palette.grey[600],
                 shadeTo: 'light',
                 shadeIntensity: 0.65
             },

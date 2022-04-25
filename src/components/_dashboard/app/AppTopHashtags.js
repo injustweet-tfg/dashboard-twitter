@@ -12,11 +12,11 @@ import { useTweets } from '../../../context';
 // ----------------------------------------------------------------------
 
 const CHART_HEIGHT = 300;
-const LEGEND_HEIGHT = 72;
+const LEGEND_HEIGHT = 0;
+
 
 const ChartWrapperStyle = styled('div')(({ theme }) => ({
     height: CHART_HEIGHT,
-    marginTop: theme.spacing(5),
     '& .apexcharts-canvas svg': { height: CHART_HEIGHT },
     '& .apexcharts-canvas svg,.apexcharts-canvas foreignObject': {
         overflow: 'visible'
@@ -27,93 +27,101 @@ const ChartWrapperStyle = styled('div')(({ theme }) => ({
         position: 'relative !important',
         borderTop: `solid 1px ${theme.palette.divider}`,
         top: `calc(${CHART_HEIGHT - LEGEND_HEIGHT}px) !important`
-    }
+    },
+    paddingLeft: theme.spacing(6),
+    paddingRight: theme.spacing(6),
+
 }));
 
 // ----------------------------------------------------------------------
-
-function TopList({ top, height }) {
-    const theme = useTheme()
-    const colors = [theme.palette.primary.main,
-    theme.palette.secondary.main,
-    theme.palette.success.main,
-    theme.palette.warning.main,
-    theme.palette.chart.violet[0]]
-
-    return (
-        <Stack px={5} pb={2} height={height} justifyContent="space-between" >
-            {top().map((pair, index) => (
-                <Stack direction="column" justifyContent="space-between" alignItems="flex-start" >
-                    <Typography
-                        key={index} variant={`h${index + 3}`} component="div" color={colors[index]} onClick={() => window.open(`https://twitter.com/intent/tweet?text=%23${pair[0]}`)} >
-                        #{pair[0]}
-                    </Typography>
-                    <Typography variant="overline" display="block">
-                        {`${pair[1]} ${pair[1] === 1 ? "tweet" : "tweets"}`}
-                    </Typography>
-                </Stack>
-            ))
-            }
-        </Stack >
-    )
-}
-
-
 function AppTopHashtags() {
     const { getTopHashtags, loading } = useTweets();
-    // const topHashtags = getTopHashtags();
-    // const theme = useTheme();
-    // const labels = topHashtags.map(pair => `#${pair[0]}`);
-    // const data = topHashtags.map(pair => pair[1]);
-
-    // const chartOptions = merge(BaseOptionChart(), {
-    // colors: [
-    //     theme.palette.primary.main,
-    //     theme.palette.secondary.main,
-    //     theme.palette.success.main,
-    //     theme.palette.warning.main,
-    //     theme.palette.chart.violet[0],
-    //     theme.palette.chart.red[0],
-    //     theme.palette.chart.green[0],
-    //     ...theme.palette.chart.other,
-    //     theme.palette.chart.pink[0],
-
-    // ],
-    //     chart: {
-    //         events: {
-    //             dataPointSelection: (event, chartContext, config) => {
-    //                 window.open(`https://twitter.com/intent/tweet?text=%23${topHashtags[config.dataPointIndex][0]}`);
-    //             }
-    //         },
-    //     },
-    //     labels,
-    //     stroke: { colors: [theme.palette.background.paper] },
-    //     legend: { floating: true, horizontalAlign: 'center' },
-    //     dataLabels: { enabled: true, dropShadow: { enabled: false } },
-    //     tooltip: {
-    //         fillSeriesColor: false,
-    //         y: {
-    //             formatter: (seriesName) => fNumber(seriesName),
-    //             title: {
-    //                 formatter: (seriesName) => `${seriesName}`
-    //             }
-    //         }
-    //     },
-    //     plotOptions: {
-    //         pie: { donut: { labels: { show: false } } }
-    //     }
-    // });
+    const topHashtags = getTopHashtags();
+    const theme = useTheme()
+    const hashtags = topHashtags.map(value => `#${value.hashtag}`);
+    const num = [{ name: "Denuncias", data: topHashtags.map(value => value.tweets) }];
+    console.log(num)
+    const chartOptions = merge(BaseOptionChart(), {
+        chart: {
+            events: {
+                dataPointSelection: (event, chartContext, config) => {
+                    window.open(`https://twitter.com/intent/user?screen_name=${topHashtags[config.dataPointIndex].user}`);
+                }
+            },
+        },
+        dataLabels: {
+            enabled: true,
+            textAnchor: 'start',
+            style: {
+                colors: ['#fff']
+            },
+            formatter: (val, opt) => `${hashtags[opt.dataPointIndex]}`,
+            offsetX: 0,
+            dropShadow: {
+                enabled: true
+            }
+        },
+        tooltip: {
+            enabled: true,
+            intersect: true,
+            shared: false,
+        },
+        plotOptions: {
+            // bar: { horizontal: true, barHeight: '58%', borderRadius: 2 }
+            bar: {
+                barHeight: '50%',
+                distributed: true,
+                horizontal: true,
+                dataLabels: {
+                    position: 'bottom'
+                }
+            },
+        },
+        xaxis: {
+            categories: hashtags,
+            tickAmount: num[0].data[0],
+            labels: {
+                show: true,
+                decimalsInFloat: 0,
+                style: {
+                    fontSize: '16px',
+                    fontWeight: 500,
+                },
+                formatter: (val) => `${val.toFixed(0)}`,
+            },
+        },
+        yaxis: {
+            labels: {
+                show: false
+            }
+        },
+        title: {
+            text: 'Tweets por hashtag',
+            align: 'center',
+            floating: true
+        },
+        // Theme
+        theme: {
+            mode: 'light',
+            palette: 'palette7',
+            monochrome: {
+                enabled: true,
+                color: theme.palette.grey[600],
+                shadeTo: 'light',
+                shadeIntensity: 0.65
+            },
+        },
+    }
+    );
 
     return (
         <Card>
             <CardHeader title="Top #hashtags" />
-            {loading ?
-                <Skeleton variant="rect" width="100%" height={CHART_HEIGHT} />
+            {loading ? <Skeleton variant="rect" width="100%" height={CHART_HEIGHT} />
                 :
-                // <ChartWrapperStyle dir="ltr">
-                //     <ReactApexChart type="pie" series={data} options={chartOptions} height={280} />
-                // </ChartWrapperStyle>}
-                <TopList top={getTopHashtags} height={CHART_HEIGHT} />}
+                <ChartWrapperStyle dir="ltr">
+                    <ReactApexChart type="bar" series={num} options={chartOptions} height={300} />
+                </ChartWrapperStyle>}
         </Card>
     );
 }

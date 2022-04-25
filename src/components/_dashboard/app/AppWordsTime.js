@@ -1,4 +1,5 @@
 import React from 'react';
+import { useTheme } from '@mui/styles';
 import { merge } from 'lodash';
 import ReactApexChart from 'react-apexcharts';
 import { styled } from '@mui/material/styles';
@@ -24,6 +25,7 @@ const ChartWrapperStyle = styled('div')(({ theme }) => ({
 
 function AppWordsTime() {
     const { getDataWordsTime, loading } = useTweets();
+    const theme = useTheme();
 
     const data = getDataWordsTime();
 
@@ -54,6 +56,20 @@ function AppWordsTime() {
 
 
     const chartOptions = merge(BaseOptionChart(), {
+        colors: theme.palette.chart.wordcloud,
+        chart: {
+            type: 'area',
+            stacked: false,
+            height: 350,
+            zoom: {
+                type: 'x',
+                enabled: true,
+                autoScaleYaxis: true
+            },
+            toolbar: {
+                autoSelected: 'zoom'
+            }
+        },
         tooltip: {
             x: {
                 format: 'dd/MM/yy'
