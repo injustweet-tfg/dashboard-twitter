@@ -1,6 +1,5 @@
 import React, { useState, createContext, useContext, useEffect } from "react";
 import { timetoline } from "./utils/formatTime";
-import useFetch from "./useFetch";
 
 export const context = createContext();
 export const useTweets = () => useContext(context);
@@ -278,16 +277,3 @@ export const TweetsProvider = (props) => {
     </context.Provider>
   );
 }
-
-
-
-/*
-
-- wordcloud: limpiar tweets, palabras más frecuentes
-- users: personalizar/poner un poco más bonito 
-- progreso: fechas
-- apptweets: link to tweet + icono twitter 
-
-- estilos
-- filtro general
-*/

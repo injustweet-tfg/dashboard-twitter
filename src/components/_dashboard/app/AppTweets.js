@@ -1,16 +1,11 @@
 import { useState } from 'react';
-import PropTypes from 'prop-types';
-// material
 import { styled, alpha } from '@mui/material/styles';
 import { makeStyles, useTheme } from '@mui/styles';
 import { Box, Stack, Card, Button, Divider, Typography, CardHeader, Menu, MenuItem, Avatar, Skeleton, Input, InputAdornment, IconButton } from '@mui/material';
 import { Icon } from '@iconify/react';
 import useFetch from '../../../useFetch';
 import Iconify from '../../Iconify';
-// utils
-import { mockImgAvatar } from '../../../utils/mockImages';
 import { fToNow } from '../../../utils/formatTime';
-//
 import Scrollbar from '../../Scrollbar';
 import { useTweets } from '../../../context';
 
