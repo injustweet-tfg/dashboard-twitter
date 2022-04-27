@@ -57,7 +57,15 @@ export default function GlobalStyles() {
             color: theme.palette.text.disabled
           }
         },
-
+        a: {
+          width: 'auto',
+          textDecoration: 'none',
+          color: theme.palette.text.primary,
+          '&:hover': {
+            textDecoration: 'underline',
+            color: theme.palette.primary.main,
+          }
+        },
         img: { display: 'block', maxWidth: '100%' },
 
         // Lazy Load Img

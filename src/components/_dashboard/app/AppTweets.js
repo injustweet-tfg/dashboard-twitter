@@ -1,6 +1,6 @@
 import { useState } from 'react';
 import { styled, alpha } from '@mui/material/styles';
-import { makeStyles, useTheme } from '@mui/styles';
+import { useTheme } from '@mui/styles';
 import { Box, Stack, Card, Button, Divider, Typography, CardHeader, Menu, MenuItem, Avatar, Skeleton, Input, InputAdornment, IconButton } from '@mui/material';
 import { Icon } from '@iconify/react';
 import useFetch from '../../../useFetch';
@@ -18,18 +18,6 @@ const TweetStyle = styled(Stack)(({ theme }) => ({
   boxShadow: theme.shadows[3],
   borderRadius: theme.shape.borderRadius,
 
-}));
-
-const useStyles = makeStyles((theme) => ({
-  twlink: {
-    width: 'auto',
-    textDecoration: 'none',
-    color: theme.palette.text.primary,
-    '&:hover': {
-      textDecoration: 'underline',
-      color: theme.palette.primary.main,
-    }
-  },
 }));
 
 const SearchbarStyle = styled('div')(({ theme }) => ({
@@ -102,7 +90,6 @@ const SORT_BY_OPTIONS = [
 
 function TweetItem({ tweet, loading }) {
   const theme = useTheme();
-  const linkStyle = useStyles();
 
   if (loading) {
     return (
@@ -118,10 +105,10 @@ function TweetItem({ tweet, loading }) {
       <Avatar
         alt={_id}
         src='/favicon/tfg512.png'
-        sx={{ width: 55, height: 55, borderRadius: '50%', bgcolor: theme.palette.primary.main, m:1 }}
+        sx={{ width: 55, height: 55, borderRadius: '50%', bgcolor: theme.palette.primary.main, m: 1 }}
       />
       <Stack direction="column" alignItems="left" sx={{ px: 3 }}>
-        <a className={linkStyle.twlink} href={link} target="_blank" rel="noreferrer" >
+        <a href={link} target="_blank" rel="noreferrer" >
           <Typography variant="subtitle2" noWrap>
             {`@${user}`} &nbsp;
             <Typography variant="caption" sx={{ pr: 0, flexShrink: 0, color: 'text.secondary' }} noWrap >
