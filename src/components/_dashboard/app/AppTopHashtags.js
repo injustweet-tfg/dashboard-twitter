@@ -37,15 +37,15 @@ const ChartWrapperStyle = styled('div')(({ theme }) => ({
 function AppTopHashtags() {
     const { getTopHashtags, loading } = useTweets();
     const topHashtags = getTopHashtags();
-    const theme = useTheme()
+    const theme = useTheme();
+    console.log('AppTopHashtags', topHashtags);
     const hashtags = topHashtags.map(value => `#${value.hashtag}`);
     const num = [{ name: "Denuncias", data: topHashtags.map(value => value.tweets) }];
-    console.log(num)
     const chartOptions = merge(BaseOptionChart(), {
         chart: {
             events: {
                 dataPointSelection: (event, chartContext, config) => {
-                    window.open(`https://twitter.com/intent/user?screen_name=${topHashtags[config.dataPointIndex].user}`);
+                    window.open(`https://twitter.com/intent/tweet?text=%23${topHashtags[config.dataPointIndex].hashtag}`);
                 }
             },
         },
