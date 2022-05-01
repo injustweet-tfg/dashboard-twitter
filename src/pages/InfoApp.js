@@ -6,7 +6,9 @@ import { Grid, Container } from '@mui/material';
 import Page from '../components/Page';
 import {
   AppHeader,
-} from '../components/_dashboard/app';
+  AppTech,
+  AppAbout
+} from '../components/_dashboard/info';
 
 // ----------------------------------------------------------------------
 
@@ -17,6 +19,12 @@ export default function DashboardApp() {
         <Grid container spacing={3}>
           <Grid item xs={12} md={12} lg={12}>
             <AppHeader />
+          </Grid>
+          <Grid item xs={12} md={12} lg={12}>
+            <AppAbout />
+          </Grid>
+          <Grid item xs={12} md={12} lg={12}>
+            <AppTech />
           </Grid>
         </Grid>
       </Container>
