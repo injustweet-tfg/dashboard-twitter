@@ -1,4 +1,4 @@
-# ⚖️ Injustweet 
+# ⚖️ Injustweet 
 
 Siempre se han dado situaciones de injusticia en el entorno laboral de origen muy diverso, e independientemente del ámbito profesional. Algunas de ellas están relacionadas con las condiciones salariales y horarias en las que se trabaja, otras son de carácter físico o mental.
 
