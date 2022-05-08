@@ -1,3 +1,4 @@
+import PropTypes from 'prop-types';
 import React, { useState, createContext, useContext, useEffect } from "react";
 import { timetoline } from "./utils/formatTime";
 
@@ -15,7 +16,8 @@ export const TweetsProvider = (props) => {
     console.log("context: useEffect")
     setLoading(true);
     const getCache = async () => {
-      const response = await fetch(`https://cache-twitter.herokuapp.com/?dateStart=${dateStart}&dateEnd=${dateEnd}`)
+      // const response = 
+      await fetch(`https://cache-twitter.herokuapp.com/?dateStart=${dateStart}&dateEnd=${dateEnd}`)
         .then(response => response.json())
         .then(data => {
           setTweets(data);
@@ -87,12 +89,12 @@ export const TweetsProvider = (props) => {
 
     });
     const data = Object.values(dict);
-    return data; 
+    return data;
   };
 
   const getDataWordsTime = () => {
     const data = getDataWordcloud();
- 
+
     const maxs = [{ text: '', value: 0 }, { text: '', value: 0 }, { text: '', value: 0 }]
     data.forEach(elem => {
       if (elem.value > maxs[2].value) {
@@ -266,7 +268,7 @@ export const TweetsProvider = (props) => {
     });
     const array = Object.values(dict);
     array.sort((a, b) => b.tweets - a.tweets);
-    const arraytop = array.slice(0, Math.min(array.length, 5));
+    const arraytop = array.slice(0, Math.min(array.length, NUMBER_OF_HASHTAGS));
     console.log("top hashtags:", arraytop);
     return arraytop;
   };
@@ -277,3 +279,8 @@ export const TweetsProvider = (props) => {
     </context.Provider>
   );
 }
+
+TweetsProvider.propTypes = {
+  children: PropTypes.node.isRequired
+};
+

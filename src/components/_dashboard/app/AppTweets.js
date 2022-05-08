@@ -1,3 +1,4 @@
+import PropTypes from 'prop-types';
 import { useState } from 'react';
 import { styled, alpha } from '@mui/material/styles';
 import { useTheme } from '@mui/styles';
@@ -35,6 +36,12 @@ const SearchbarStyle = styled('div')(({ theme }) => ({
 
 // ----------------------------------------------------------------------
 // Searchbar
+Searchbar.propTypes = {
+  search: PropTypes.string,
+  setSearch: PropTypes.func,
+  dataLength: PropTypes.number,
+};
+
 function Searchbar({ search, setSearch, dataLength }) {
   const [value, setValue] = useState();
 
@@ -76,9 +83,10 @@ function Searchbar({ search, setSearch, dataLength }) {
 
 // ----------------------------------------------------------------------
 // TweetItem
-// TweetItem.propTypes = {
-//   tweet: PropTypes.object.isRequired
-// };
+TweetItem.propTypes = {
+  tweet: PropTypes.object.isRequired,
+  loading: PropTypes.bool.isRequired,
+};
 
 
 const SORT_BY_OPTIONS = [
@@ -99,7 +107,7 @@ function TweetItem({ tweet, loading }) {
       </TweetStyle>
     );
   }
-  const { link, _id, id, text, user, date, likes, retweets, replies } = tweet;
+  const { link, _id, text, user, date, likes, retweets, replies } = tweet;
   return (
     <TweetStyle>
       <Avatar
@@ -139,7 +147,7 @@ export default function AppTweets() {
   const [selected, setSelected] = useState(0);
   const [search, setSearch] = useState("");
 
-  const { loading, data, error } = useFetch(`https://cache-twitter.herokuapp.com/words/?dateStart=${dateStart}&dateEnd=${dateEnd}&word=${search}&order=${selected}`);
+  const { loading, data, } = useFetch(`https://cache-twitter.herokuapp.com/words/?dateStart=${dateStart}&dateEnd=${dateEnd}&word=${search}&order=${selected}`);
 
   const handleOpen = (event) => {
     setOpen(event.currentTarget);

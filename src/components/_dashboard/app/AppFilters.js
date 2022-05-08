@@ -1,4 +1,4 @@
-import { Stack, Typography, Container, Grid } from '@mui/material';
+import { Stack, Typography } from '@mui/material';
 import React, { useState } from 'react'
 import FilterSidebar from './FilterSidebar';
 

@@ -1,8 +1,8 @@
 {
-  "name": "@minimal/material-kit-react",
-  "author": "minimals.cc",
-  "licence": "MIT",
-  "version": "1.2.0",
+  "name": "@injustweet/dashboard",
+  "author": "injustweet-tfg",
+  "licence": "GPL-3.0",
+  "version": "1.0.0",
   "private": false,
   "scripts": {
     "start": "react-scripts start",
@@ -36,8 +36,8 @@
     ]
   },
   "dependencies": {
-    "@emotion/react": "^11.4.1", 
-    "@emotion/styled": "^11.3.0", 
+    "@emotion/react": "^11.4.1",
+    "@emotion/styled": "^11.3.0",
     "@iconify/icons-ant-design": "^1.1.0",
     "@iconify/icons-eva": "^1.1.0",
     "@iconify/icons-ic": "^1.1.10",

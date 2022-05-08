@@ -3,6 +3,7 @@ import { Outlet } from 'react-router-dom';
 import { styled } from '@mui/material/styles';
 //
 import DashboardNavbar from './DashboardNavbar';
+import BottomBar from './BottomBar';
 
 // ----------------------------------------------------------------------
 
@@ -12,7 +13,8 @@ const APP_BAR_DESKTOP = 90;
 const RootStyle = styled('div')({
   display: 'flex',
   minHeight: '100%',
-  overflow: 'hidden'
+  overflow: 'hidden',
+  flexDirection: 'column',
 });
 
 const MainStyle = styled('div')(({ theme }) => ({
@@ -37,6 +39,7 @@ export default function DashboardLayout() {
       <MainStyle>
         <Outlet />
       </MainStyle>
+      <BottomBar />
     </RootStyle>
   );
 }

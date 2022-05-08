@@ -1,30 +1,18 @@
-## Minimal [(Free version)](https://minimal-kit-react.vercel.app/)
+# ⚖️ Injustweet 
 
-![license](https://img.shields.io/badge/license-MIT-blue.svg)
+Siempre se han dado situaciones de injusticia en el entorno laboral de origen muy diverso, e independientemente del ámbito profesional. Algunas de ellas están relacionadas con las condiciones salariales y horarias en las que se trabaja, otras son de carácter físico o mental.
 
-> Free React Admin Dashboard made with Material-UI components and React.
+Sin embargo, hoy en día, con el auge de las tecnologías y las redes sociales, muchas de estas situaciones están saliendo a la luz y dándose a conocer. Dichas plataformas están siendo utilizadas como un medio de denuncia, comunicación y apoyo. Especialmente, por aquellos trabajadores que no tienen un claro método de denuncia y buscan una comunidad que pueda ayudarles.
 
-![preview](public/static/preview.png)
+Todo esto nos lleva a preguntarnos por la cantidad y el tipo de denuncias que se llevaban a cabo, la posible relación que puede haber entre ellas o con el contexto en el que se producen, si algunas pueden estar pasando desapercibidas frente a otras con mayor atractivo mediático, si se están publicando casos falsos o si las denuncias realizadas pueden estar siendo silenciadas.
 
-| [Minimal Free](https://minimal-kit-react.vercel.app/) | [Minimal](https://material-ui.com/store/items/minimal-dashboard/) |
-| ----------------------------------------------------- | :---------------------------------------------------------------- |
-| **7** Demo pages                                      | **42+** demo pages                                                |
-| -                                                     | ✓ Multi-language                                                  |
-| -                                                     | ✓ Dark/Light Mode 🌓                                              |
-| -                                                     | ✓ [More components](https://minimals.cc/components)               |
-| -                                                     | ✓ TypeScript version                                              |
-| -                                                     | ✓ Design files (Figma & Sketch)                                   |
+Proponemos, por lo tanto, crear una aplicación que permita dar visibilidad y unificar en un único lugar todas las denuncias. De forma que esté diseñada para que todo el que quiera pueda acudir a consultar, compartir o visibilizar dichas situaciones.
 
-## Page demo
-
-- [Dashboard](https://minimal-kit-react.vercel.app/dashboard/app)
-- [Users](https://minimal-kit-react.vercel.app/dashboard/user)
-- [Product](https://minimal-kit-react.vercel.app/dashboard/products)
-- [Blog](https://minimal-kit-react.vercel.app/dashboard/blog)
-- [Login](https://minimal-kit-react.vercel.app/login)
-- [Register](https://minimal-kit-react.vercel.app/register)
-- [Not Found](https://minimal-kit-react.vercel.app/404)
-
+## Front-end 
+-   Hacemos uso de [Material-UI](https://material-ui.com/getting-started/installation/)
+-   Basado en la plantilla de [Minimal Free](https://github.com/minimal-ui-kit/material-kit-react)
+-   [ApexCharts](https://github.com/apexcharts/react-apexcharts) para las gráficas
+ 
 ## Getting started
 
 - Recommended `node js 14+` and `npm 6+`
@@ -33,8 +21,5 @@
 
 ## License
 
-Distributed under the MIT License. See [LICENSE](https://github.com/minimal-ui-kit/minimal.free/blob/main/LICENSE.md) for more information.
+Distributed under the GPL-3.0 License. See [LICENSE](https://github.com/jjavimu/dashboard-twitter/blob/main/LICENSE) for more information.
 
-## Contact us
-
-Email Us: support@minimals.cc

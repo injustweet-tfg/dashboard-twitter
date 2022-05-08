@@ -1,4 +1,5 @@
-import { Card, Box, Grid, Avatar, CardHeader, CardContent, Typography, IconButton } from '@mui/material';
+import PropTypes from 'prop-types';
+import { Card, Grid, Avatar, CardContent, Typography, IconButton } from '@mui/material';
 import Iconify from '../../Iconify';
 
 const US = [
@@ -40,17 +41,21 @@ const US = [
     }
 ]
 
+ContactCard.propTypes = {
+    item: PropTypes.object
+};
 
 function ContactCard({ item }) {
-    return <Card sx={{display:"flex", p: 4}}>
-              <Grid container spacing={2} alignItems="center">
-              <Grid item md={2}>
-                <Avatar
-                    src='/favicon/tfg512.png'
-                    sx={{ borderRadius: '50%', bgcolor: "#000", }}
-                />
-               </Grid>
-               <Grid item md={7}>
+    return <Card sx={{ height: 120 }}>
+        <CardContent>
+            <Grid container spacing={2} alignItems="top">
+                <Grid item md={2} xs={2}>
+                    <Avatar
+                        src='/favicon/tfg512.png'
+                        sx={{ borderRadius: '50%', bgcolor: "#000", marginTop: 0.5 }}
+                    />
+                </Grid>
+                <Grid item md={7} xs={10}>
                     <Typography variant="subtitle1" >
                         {item.name}
                     </Typography>
@@ -59,17 +64,18 @@ function ContactCard({ item }) {
                         {item.role}
                     </Typography>
                 </Grid>
-                <Grid item md={3}>
+                <Grid item md={3} xs={12}>
 
                     {item.github === undefined ? <> </> : <IconButton color="primary" onClick={() => window.open(item.github)}>
                         <Iconify icon="ant-design:github-filled" />
                     </IconButton >}
 
-                    {item.linkedin === undefined ? <> </> :<IconButton color="primary"onClick={() => window.open(item.linkedin)}>
+                    {item.linkedin === undefined ? <> </> : <IconButton color="primary" onClick={() => window.open(item.linkedin)}>
                         <Iconify icon="ant-design:linkedin-filled" />
                     </IconButton >}
                 </Grid>
             </Grid>
+        </CardContent>
     </Card>
 }
 
@@ -92,11 +98,11 @@ function AppAbout() {
                             style={{ wordWrap: "break-word" }}
                             margin={3}
                         >
-                            Somos un grupo de estudiantes de las facultades de matemáticas e 
+                            Somos un grupo de estudiantes de las facultades de matemáticas e
                             ingeniería informática de la Universidad Complutense de Madrid. Buscábamos crear
                             con nuestro trabajo de fin de carrera una iniciativa que sirviese de punto de encuentro
                             entre la tecnología y la sociedad.
-                            
+
 
                         </Typography>
 
@@ -107,7 +113,7 @@ function AppAbout() {
             </Grid>
 
             {US.map((item, index) =>
-                <Grid item xs={4} md={4} lg={4}>
+                <Grid key={index} item xs={12} md={4} lg={4}>
                     <ContactCard key={index} item={item} />
                 </Grid>)}
         </Grid>

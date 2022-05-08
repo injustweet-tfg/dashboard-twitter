@@ -7,7 +7,6 @@ import GlobalStyles from './theme/globalStyles';
 import ScrollToTop from './components/ScrollToTop';
 import { BaseOptionChartStyle } from './components/charts/BaseOptionChart';
 
-import { TweetsProvider } from './context';
 
 
 // ----------------------------------------------------------------------
@@ -18,7 +17,7 @@ export default function App() {
       <ScrollToTop />
       <GlobalStyles />
       <BaseOptionChartStyle />
-        <Router />
+      <Router />
     </ThemeConfig>
   );
 }
