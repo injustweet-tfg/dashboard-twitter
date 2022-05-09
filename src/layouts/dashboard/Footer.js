@@ -26,7 +26,7 @@ const RootStyle = styled('div')(({ theme }) => ({
 // ----------------------------------------------------------------------
 
 
-export default function BottomBar() {
+export default function Footer() {
 
     return (
         <RootStyle>

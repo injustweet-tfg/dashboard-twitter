@@ -93,7 +93,7 @@ const SORT_BY_OPTIONS = [
   'Más recientes',
   'Más antiguos',
   'Más RTs',
-  'Más FAVs'
+  'Más likes'
 ];
 
 function TweetItem({ tweet, loading }) {
@@ -102,7 +102,7 @@ function TweetItem({ tweet, loading }) {
   if (loading) {
     return (
       <TweetStyle width="100%">
-        <Skeleton variant="circular" width={55} height={55} />
+        <Skeleton variant="circular" width={55} height={55} sx={{ mt: 1.5 }} />
         <Skeleton sx={{ ml: 3 }} width="85%" height={55} />
       </TweetStyle>
     );
@@ -113,7 +113,7 @@ function TweetItem({ tweet, loading }) {
       <Avatar
         alt={_id}
         src='/favicon/tfg512.png'
-        sx={{ width: 55, height: 55, borderRadius: '50%', bgcolor: theme.palette.primary.main, m: 1 }}
+        sx={{ width: 55, height: 55, borderRadius: '50%', bgcolor: theme.palette.primary.main, mt: 1.5 }}
       />
       <Stack direction="column" alignItems="left" sx={{ px: 3 }}>
         <a href={link} target="_blank" rel="noreferrer" >
@@ -125,7 +125,7 @@ function TweetItem({ tweet, loading }) {
           </Typography>
         </a>
 
-        <Typography variant="body2" sx={{ color: 'text.secondary' }} paragraph >
+        <Typography variant="body2" sx={{ color: 'text.primary' }} paragraph >
           {text}
         </Typography>
 

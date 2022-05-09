@@ -3,7 +3,7 @@ import { Outlet } from 'react-router-dom';
 import { styled } from '@mui/material/styles';
 //
 import DashboardNavbar from './DashboardNavbar';
-import BottomBar from './BottomBar';
+import Footer from './Footer';
 
 // ----------------------------------------------------------------------
 
@@ -39,7 +39,7 @@ export default function DashboardLayout() {
       <MainStyle>
         <Outlet />
       </MainStyle>
-      <BottomBar />
+      <Footer />
     </RootStyle>
   );
 }
