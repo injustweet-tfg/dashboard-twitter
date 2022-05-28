@@ -31,7 +31,7 @@ const US = [
         name: "Raquel Pérez González de Ossuna",
         role: "Data Scientist",
         github: undefined,
-        linkedin: undefined
+        linkedin: "https://www.linkedin.com/in/raquel-p%C3%A9rez-gonz%C3%A1lez-de-ossuna-184b9a214"
     },
     {
         name: "Ángela Ruiz Ribera",
