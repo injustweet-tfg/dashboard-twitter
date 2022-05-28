@@ -26,7 +26,6 @@ const ChartWrapperStyle = styled('div')(({ theme }) => ({
 function AppWordsTime() {
     const { getDataWordsTime, loading } = useTweets();
     const theme = useTheme();
-
     const data = getDataWordsTime();
 
     const word0 = data.sol0;

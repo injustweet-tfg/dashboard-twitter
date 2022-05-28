@@ -1,6 +1,5 @@
 import { merge } from 'lodash';
 import ReactApexChart from 'react-apexcharts';
-// material
 import { useTheme, styled } from '@mui/material/styles';
 import { Card, CardHeader, Skeleton } from '@mui/material';
 import { BaseOptionChart } from '../../charts';
@@ -24,7 +23,6 @@ const ChartWrapperStyle = styled('div')(({ theme }) => ({
     height: LEGEND_HEIGHT,
     alignContent: 'center',
     position: 'relative !important',
-    // borderTop: `solid 1px ${theme.palette.divider}`,
     top: `calc(${CHART_HEIGHT - LEGEND_HEIGHT}px) !important`
   }
 }));

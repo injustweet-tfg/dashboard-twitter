@@ -1,6 +1,6 @@
 import PropTypes from 'prop-types';
 import { useState } from 'react';
-// material
+
 import { styled } from '@mui/material/styles';
 import {
     Box,
@@ -66,7 +66,6 @@ export default function FilterSidebar({
         <Stack direction="column">
             <Button
                 disableRipple
-                // variant="outlined"
                 endIcon={<Icon icon="bi:calendar2-date" width={20} height={20} />}
                 onClick={onOpenFilter}
             >
@@ -175,9 +174,7 @@ export default function FilterSidebar({
                                 onClick={() => {
                                     filterTime(start != null ? start.getTime().toString() : '0',
                                         end != null ? end.getTime().toString() : Date.now().toString());
-                                    // filterTime(start, end);
                                     handleFilterOn('');
-                                    // onCloseFilter();
                                 }
                                 }
                             >

@@ -1,12 +1,8 @@
-// material
 import { alpha, styled } from '@mui/material/styles';
-import { AppBar, Toolbar, Box } from '@mui/material'; // Box, Stack, IconButton 
-
+import { AppBar, Toolbar, Box } from '@mui/material'; 
 import { useNavigate } from 'react-router-dom';
 import navbarConfig from './NavbarConfig'
 import NavSection from '../../components/NavSection';
-
-
 
 // ----------------------------------------------------------------------
 
@@ -30,9 +26,7 @@ const ToolbarStyle = styled(Toolbar)(({ theme }) => ({
 
 // ----------------------------------------------------------------------
 
-// DashboardNavbar.propTypes = {
-//   onOpenSidebar: PropTypes.func
-// };
+
 
 export default function DashboardNavbar() {
   const navigate = useNavigate();

@@ -13,7 +13,7 @@ const getIcon = (name) => <Iconify icon={name} width={22} height={22} />;
 
 function AppWordcloud() {
     const { getDataWordcloud, loading } = useTweets();
-    const dataWordcloud = getDataWordcloud();
+    const dataWordcloud = loading ? [] : getDataWordcloud();
     const wordcloudRef = useRef();
     const theme = useTheme();
 

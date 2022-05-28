@@ -1,8 +1,5 @@
 import React from "react";
-
-// material
 import { Grid, Container } from '@mui/material';
-// components
 import Page from '../components/Page';
 import {
   AppHeader,

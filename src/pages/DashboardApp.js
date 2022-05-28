@@ -1,9 +1,5 @@
 import React from "react";
-
-// material
 import { Grid, Container, Typography, Card, CardContent } from '@mui/material';
-
-// components
 import Page from '../components/Page';
 import {
   AppTotalUsers,

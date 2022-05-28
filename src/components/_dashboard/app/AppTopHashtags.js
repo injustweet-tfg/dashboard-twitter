@@ -1,11 +1,7 @@
 import { merge } from 'lodash';
 import ReactApexChart from 'react-apexcharts';
-// material
 import { useTheme, styled } from '@mui/material/styles';
 import { Card, CardHeader, Skeleton} from '@mui/material';
-// utils
-// import { fNumber } from '../../../utils/formatNumber';
-
 import { BaseOptionChart } from '../../charts';
 import { useTweets } from '../../../context';
 
@@ -67,7 +63,6 @@ function AppTopHashtags() {
             shared: false,
         },
         plotOptions: {
-            // bar: { horizontal: true, barHeight: '58%', borderRadius: 2 }
             bar: {
                 barHeight: '50%',
                 distributed: true,
@@ -100,7 +95,6 @@ function AppTopHashtags() {
             align: 'center',
             floating: true
         },
-        // Theme
         theme: {
             mode: 'light',
             palette: 'palette7',

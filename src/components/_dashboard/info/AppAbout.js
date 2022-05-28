@@ -1,6 +1,7 @@
 import PropTypes from 'prop-types';
 import { Card, Grid, Avatar, CardContent, Typography, IconButton } from '@mui/material';
 import Iconify from '../../Iconify';
+// ----------------------------------------------------------------------
 
 const US = [
     {
@@ -30,7 +31,7 @@ const US = [
     {
         name: "Raquel Pérez González de Ossuna",
         role: "Data Scientist",
-        github: undefined,
+        github: "https://github.com/raquelpgo",
         linkedin: "https://www.linkedin.com/in/raquel-p%C3%A9rez-gonz%C3%A1lez-de-ossuna-184b9a214"
     },
     {

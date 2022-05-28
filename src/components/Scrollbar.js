@@ -1,6 +1,5 @@
 import PropTypes from 'prop-types';
 import SimpleBarReact from 'simplebar-react';
-// material
 import { alpha, styled } from '@mui/material/styles';
 import { Box } from '@mui/material';
 

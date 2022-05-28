@@ -1,7 +1,5 @@
 import { Navigate, useRoutes } from 'react-router-dom';
-// layouts
 import DashboardLayout from './layouts/dashboard';
-//
 import DashboardApp from './pages/DashboardApp';
 import InfoApp from './pages/InfoApp';
 import { TweetsProvider } from './context';

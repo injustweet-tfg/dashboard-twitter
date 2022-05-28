@@ -1,9 +1,7 @@
 import { merge } from 'lodash';
 import ReactApexChart from 'react-apexcharts';
-// material
 import { styled, useTheme } from '@mui/material/styles';
 import { Card, CardHeader, Skeleton } from '@mui/material';
-//
 import { BaseOptionChart } from '../../charts';
 import { useTweets } from '../../../context';
 
@@ -63,7 +61,6 @@ export default function AppTopUsers() {
             shared: false,
         },
         plotOptions: {
-            // bar: { horizontal: true, barHeight: '58%', borderRadius: 2 }
             bar: {
                 barHeight: '50%',
                 distributed: true,
@@ -96,7 +93,6 @@ export default function AppTopUsers() {
             align: 'center',
             floating: true
         },
-        // Theme
         theme: {
             mode: 'light',
             palette: 'palette7',

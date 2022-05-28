@@ -1,4 +1,4 @@
-// material
+
 import { alpha, useTheme } from '@mui/material/styles';
 import { GlobalStyles } from '@mui/material';
 

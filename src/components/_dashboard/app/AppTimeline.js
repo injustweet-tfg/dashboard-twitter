@@ -1,12 +1,9 @@
 
 import React from 'react';
-
 import { merge } from 'lodash';
 import ReactApexChart from 'react-apexcharts';
-// material
 import { useTheme, styled } from '@mui/material/styles';
 import { Card, CardHeader, Skeleton } from '@mui/material';
-// import { AreaChart, Area, XAxis, YAxis, CartesianGrid, Tooltip, ResponsiveContainer } from 'recharts';
 import { BaseOptionChart } from '../../charts';
 import { useTweets } from '../../../context';
 

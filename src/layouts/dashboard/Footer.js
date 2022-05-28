@@ -1,8 +1,6 @@
-// material
 import { styled } from '@mui/material/styles';
-import { Box, Container, Typography } from '@mui/material'; // Box, Stack, IconButton 
+import { Box, Container, Typography } from '@mui/material'; 
 import Iconify from '../../components/Iconify';
-
 
 // ----------------------------------------------------------------------
 

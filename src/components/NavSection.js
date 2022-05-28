@@ -1,10 +1,7 @@
 import PropTypes from 'prop-types';
 import { NavLink as RouterLink, matchPath, useLocation } from 'react-router-dom';
-// material
 import { alpha, useTheme, styled } from '@mui/material/styles';
 import { Box, List, ListItemText, ListItemIcon, ListItemButton } from '@mui/material';
-//
-
 
 // ----------------------------------------------------------------------
 

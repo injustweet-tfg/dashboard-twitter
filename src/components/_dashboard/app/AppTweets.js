@@ -12,16 +12,8 @@ import Scrollbar from '../../Scrollbar';
 import { useTweets } from '../../../context';
 
 // ----------------------------------------------------------------------
-// styles
-const TweetStyle = styled(Stack)(({ theme }) => ({
-  flexDirection: 'row',
-  padding: theme.spacing(0, 2, 1),
-  backgroundColor: theme.palette.grey[100],
-  boxShadow: theme.shadows[3],
-  borderRadius: theme.shape.borderRadius,
 
-}));
-
+// Searchbar
 const SearchbarStyle = styled('div')(({ theme }) => ({
   margin: theme.spacing(0, 3),
   display: 'flex',
@@ -35,8 +27,6 @@ const SearchbarStyle = styled('div')(({ theme }) => ({
 
 }));
 
-// ----------------------------------------------------------------------
-// Searchbar
 Searchbar.propTypes = {
   search: PropTypes.string,
   setSearch: PropTypes.func,
@@ -84,13 +74,12 @@ function Searchbar({ search, setSearch, dataLength }) {
   );
 }
 
-// ----------------------------------------------------------------------
+
 // TweetItem
 TweetItem.propTypes = {
   tweet: PropTypes.object.isRequired,
   loading: PropTypes.bool.isRequired,
 };
-
 
 const SORT_BY_OPTIONS = [
   'Más recientes',
@@ -98,6 +87,15 @@ const SORT_BY_OPTIONS = [
   'Más RTs',
   'Más likes'
 ];
+
+const TweetStyle = styled(Stack)(({ theme }) => ({
+  flexDirection: 'row',
+  padding: theme.spacing(0, 2, 1),
+  backgroundColor: theme.palette.grey[100],
+  boxShadow: theme.shadows[3],
+  borderRadius: theme.shape.borderRadius,
+
+}));
 
 function TweetItem({ tweet, loading }) {
   const theme = useTheme();
@@ -144,6 +142,7 @@ function TweetItem({ tweet, loading }) {
   );
 }
 
+// Component AppTweets
 export default function AppTweets() {
   const { dateStart, dateEnd } = useTweets();
   const [open, setOpen] = useState(null);

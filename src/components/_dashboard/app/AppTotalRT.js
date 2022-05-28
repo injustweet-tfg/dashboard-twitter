@@ -1,7 +1,6 @@
-// material
+
 import { styled } from '@mui/material/styles';
 import { Card, Typography, Stack, Skeleton } from '@mui/material';
-// utils
 import { fShortenNumber } from '../../../utils/formatNumber';
 import Iconify from '../../Iconify';
 import { useTweets } from '../../../context';
@@ -10,11 +9,9 @@ import { useTweets } from '../../../context';
 // ----------------------------------------------------------------------
 
 const RootStyle = styled(Card)(({ theme }) => ({
-  // boxShadow: 'none',
   textAlign: 'center',
   padding: theme.spacing(2, 4),
   color: theme.palette.text.primary,
-  // backgroundColor: theme.palette.success.main
   backgroundImage: `linear-gradient(150deg, #FFF 70%, ${theme.palette.success.lighter} 30%);`,
 }));
 
@@ -25,12 +22,7 @@ const IconWrapperStyle = styled('div')(({ theme }) => ({
   minWidth: theme.spacing(8),
   minHeight: theme.spacing(8),
   justifyContent: 'center',
-  // marginBottom: theme.spacing(2),
   color: theme.palette.common.white,
-  // backgroundImage: `linear-gradient(135deg, ${alpha(theme.palette.primary.darker, 0)} 0%, ${alpha(
-  //   theme.palette.primary.darker,
-  //   0.5
-  // )} 100%)`,
   backgroundColor: theme.palette.success.main
 }));
 

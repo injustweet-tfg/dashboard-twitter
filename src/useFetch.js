@@ -6,7 +6,7 @@ export default function useFetch(uri) {
     const [loading, setLoading] = useState(true);
     useEffect(() => {
         setLoading(true);
-        console.log("useFetch useEffect"); // , loading ? "cargando" : "ya cargado");
+        console.log("useFetch useEffect"); 
         if (!uri) return;
         fetch(uri)
             .then(res => res.json()).then(setData)

@@ -2,6 +2,8 @@ import { Stack, Typography } from '@mui/material';
 import React, { useState } from 'react'
 import FilterSidebar from './FilterSidebar';
 
+// ----------------------------------------------------------------------
+
 export default function AppFilters() {
     const [openFilter, setOpenFilter] = useState(false);
 
