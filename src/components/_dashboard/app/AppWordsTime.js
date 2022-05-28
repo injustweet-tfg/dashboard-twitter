@@ -26,6 +26,14 @@ const ChartWrapperStyle = styled('div')(({ theme }) => ({
 function AppWordsTime() {
     const { getDataWordsTime, loading } = useTweets();
     const theme = useTheme();
+    if (loading){
+        return (
+            <Card>
+                <CardHeader title="Palabras más usadas en el tiempo" />
+                <Skeleton variant="rect" width="100%" height={415} />
+            </Card>
+        );
+    }
     const data = getDataWordsTime();
 
     const word0 = data.sol0;
