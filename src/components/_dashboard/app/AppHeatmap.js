@@ -37,7 +37,7 @@ export default function AppHeatmap() {
   const theme = useTheme();
 
   const chartOptions = merge(BaseOptionChart(), {
-    colors: theme.palette.chart.wordcloud,
+    colors: [theme.palette.primary.main],
     stroke: { width: 2 },
     fill: { opacity: 0.8 },
     legend: { floating: true, horizontalAlign: 'center' },

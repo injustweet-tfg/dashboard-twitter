@@ -94,7 +94,7 @@ const CHART_COLORS = {
   pink: ['#ffafcc', '#ffc4d6ff', '#ff87abff', '#ffacc5ff'],
   other: ['#184e77ff', '#1e6091ff', '#1a759fff', '#168aadff', '#34a0a4ff', '#52b69aff', '#76c893ff', '#99d98cff', '#b5e48cff', '#d9ed92ff'],
   other2: ["#1DA1F2", "#1CA5E5", "#1CAAD9", "#1BAECC", "#1BB3C0", "#1AB7B3", "#1ABCA7", "#19C09A", "#19C58E", "#18C981"],
-  wordcloud: ["#FFB30F", "#A3001B", "#18C981", "#d5573b","#1da1f2", "#94c9a9", "#c6ecae"]
+  wordcloud: ["#FFB30F", "#1da1f2", "#18C981", "#A3001B", "#d5573b"] // , "#94c9a9", "#c6ecae"]
 
 
 };

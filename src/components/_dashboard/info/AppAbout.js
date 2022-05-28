@@ -6,20 +6,20 @@ const US = [
     {
         name: "Roberto Asunción López",
         role: "Back-end developer",
-        github: "Roberto",
-        linkedin: "Roberto"
+        github: "https://github.com/roberl234",
+        linkedin: "https://es.linkedin.com/in/rasun"
     },
     {
         name: "Pablo Imbert Fernández",
         role: "Data Scientist",
-        github: "Pablo",
-        linkedin: "Pablo"
+        github: "https://github.com/pabloimbert",
+        linkedin: undefined
     },
     {
         name: "Julián Moreno Bellaneda",
         role: "Back-end developer",
-        github: "Julián",
-        linkedin: "Julián",
+        github: "https://github.com/JM012",
+        linkedin: "https://www.linkedin.com/in/juli%C3%A1n-moreno-bellaneda-111607232",
     },
     {
         name: "Javier Mulero Martín",
@@ -30,8 +30,8 @@ const US = [
     {
         name: "Raquel Pérez González de Ossuna",
         role: "Data Scientist",
-        github: "Raquel",
-        linkedin: "Raquel"
+        github: undefined,
+        linkedin: undefined
     },
     {
         name: "Ángela Ruiz Ribera",

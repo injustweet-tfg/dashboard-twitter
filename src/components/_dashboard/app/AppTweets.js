@@ -6,6 +6,7 @@ import { Box, Stack, Card, Button, Divider, Typography, CardHeader, Menu, MenuIt
 import { Icon } from '@iconify/react';
 import useFetch from '../../../useFetch';
 import Iconify from '../../Iconify';
+import { fShortenNumber } from '../../../utils/formatNumber';
 import { fToNow } from '../../../utils/formatTime';
 import Scrollbar from '../../Scrollbar';
 import { useTweets } from '../../../context';
@@ -42,6 +43,8 @@ Searchbar.propTypes = {
   dataLength: PropTypes.number,
 };
 
+const N_TWEETS = 100;
+
 function Searchbar({ search, setSearch, dataLength }) {
   const [value, setValue] = useState();
 
@@ -75,7 +78,7 @@ function Searchbar({ search, setSearch, dataLength }) {
           <Typography variant="overline" sx={{ color: 'primary.main' }}>Buscando por: </Typography>
           <Typography variant="caption" sx={{ color: 'text.primary' }}>{search}</Typography>
         </div>}
-        <Typography variant="overline" sx={{ color: 'primary.main' }}>{dataLength} tweets </Typography>
+        <Typography variant="overline" sx={{ color: 'text.secondary' }}>Mostrando {Math.min(dataLength, N_TWEETS)} de {fShortenNumber(dataLength)} tweets</Typography>
       </Stack>
     </Stack>
   );
@@ -202,7 +205,7 @@ export default function AppTweets() {
       <Scrollbar style={{ maxHeight: 935 }}>
         <Stack spacing={2} sx={{ m: 3 }} direction={loading ? "row" : "column"}>
           {loading ? <TweetItem loading={loading} />
-            : data.map((tweet, index) => (
+            : data.slice(0, N_TWEETS).map((tweet, index) => (
               <TweetItem key={index} tweet={tweet} />
             ))}
         </Stack>

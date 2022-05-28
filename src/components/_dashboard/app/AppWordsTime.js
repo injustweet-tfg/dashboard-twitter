@@ -87,7 +87,7 @@ function AppWordsTime() {
             axisTicks: { show: true },
         },
         stroke: {
-            curve: 'smooth'
+            curve: 'straight'
         },
         yaxis: [
             {

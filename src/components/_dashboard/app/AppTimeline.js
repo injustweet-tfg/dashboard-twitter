@@ -4,7 +4,7 @@ import React from 'react';
 import { merge } from 'lodash';
 import ReactApexChart from 'react-apexcharts';
 // material
-import { styled } from '@mui/material/styles';
+import { useTheme, styled } from '@mui/material/styles';
 import { Card, CardHeader, Skeleton } from '@mui/material';
 // import { AreaChart, Area, XAxis, YAxis, CartesianGrid, Tooltip, ResponsiveContainer } from 'recharts';
 import { BaseOptionChart } from '../../charts';
@@ -28,6 +28,8 @@ const ChartWrapperStyle = styled('div')(({ theme }) => ({
 }));
 
 export default function AppTimeline() {
+  const theme = useTheme();
+
   const { getDataTimeline, loading } = useTweets();
   const dataTimeline = getDataTimeline();
   const dates = dataTimeline.map(value => value.date);
@@ -47,6 +49,11 @@ export default function AppTimeline() {
   }]
 
   const chartOptions = merge(BaseOptionChart(), {
+    colors: [
+      theme.palette.primary.main,
+      theme.palette.secondary.main,
+      theme.palette.success.main],
+
     chart: {
       type: 'area',
       stacked: false,
@@ -127,42 +134,3 @@ export default function AppTimeline() {
 
   );
 }
-
-/*
-export default function AppTimeline({dataTimeline}) {
-  const [data, setTotal] = useState(dataTimeline);
-
-  return (
-
-    <Card>
-      <CardHeader title="Progreso" />
-      <Box>
-        <ResponsiveContainer width="95%" height={400}>
-          <AreaChart
-            width={500}
-            height={400}
-            data={data}
-            margin={{
-              top: 10,
-              right: 30,
-              left: 0,
-              bottom: 0,
-            }}
-          >
-            <CartesianGrid strokeDasharray="3 3" />
-            <XAxis dataKey="date" />
-            <YAxis />
-            <Tooltip />
-            <Area type="monotone" dataKey="tweet" stackId="1" stroke="#8884d8" fill="#8884d8" />
-            <Area type="monotone" dataKey="fav" stackId="1" stroke="#82ca9d" fill="#82ca9d" />
-            <Area type="monotone" dataKey="rt" stackId="1" stroke="#ffc658" fill="#ffc658" />
-          </AreaChart>
-        </ResponsiveContainer>
-      </Box>
-
-    </Card>
-
-  );
-}
-
-*/
