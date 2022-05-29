@@ -1,7 +1,9 @@
 # ⚖️ Dashboard
-Desarrollado en React, representa el frontend de la aplicación que hemos desarrollado. Muestra datos y estadísticas en forma de dashboard, obteniendo los datos invocando al proyecto _cache-twitter_.
+Desarrollado en React, representa el frontend de la aplicación que hemos desarrollado. Muestra datos y estadísticas sobre denuncias laborales en forma de dashboard, obteniendo los datos invocando al proyecto _cache-twitter_.
 
+La estructura general de la aplicación se muestra a continuación:
 <img src="/docs/dashboard.png" width="49%" >
+
 
 ## Front-end 
 -   Hacemos uso de [Material-UI](https://material-ui.com/getting-started/installation/)
