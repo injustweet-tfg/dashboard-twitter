@@ -3,7 +3,7 @@ Desarrollado en React, representa el frontend de la aplicación que hemos desarr
 
 La estructura general de la aplicación se muestra a continuación:
 
-<img src="https://github.com/injustweet-tfg/.github/blob/main/images/dashboard.png" width="49%" >
+<img src="https://github.com/injustweet-tfg/.github/blob/main/images/arquitectura_dashboard-twitter.png" width="49%" >
 
 
 ## Front-end 
