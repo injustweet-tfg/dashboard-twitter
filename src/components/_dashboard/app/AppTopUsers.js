@@ -34,7 +34,7 @@ export default function AppTopUsers() {
     const theme = useTheme()
     const users = topUsers.map(value => `@${value.user}`);
     const num = [{ name: "Denuncias", data: topUsers.map(value => value.tweets) }];
-    console.log(num)
+
     const chartOptions = merge(BaseOptionChart(), {
         chart: {
             events: {
@@ -72,7 +72,7 @@ export default function AppTopUsers() {
         },
         xaxis: {
             categories: users,
-            tickAmount: num[0].data[0],
+            tickAmount: 5,
             labels: {
                 show: true,
                 decimalsInFloat: 0,
@@ -80,7 +80,7 @@ export default function AppTopUsers() {
                     fontSize: '16px',
                     fontWeight: 500,
                 },
-                formatter: (val) => `${val.toFixed(0)}`,
+                // formatter: (val) => `${val.toFixed(0)}`,
             },
         },
         yaxis: {

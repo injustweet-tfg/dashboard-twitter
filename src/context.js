@@ -228,7 +228,6 @@ export const TweetsProvider = (props) => {
     const array = Object.values(dict);
     array.sort((a, b) => b.tweets - a.tweets);
     const arraytop = array.slice(0, Math.min(array.length, 5));
-    console.log("top users:", arraytop);
     return arraytop;
   };
 
@@ -252,7 +251,6 @@ export const TweetsProvider = (props) => {
     const array = Object.values(dict);
     array.sort((a, b) => b.tweets - a.tweets);
     const arraytop = array.slice(0, Math.min(array.length, NUMBER_OF_HASHTAGS));
-    console.log("top hashtags:", arraytop);
     return arraytop;
   };
 

@@ -145,6 +145,7 @@ export default function FilterSidebar({
                                     <DatePicker
                                         value={start}
                                         onChange={(newValue) => {
+                                            newValue.setHours(0, 0, 0, 0)
                                             setStart(newValue);
                                         }}
                                         renderInput={(params) => <TextField {...params} />}
@@ -156,6 +157,7 @@ export default function FilterSidebar({
                                     <DatePicker
                                         value={end}
                                         onChange={(newValue) => {
+                                            newValue.setHours(23, 59, 59, 999)
                                             setEnd(newValue);
                                         }}
                                         renderInput={(params) => <TextField {...params} />}

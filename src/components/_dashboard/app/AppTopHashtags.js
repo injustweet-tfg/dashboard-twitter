@@ -1,7 +1,7 @@
 import { merge } from 'lodash';
 import ReactApexChart from 'react-apexcharts';
 import { useTheme, styled } from '@mui/material/styles';
-import { Card, CardHeader, Skeleton} from '@mui/material';
+import { Card, CardHeader, Skeleton } from '@mui/material';
 import { BaseOptionChart } from '../../charts';
 import { useTweets } from '../../../context';
 
@@ -34,7 +34,7 @@ function AppTopHashtags() {
     const { getTopHashtags, loading } = useTweets();
     const topHashtags = getTopHashtags();
     const theme = useTheme();
-    console.log('AppTopHashtags', topHashtags);
+
     const hashtags = topHashtags.map(value => `#${value.hashtag}`);
     const num = [{ name: "Denuncias", data: topHashtags.map(value => value.tweets) }];
     const chartOptions = merge(BaseOptionChart(), {
@@ -74,7 +74,7 @@ function AppTopHashtags() {
         },
         xaxis: {
             categories: hashtags,
-            tickAmount: num[0].data[0],
+            tickAmount: 5,
             labels: {
                 show: true,
                 decimalsInFloat: 0,
@@ -82,7 +82,7 @@ function AppTopHashtags() {
                     fontSize: '16px',
                     fontWeight: 500,
                 },
-                formatter: (val) => `${val.toFixed(0)}`,
+                // formatter: (val) => `${val.toFixed(0)}`,
             },
         },
         yaxis: {
