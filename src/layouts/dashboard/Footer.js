@@ -1,5 +1,5 @@
 import { styled } from '@mui/material/styles';
-import { Box, Container, Typography } from '@mui/material'; 
+import { Box, Container, Typography } from '@mui/material';
 import Iconify from '../../components/Iconify';
 
 // ----------------------------------------------------------------------
@@ -32,7 +32,7 @@ export default function Footer() {
                 <Box sx={{ display: 'flex' }}>
                     <Iconify icon="ant-design:github-filled" height="120%" />
                     <Typography variant="body2" ml={1}>
-                        Síguenos en <a href="https://github.com/jjavimu" target="_blank" rel="noreferrer">Github</a>
+                        Síguenos en <a href="https://github.com/injustweet-tfg" target="_blank" rel="noreferrer">Github</a>
                     </Typography>
                 </Box >
                 <Box sx={{ display: 'flex' }}>
